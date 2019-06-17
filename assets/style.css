@@ -297,7 +297,7 @@ body {
   font-family: Lato, Helvetica, arial, sans-serif;
   font-size: 14px;
   color: #333;
-  margin: 0;
+  margin: 24px 0 36px;
   padding: 0;
 }
 
@@ -365,44 +365,6 @@ a[href=""] {
   cursor: not-allowed;
 }
 
-#TOC {
-  background: #eee;
-  padding: 8px;
-  margin-bottom: 16px;
-  font-size: 12px;
-  float: right;
-  opacity: 0.6;
-  width: 200px;
-}
-#TOC:hover {
-  opacity: 1;
-}
-#TOC ul {
-  margin: 0;
-  list-style: lower-roman;
-}
-#TOC li {
-  margin: 0;
-}
-#TOC abbr {
-  border: none;
-}
-
-ol li {
-  margin: 0;
-  clear: both;
-}
-ol li {
-  margin: 0;
-  clear: both;
-  border-top: 1px dashed #aaa;
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
-ol li:first-child {
-  border-top: none;
-}
-
 figure {
   margin: 15px 8px 15px 0;
   padding: 8px 10px;
@@ -452,12 +414,6 @@ figcaption {
   h6 {
     font-size: 14px;
   }
-  #TOC {
-    width: 25%;
-    margin-top: 32px;
-    margin-bottom: 48px;
-    margin-left: 16px;
-  }
 }
 
 @media (min-width: 884px) {
@@ -467,8 +423,5 @@ figcaption {
   }
   header + h2 {
     margin-top: 16px;
-  }
-  TOC {
-    width: 200px;
   }
 }
