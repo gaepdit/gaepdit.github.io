@@ -24,7 +24,7 @@ Configure Git by running each of the following commands at the command prompt:
 * `git config --global user.name "Your Name"`
 * `git config --global user.email your.email@dnr.ga.gov`
 
-Add the [user .gitignore file](git/user.gitignore) to your user directory (`%userprofile%`).
+Add the [user .gitignore file](https://bitbucket.org/snippets/gaepdit/KeaBg8/) to your user profile directory (`%userprofile%`).
 
 ## Required online accounts
 

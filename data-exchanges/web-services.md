@@ -69,7 +69,7 @@ Windows Service name: CDX Connector
 Program location: C:\Program Files\EPA.gov\VirtualNodeConnector\CDXConnectorServer.exe  
 Configuration file: C:\Program Files\EPA.gov\VirtualNodeConnector\CDXConnectorServer.exe.config  
 
-ICIS-Air VESA Schedule: [23 separate tasks](https://gitlab.com/ga-epd-it/data-exchanges/icis-air/blob/master/docs/VESA%20tasks%20in%20order.md) run weekly, from 7pm Thursday through 12:15am Friday
+ICIS-Air VESA Schedule: [23 separate tasks](https://bitbucket.org/gaepdit/icis-air-data-exchange/src/master/docs/VESA%20tasks%20in%20order.md) run weekly, from 7pm Thursday through 12:15am Friday
 
 ### Prod
 

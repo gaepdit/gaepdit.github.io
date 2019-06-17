@@ -16,8 +16,7 @@
 <div class="wrapper">
 <h1 id="web-deploy-setup-and-use">Web Deploy Setup and Use</h1>
 <p>Web Deploy is a tool that enables one-click deployment of web applications directly from Visual Studio, with no need to open RDP or FTP. Web Deploy has been installed and configured on the five CMS web servers. Here are the basics for using it:</p>
-<ol start="0" type="1">
-<li><p>Install and configure Web Deploy on the server. (Yippee! This part’s done.)</p></li>
+<ol type="1">
 <li><p>In IIS Manager on the web server, add individual SOG users to the web site using the IIS Manager Permissions tool:</p>
 <ul>
 <li>Select the website you want to publish to.</li>
@@ -40,12 +39,12 @@
 <li>Select “Validate Connection” to test the settings.</li>
 <li>When you save the publishing profile, an XML file named <code>YourProfileName.pubxml</code> with your settings will be saved in your project. Some settings can be changed using the UI in Visual Studio, but other settings have to be changed by directly editing the XML file.</li>
 <li>To enable automatic backups, edit the XML file and ensure the <code>&lt;EnableMSDeployBackup&gt;</code> element is set to “True”.</li>
-<li>Commit the new Publish Profile into your Git repository. Make sure your project <code>.gitignore</code> file is set to ignore <code>*.user</code> and NOT <code>*.pubxml</code>. The latest <a href="https://gitlab.com/ga-epd-it/misc/blob/master/Git/sample.gitignore">recommended <code>.gitignore</code> file</a> is configured correctly.</li>
+<li>Commit the new Publish Profile into your Git repository. Make sure your project <code>.gitignore</code> file is set to ignore <code>*.user</code> and NOT <code>*.pubxml</code>. The latest <a href="https://bitbucket.org/snippets/gaepdit/de9zj/">recommended <code>.gitignore</code> file</a> is configured correctly.</li>
 </ul>
 <p>Repeat this for each web server/destination as necessary.</p></li>
-<li><p>Optionally, <a href="https://docs.microsoft.com/en-us/aspnet/web-forms/overview/deployment/visual-studio-web-deployment/deploying-to-iis#configure-publish-profile-transforms">add <code>Web.config</code> transformations</a> for settings that differ between publication destinations. Transformation files uses the <a href="(https://msdn.microsoft.com/en-us/library/dd465326.aspx)">XDT transformation syntax</a> to overwrite portions of the <code>Web.config</code> file when publishing.</p></li>
+<li><p>Optionally, <a href="https://docs.microsoft.com/en-us/aspnet/web-forms/overview/deployment/visual-studio-web-deployment/web-config-transformations">add <code>Web.config</code> transformations</a> for settings that differ between publication destinations. Transformation files uses the <a href="https://weblogs.asp.net/srkirkland/common-web-config-transformations-with-visual-studio-2010">XDT transformation syntax</a> to overwrite portions of the <code>Web.config</code> file when publishing.</p></li>
 </ol>
-<p>Repeat Steps 1 through 3 for each web server destination you want to publish to (e.g., Dev, UAT, &amp; Prod).</p>
+<p>Repeat for each web server destination you want to publish to (e.g., Dev, UAT, &amp; Prod).</p>
 </div>
 </body>
 </html>

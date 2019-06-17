@@ -6,8 +6,6 @@ title: Web Deploy
 
 Web Deploy is a tool that enables one-click deployment of web applications directly from Visual Studio, with no need to open RDP or FTP. Web Deploy has been installed and configured on the five CMS web servers. Here are the basics for using it:
 
-0.  Install and configure Web Deploy on the server. (Yippee! This part's done.)
-
 1.  In IIS Manager on the web server, add individual SOG users to the web site using the IIS Manager Permissions tool:
 
     * Select the website you want to publish to.
@@ -18,7 +16,7 @@ Web Deploy is a tool that enables one-click deployment of web applications direc
 
     Repeat this for each user on each web server as necessary.
 
-1.  In Visual Studio, add a Publishing Profile for each web server destination you want to publish to.
+2.  In Visual Studio, add a Publishing Profile for each web server destination you want to publish to.
 
     * First, enable the Visual Studio Web Deploy toolbar. Select View → Toolbars → Web One Click Publish.
     * In the toolbar dropdown, select "New Custom Profile..."
@@ -29,10 +27,10 @@ Web Deploy is a tool that enables one-click deployment of web applications direc
     * Select "Validate Connection" to test the settings.
     * When you save the publishing profile, an XML file named `YourProfileName.pubxml` with your settings will be saved in your project. Some settings can be changed using the UI in Visual Studio, but other settings have to be changed by directly editing the XML file.
     * To enable automatic backups, edit the XML file and ensure the `<EnableMSDeployBackup>` element is set to "True".
-    * Commit the new Publish Profile into your Git repository. Make sure your project `.gitignore` file is set to ignore `*.user` and NOT `*.pubxml`. The latest [recommended `.gitignore` file](https://gitlab.com/ga-epd-it/misc/blob/master/Git/sample.gitignore) is configured correctly.
+    * Commit the new Publish Profile into your Git repository. Make sure your project `.gitignore` file is set to ignore `*.user` and NOT `*.pubxml`. The latest [recommended `.gitignore` file](https://bitbucket.org/snippets/gaepdit/de9zj/) is configured correctly.
 
     Repeat this for each web server/destination as necessary.
 
-1.  Optionally, [add `Web.config` transformations](https://docs.microsoft.com/en-us/aspnet/web-forms/overview/deployment/visual-studio-web-deployment/deploying-to-iis#configure-publish-profile-transforms) for settings that differ between publication destinations. Transformation files uses the [XDT transformation syntax](<(https://msdn.microsoft.com/en-us/library/dd465326.aspx)>) to overwrite portions of the `Web.config` file when publishing.
+3.  Optionally, [add `Web.config` transformations](https://docs.microsoft.com/en-us/aspnet/web-forms/overview/deployment/visual-studio-web-deployment/web-config-transformations) for settings that differ between publication destinations. Transformation files uses the [XDT transformation syntax](https://weblogs.asp.net/srkirkland/common-web-config-transformations-with-visual-studio-2010) to overwrite portions of the `Web.config` file when publishing.
 
-Repeat Steps 1 through 3 for each web server destination you want to publish to (e.g., Dev, UAT, & Prod).
+Repeat for each web server destination you want to publish to (e.g., Dev, UAT, & Prod).

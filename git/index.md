@@ -15,7 +15,6 @@ The Git DVCS is required for use with all source code, so make sure you spend so
 ## Reference material
 
 * [Git - Documentation](https://git-scm.com/doc)
-* [Printable cheat sheet](https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf) (PDF)
 * [Pro Git Book](https://git-scm.com/book/en/v2)
 * [A successful Git branching model » nvie.com](https://nvie.com/posts/a-successful-git-branching-model/)
 
