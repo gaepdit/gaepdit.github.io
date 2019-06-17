@@ -1,11 +1,9 @@
 # EPD-IT Developer Documentation
 
-Source code for the EPD-IT developers documentation site.
+Source code for the Georgia EPD-IT developers documentation site at [https://gaepdit.bitbucket.io/](https://gaepdit.bitbucket.io/).
 
 ## Instructions
 
-To modify the docs on this site, edit the Markdown (`.md`) files. HTML files are generated so don't edit them directly.
+To modify the documents on this site, edit the Markdown (`.md`) files or add new files. 
 
-To create new docs, create a Markdown file and add a link where appropriate.
-
-To generate the HTML files, run `build`. Changes pushed to the "master" branch are automatically published.
+To generate the HTML, run `build`. Changes pushed to the "master" branch are automatically published. Since the HTML files are generated, don't edit them directly or your changes will be lost.

@@ -16,3 +16,7 @@ Welcome to the Georgia EPD-IT Developer Documentation site!
 * [Use HTTPS](web-apps/use-https.html)
 * [Use Web Deploy](web-apps/use-web-deploy.html)
 * [Web server setup](web-server-setup/)
+
+## Editing
+
+To edit this documentation, clone the [gaepdit.bitbucket.io](https://bitbucket.org/gaepdit/gaepdit.bitbucket.io/) repository and follow the instructions in the readme file.
