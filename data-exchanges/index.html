@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Georgia EPD Data Exchanges</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Coming+Soon|Lato:400,400italic,700">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="shortcut icon" href="/favicon.ico?v=69kRrvbXdL">
+</head>
+<body class="">
+<div class="wrapper">
+<h1 id="georgia-epd-data-exchanges">Georgia EPD Data Exchanges</h1>
+<p>Brief outlines of each data exchange we manage.</p>
+<p><a href="web-services.html">Web services</a></p>
+<h2 id="fis-facility-identification-system">FIS (Facility Identification System)</h2>
+<p>👉 EPD facility info sent to Enfotech</p>
+<h3 id="gapdes-georgia-pollution-discharge-elimination-system">GAPDES (Georgia Pollution Discharge Elimination System)</h3>
+<pre><code>*Windsor* GAPDES application
+|
+| web service
+↓
+[NODE_FLOW_FACID]
+|
+| [NODE_FLOW_FACID].dbo.sp_Load_FIS
+↓
+[MFL_GA_STG]
+|
+| web service
+↓
+*EnfoTech* FIS application</code></pre>
+<h3 id="air-branch">Air Branch</h3>
+<pre><code>IAIP/GECO applications
+↓
+[AIRBRANCH]
+|
+| [AIRBRANCH].etl.USP_IAIP_TO_STG
+↓
+[MFL_GA_STG]
+|
+| web service
+↓
+*EnfoTech* FIS application</code></pre>
+<h2 id="geos-georgia-epd-online-system">GEOS (Georgia EPD Online System)</h2>
+<p>👉 Permit application info received from Enfotech</p>
+<h3 id="air-branch-1">Air Branch</h3>
+<pre><code>*EnfoTech* GEOS application
+|
+| web service
+↓
+[MFL_GA_STG]
+|
+| [MFL_GA_STG].dbo.USP_STG_TO_IAIP
+↓
+[AIRBRANCH].dbo.GST_*
+|
+| [AIRBRANCH].etl.GEOS_STG_TO_IAIP_APPLICATIONS
+| [AIRBRANCH].etl.GEOS_STG_TO_IAIP_INSPECTIONS
+↓
+[AIRBRANCH]
+↓
+IAIP application</code></pre>
+<h3 id="gapdes">GAPDES</h3>
+<ul>
+<li>NPDES Municipal (in production)</li>
+<li>NPDES Industrial (still in planning)</li>
+<li>Stormwater Construction (soon)</li>
+<li>Stormwater Industrial (under development)</li>
+</ul>
+<pre><code>*EnfoTech* GEOS application
+|
+| web service
+↓
+[MFL_GA_STG]
+|
+| web service???
+↓
+*Windsor* GAPDES application</code></pre>
+<h2 id="fims-financial-information-management-system">FIMS (Financial Information Management System)</h2>
+<p>👉 Fee info sent to Enfotech</p>
+<h3 id="sdwis-safe-drinking-water-information-system">SDWIS (Safe Drinking Water Information System)</h3>
+<pre><code>SDWIS application
+|
+| web service calls stored procedure
+↓
+[MFL_GA_STG].sdw.*
+|
+| [MFL_GA_STG].dbo.USP_TRANSFER_SDWIS_DATA
+↓
+[MFL_GA_STG].FIMS.*
+|
+| web service
+↓
+*EnfoTech* FIMS application</code></pre>
+<h3 id="gapdes-1">GAPDES</h3>
+<pre><code>*EnfoTech* GEOS application
+↓
+*EnfoTech* FIMS application</code></pre>
+<h2 id="eis-emission-inventory-system">EIS (Emission Inventory System)</h2>
+<p>👉 Air emission info sent to EPA</p>
+<pre><code>GECO application
+↓
+[AIRBRANCH]
+|
+| [AIRBRANCH].etl.SP_EIS_FI_LOAD_STAGING
+| [AIRBRANCH].etl.SP_EIS_PSE_LOAD_STAGING
+↓
+[NETWORKNODEFLOW]
+|
+| web service (ENSC/VES)
+↓
+*EPA* EIS Gateway</code></pre>
+<h2 id="icis-integrated-compliance-information-system">ICIS (Integrated Compliance Information System)</h2>
+<p>👉 Facility, enforcement, and permitting data sent to EPA</p>
+<h3 id="icis-air">ICIS-Air</h3>
+<pre><code>IAIP application
+↓
+[AIRBRANCH]
+|
+| [AIRBRANCH].etl.ICIS_*
+↓
+[NETWORKNODEFLOW]
+|
+| web service (VESA)
+↓
+*EPA* ICIS-Air</code></pre>
+<h3 id="icis-npdes">ICIS-NPDES</h3>
+<pre><code>*Windsor* GAPDES application
+↓
+*EPA* ICIS-NPDES</code></pre>
+</div>
+</body>
+</html>

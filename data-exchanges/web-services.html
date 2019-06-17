@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Data Exchange Web Services</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Coming+Soon|Lato:400,400italic,700">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="shortcut icon" href="/favicon.ico?v=69kRrvbXdL">
+</head>
+<body class="">
+<div class="wrapper">
+<h1 id="data-exchange-web-services">Data Exchange Web Services</h1>
+<h2 id="fis-facility-identification-system">FIS (Facility Identification System)</h2>
+<p>Enfotech service runs as a Windows scheduled task.</p>
+<p>Program location: E:  Configuration file: E:.DataServices.exe.config</p>
+<p>Windows Task Scheduler<br />
+Task: FISDataService<br />
+Runs: E:.DataServices.exe<br />
+Schedule: 2am every day</p>
+<h3 id="prod">Prod</h3>
+<p>Web server: 167.192.208.134<br />
+SQL Server database: 167.192.209.7<br />
+Database: MFL_GA_STG<br />
+User: MFL_GA_STG<br />
+Exception log: https://dx.gaepd.org/exception_log/FIS_ExceptionLog.txt</p>
+<h3 id="dev">Dev</h3>
+<p>Web server: 167.192.208.199<br />
+SQL Server database: 167.192.209.70<br />
+Database: MFL_GA_STG<br />
+User: MFL_GA_STG<br />
+Exception log: https://dev-dx.gaepd.org/exception_log/FIS_ExceptionLog.txt</p>
+<h2 id="geos-georgia-epd-online-system">GEOS (Georgia EPD Online System)</h2>
+<p>Enfotech service runs as a Windows scheduled task.</p>
+<p>Program location: E:_TO_IAIP  Configuration file: E:_TO_IAIP.DataExchange.exe.config</p>
+<p>Windows Task Scheduler<br />
+Task: GEOS_to_IAIP<br />
+Runs: E:_TO_IAIP.DataExchange.exe<br />
+Schedule: 1am every day</p>
+<h3 id="prod-1">Prod</h3>
+<p>Web server: 167.192.208.134<br />
+SQL Server database: 167.192.209.7<br />
+Database: MFL_GA_STG<br />
+User: MFL_GA_STG<br />
+Exception log: https://dx.gaepd.org/exception_log/GEOS_ExceptionLog.txt</p>
+<h3 id="dev-1">Dev</h3>
+<p>Web server: 167.192.208.199<br />
+SQL Server database: 167.192.209.70<br />
+Database: MFL_GA_STG<br />
+User: MFL_GA_STG<br />
+Exception log: https://dev-dx.gaepd.org/exception_log/GEOS_ExceptionLog.txt</p>
+<h2 id="icis-aireis">ICIS-Air/EIS</h2>
+<p>VES service runs as a Windows Service.<br />
+ICIS-Air data exchange runs as a scheduled task in VESA. EIS data exchanged is trigger manually by Air Branch staff.</p>
+<p>Windows Service name: CDX Connector<br />
+Program location: C:Files.gov.exe<br />
+Configuration file: C:Files.gov.exe.config</p>
+<p>ICIS-Air VESA Schedule: <a href="https://gitlab.com/ga-epd-it/data-exchanges/icis-air/blob/master/docs/VESA%20tasks%20in%20order.md">23 separate tasks</a> run weekly, from 7pm Thursday through 12:15am Friday</p>
+<h3 id="prod-2">Prod</h3>
+<p>Web server: 167.192.208.134<br />
+SQL Server database: 167.192.209.7:1433<br />
+Database: NETWORKNODEFLOW<br />
+User: NETWORKNODEFLOW</p>
+<h3 id="dev-2">Dev</h3>
+<p>Web server: 167.192.208.199<br />
+SQL Server database: 167.192.209.70:1433<br />
+Database: NETWORKNODEFLOW<br />
+User: NETWORKNODEFLOW</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Git Etiquette</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Coming+Soon|Lato:400,400italic,700">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="shortcut icon" href="/favicon.ico?v=69kRrvbXdL">
+</head>
+<body class="">
+<div class="wrapper">
+<h1 id="git-etiquette">Git Etiquette</h1>
+<p>A set of best practices for collaborating using Git. Best practices here means that these are recommendations that in general make collaboration easier. There may be times when it makes sense to break one of these rules, and that’s fine. Just make sure you have a good reason to do so.</p>
+<h2 id="commits-should-be-short-and-complete">Commits should be short and complete</h2>
+<p><em>Short</em> means “not too long,” and <em>complete</em> means “not too short”. Or to put it more verbosely:</p>
+<ul>
+<li><p><em>Complete</em> (sometimes called <em>atomic</em>) commits means that a single feature or bug fix should ideally not be split among several commits. For example, If you need to change two files to fix one bug, both changes should be included in a single commit.</p></li>
+<li><p><em>Short</em> means each commit should <em>only</em> include one new feature or bug fix. Don’t pile multiple features, bug-fixes, and formatting changes in a single commit.</p></li>
+</ul>
+<p>In other words, each commit should represent a “before” and “after” state of the code, not a “during”.</p>
+<h2 id="write-good-commit-messages">Write good commit messages</h2>
+<p>A <a href="http://chris.beams.io/posts/git-commit/">good commit message</a> is a short (&lt;70 characters), capitalized, grammatically complete, summary sentence in the imperative mood. A rule of thumb for writing in the imperative mood is that the summary sentence will fill in the following blank: “If applied, this commit will _____.” For example,</p>
+<ul>
+<li>Fix date formatting on the TPS printout</li>
+<li>Add high-res toolbar icons</li>
+<li>Update jQuery to latest release and resolve dependencies</li>
+</ul>
+<p>The summary sentence can be followed by additional paragraphs providing more context or information if necessary, separated by blank lines. There can also follow tokens used by issue tracking systems, etc.</p>
+<h2 id="format-your-code-before-you-commit">Format your code before you commit</h2>
+<p>Projects should establish a code style from the beginning. (See <a href="https://www.smashingmagazine.com/2012/10/why-coding-style-matters/">Why Coding Style Matters – Smashing Magazine</a>.) A good coding style has many benefits, and one is that it makes reading Git changesets much easier. If two collaborators follow the same coding style, then each commit will only contain purely functional changes.</p>
+<p>Even better is to use tools that automatically format the code for you.</p>
+<p>If you need to reformat a file that has already been committed, <em>never</em> combine formatting changes and functional changes in the same commit.</p>
+<h2 id="prefer-rebase-over-merge">Prefer rebase over merge</h2>
+<p>This is mainly an issue that arises when two devs are working on the same branch. After committing some changes, you find you can’t push your new commits to Bitbucket because your partner has already pushed to the same branch, and your local branch is now behind the remote branch.</p>
+<p>The usual way of dealing with this is to pull the remote changes, merge, and then push the merged code back to Bitbucket.</p>
+<p>But if your commits are short and complete, this method creates untidy and unnecessary merge commits. Setting your tool to automatically rebase instead of merge when pulling from the remote branch will eliminate the unnecessary merge commits, resulting in a cleaner commit timeline.</p>
+<p>Note: Rebasing does not increase or decrease the chances of a merge conflict. Conflicts will have to be resolved exactly the same way in both methods.</p>
+<h2 id="create-branches">Create branches</h2>
+<p>If you need more time and space to work on a change, or you feel like the change you are working on should be spread across multiple commits, or you want to commit an unfinished work in progress to request help from a fellow developer, <em>create a branch.</em></p>
+<p>Branching is cheap and easy in Git. Create a branch and push it to GitLab. Others can check out that branch and see the current state of your work. They can add commits that you can pull. Create multiple branches if you need to work on multiple features. Branches can be deleted or merged so there is little risk.</p>
+<p>And none of this violates the rule to keep commits short and complete, because when you merge your crazy long branch back into master, it’s only the merge commit that matters. In other words, the entire branch that is merged can be considered a single merge action fulfilling the above rule. It is the merge commit itself that represents the “before” and “after” state of the main branch.</p>
+<p>But make sure you only merge into master once the change is complete and ready to be released because the master branch should always build.</p>
+<h2 id="the-master-branch-should-always-build">The master branch should always build</h2>
+<p>No one expects bug-free code, so this is not to say the master branch should be free from defects. But every attempt should be made to maintain the master branch in a build-able, ship-able state.</p>
+<p>This is just another way of saying, if you need more time and space to work on a change, create a branch.</p>
+<h2 id="dont-work-with-old-code">Don’t work with old code</h2>
+<p>When starting new work (whether creating a new branch or not), do a <code>fetch</code> or <code>pull</code> first to make sure you have the latest version of the codebase. If you start with out-of-date code, you are more likely to encounter merge conflicts when you’re finished. Plus, you might be recreating code that already exists!</p>
+<h2 id="dont-rewrite-the-commit-message-when-merging">Don’t rewrite the commit message when merging</h2>
+<p>Your Git tool should create a default merge commit message, something like “Merge branch x into y”, with maybe some extra lines describing merge Conflicts that had to be resolved. Don’t rewrite it unless the default message is actually inaccurate.</p>
+<h2 id="add-a-.gitignore-file-to-all-repositories">Add a <code>.gitignore</code> file to all repositories</h2>
+<p>Always add a project-specific <code>.gitignore</code> file to the root directory of your repository. This file is committed and tracked just like any other file in the repo.</p>
+<p>When you create a new project in Visual Studio and tell it to use Git for version control, Visual Studio will automatically add a very useful <code>.gitignore</code> file. If you are working with an existing project, you can find useful suggestions online, such as at <a href="https://www.gitignore.io/">gitignore.io</a>. There is also a recommended <code>.gitignore</code> file in this repo.</p>
+</div>
+</body>
+</html>
