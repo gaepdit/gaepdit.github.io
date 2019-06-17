@@ -1,0 +1,11 @@
+# EPD-IT Developer Documentation
+
+Source code for the EPD-IT developers documentation site.
+
+## Instructions
+
+To modify the docs on this site, edit the Markdown (`.md`) files. HTML files are generated so don't edit them directly.
+
+To create new docs, create a Markdown file and add a link where appropriate.
+
+To generate the HTML files, run `build`. Changes pushed to the "master" branch are automatically published.
