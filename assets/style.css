@@ -1,5 +1,7 @@
 /* Started with Github Markdown CSS https://gist.github.com/andyferra/2554919 */
 /* Modified over time by DWW */
+@import url('https://fonts.googleapis.com/css?family=Barlow+Condensed:500|Lato:400,400i,700&display=swap');
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -20,7 +22,7 @@ h5,
 h6 {
   margin: 20px 0 10px;
   padding: 0;
-  font-weight: bold;
+  font-weight: 500;
   -webkit-font-smoothing: antialiased;
   cursor: text;
   position: relative;
@@ -294,7 +296,7 @@ pre tt {
   border: none;
 }
 body {
-  font-family: Lato, Helvetica, arial, sans-serif;
+  font-family: Lato, sans-serif;
   font-size: 14px;
   color: #333;
   margin: 24px 0 36px;
@@ -333,6 +335,7 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: 'Barlow Condensed', sans-serif;
   margin: 24px 0 8px;
 }
 h1 span,
@@ -379,7 +382,9 @@ figure img {
 figcaption {
   border-top: 1px solid hsl(210, 100%, 85.9%);
 }
-
+pre, code {
+  font-family: Consolas, monospace;
+}
 :target {
   background: #ffa;
 }
@@ -397,22 +402,22 @@ figcaption {
     padding-bottom: 16px;
   }
   h1 {
-    font-size: 28px;
+    font-size: 36px;
   }
   h2 {
-    font-size: 24px;
+    font-size: 32px;
   }
   h3 {
-    font-size: 18px;
+    font-size: 24px;
   }
   h4 {
-    font-size: 16px;
+    font-size: 20px;
   }
   h5 {
-    font-size: 14px;
+    font-size: 18px;
   }
   h6 {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 
