@@ -74,14 +74,14 @@ Nochange
 
 ## Additional Software To Install
 
-## .NET Core
+### .NET Core
 
 Install the [.NET Core Windows Server Hosting bundle](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/index?view=aspnetcore-2.2#install-the-net-core-hosting-bundle)
 
-## Web Deploy
+### Web Deploy
 
 - Install the [Web Deployment Tool](https://www.iis.net/downloads/microsoft/web-deploy) (Choose "Complete" installation)
 
-## HTTPS (URL Rewrite) 
+### HTTPS (URL Rewrite) 
 
 - Install the [IIS URL Rewrite module](https://www.iis.net/downloads/microsoft/url-rewrite)
