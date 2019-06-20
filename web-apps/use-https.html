@@ -71,7 +71,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../assets/style.css?v=20190620">
+  <link rel="stylesheet" href="/assets/style.css?v=20190620">
   <link rel="shortcut icon" href="/favicon.ico?v=69kRrvbXdL">
 </head>
 <body class="">
@@ -92,7 +92,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>This policy applies to Dev and Test sites as well since those sites often still require the use of passwords and often display data copied from the production site. Plus, if you aren’t testing under the same conditions that exist in Production, you aren’t testing everything.</p>
 <h2 id="how-to-enable-https-for-your-website">How to enable HTTPS for your website</h2>
-<p>In IIS Manager, select your site and then select “Bindings…” under the Edit Site Actions. Add a new binding, choose “https” for the type, select the "*.gaepd.org" SSL certificate, and enter the host name. Each website should have two bindings, one each for HTTP and HTTPS. (The HTTP binding is required so that you can enable redirection.)</p>
+<p>In IIS Manager, select your site and then select “Bindings…” under the Edit Site Actions. Add a new binding, choose “https” for the type, select the "*.gaepd.org" SSL certificate, and enter the host name.</p>
+<p><img src="https-add-binding.png" /></p>
+<p>Each website should have two bindings, one each for HTTP and HTTPS. (The HTTP binding is required so that you can enable redirection.)</p>
+<p><img src="https-bindings.png" /></p>
 <p><em>Important note:</em> The SSL certificate has a wildcard sub-domain, but be aware that this only works for a single sub-domain segment. A sub-sub-domain (like <code>https://dev.cts.gaepd.org</code>) will <em>not</em> work correctly. Therefore, when creating URLs for test sites, use a hyphenated subdomain (e.g., <code>https://cts-dev.gaepd.org</code>).</p>
 <p><em>Another important note:</em> The SSL certificate installed does not work for domains other than <code>gaepd.org</code>. If you need to use a different domain name, include the purchase and maintenance of a separate SSL certificate in your development costs.</p>
 <h2 id="ensure-your-site-works-correctly">Ensure your site works correctly</h2>
