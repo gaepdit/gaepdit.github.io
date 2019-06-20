@@ -1,6 +1,6 @@
 /* Started with Github Markdown CSS https://gist.github.com/andyferra/2554919 */
 /* Modified over time by DWW */
-@import url('https://fonts.googleapis.com/css?family=Barlow+Condensed:500|Lato:400,400i,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Barlow+Condensed:500|Lato:400,400i,700&display=swap");
 
 * {
   -webkit-box-sizing: border-box;
@@ -27,27 +27,21 @@ h6 {
   cursor: text;
   position: relative;
 }
-h1 tt,
 h1 code {
   font-size: inherit;
 }
-h2 tt,
 h2 code {
   font-size: inherit;
 }
-h3 tt,
 h3 code {
   font-size: inherit;
 }
-h4 tt,
 h4 code {
   font-size: inherit;
 }
-h5 tt,
 h5 code {
   font-size: inherit;
 }
-h6 tt,
 h6 code {
   font-size: inherit;
 }
@@ -77,7 +71,6 @@ p,
 blockquote,
 ul,
 ol,
-dl,
 table,
 pre {
   margin: 15px 0;
@@ -103,35 +96,6 @@ ol :first-child {
 }
 ul :last-child,
 ol :last-child {
-  margin-bottom: 0;
-}
-dl {
-  padding: 0;
-}
-dl dt {
-  font-size: 14px;
-  font-weight: bold;
-  font-style: italic;
-  padding: 0;
-  margin: 15px 0 5px;
-}
-dl dt:first-child {
-  padding: 0;
-}
-dl dt > :first-child {
-  margin-top: 0;
-}
-dl dt > :last-child {
-  margin-bottom: 0;
-}
-dl dd {
-  margin: 0 0 15px;
-  padding: 0 15px;
-}
-dl dd > :first-child {
-  margin-top: 0;
-}
-dl dd > :last-child {
   margin-bottom: 0;
 }
 blockquote {
@@ -182,82 +146,7 @@ img {
   max-width: 100%;
   -ms-interpolation-mode: bicubic;
 }
-span.frame {
-  display: block;
-  overflow: hidden;
-}
-span.frame > span {
-  border: 1px solid #dddddd;
-  display: block;
-  float: left;
-  overflow: hidden;
-  margin: 13px 0 0;
-  padding: 7px;
-  width: auto;
-}
-span.frame span img {
-  display: block;
-  float: left;
-}
-span.frame span span {
-  clear: both;
-  color: #333333;
-  display: block;
-  padding: 5px 0 0;
-}
-span.align-center {
-  display: block;
-  overflow: hidden;
-  clear: both;
-}
-span.align-center > span {
-  display: block;
-  overflow: hidden;
-  margin: 13px auto 0;
-  text-align: center;
-}
-span.align-center span img {
-  margin: 0 auto;
-  text-align: center;
-}
-span.align-right {
-  display: block;
-  overflow: hidden;
-  clear: both;
-}
-span.align-right > span {
-  display: block;
-  overflow: hidden;
-  margin: 13px 0 0;
-  text-align: right;
-}
-span.align-right span img {
-  margin: 0;
-  text-align: right;
-}
-span.float-left {
-  display: block;
-  margin-right: 13px;
-  overflow: hidden;
-  float: left;
-}
-span.float-left span {
-  margin: 13px 0 0;
-}
-span.float-right {
-  display: block;
-  margin-left: 13px;
-  overflow: hidden;
-  float: right;
-}
-span.float-right > span {
-  display: block;
-  overflow: hidden;
-  margin: 13px auto 0;
-  text-align: right;
-}
-code,
-tt {
+code {
   margin: 0 2px;
   padding: 0 5px;
   white-space: nowrap;
@@ -272,15 +161,6 @@ pre code {
   border: none;
   background: transparent;
 }
-.intro pre {
-  background-color: #f8f8f8;
-  border: 1px solid #cccccc;
-  font-size: 13px;
-  line-height: 19px;
-  overflow: auto;
-  padding: 6px 10px;
-  border-radius: 3px;
-}
 pre {
   background-color: #f8f8f8;
   border: 1px solid #cccccc;
@@ -290,8 +170,7 @@ pre {
   padding: 6px 10px;
   border-radius: 3px;
 }
-pre code,
-pre tt {
+pre code {
   background-color: transparent;
   border: none;
 }
@@ -335,7 +214,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: "Barlow Condensed", sans-serif;
   margin: 24px 0 8px;
 }
 h1 span,
@@ -372,7 +251,6 @@ figure {
   margin: 15px 8px 15px 0;
   padding: 8px 10px;
   text-align: center;
-  background: hsl(209, 100%, 94.3%);
   border-radius: 5px;
 }
 figure img {
@@ -382,7 +260,8 @@ figure img {
 figcaption {
   border-top: 1px solid hsl(210, 100%, 85.9%);
 }
-pre, code {
+pre,
+code {
   font-family: Consolas, monospace;
 }
 :target {
