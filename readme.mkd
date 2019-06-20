@@ -4,6 +4,6 @@ Source code for the Georgia EPD-IT developers documentation site at [https://gae
 
 ## Instructions
 
-To modify the documents on this site, edit the Markdown (`.md`) files or add new files. 
+To modify the documents on this site, clone this repository and edit the Markdown (`.md`) files or add new files. Since the HTML files are generated, don't edit them directly or your changes will be lost.
 
-To generate the HTML, run `build`. Changes pushed to the "master" branch are automatically published. Since the HTML files are generated, don't edit them directly or your changes will be lost.
+To generate the HTML, run `build`. Changes pushed to the "master" branch are automatically published.
