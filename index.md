@@ -4,20 +4,12 @@ title: GA EPD-IT Developer Documentation
 
 # Georgia EPD-IT Developer Documentation
 
-Welcome to the Georgia EPD-IT Developer Documentation site!
+Welcome to the Georgia EPD-IT Developer Documentation site! To edit this documentation, follow the instructions in the [site repository](https://bitbucket.org/gaepdit/gaepdit.bitbucket.io/src/master/readme.mkd).
 
-## Welcome
+## Getting started
 
 * [New employee onboarding](new-dev/)
-
-## Data exchanges
-
-* [Data exchanges](data-exchanges/)
-* [Data exchange web services](data-exchanges/web-services.html)
-
-## Using Git
-
-* [Git Resources and Training](git/)
+* [Git resources and training](git/)
 * [Git etiquette](git/git-etiquette.html)
 
 ## Application development
@@ -25,10 +17,8 @@ Welcome to the Georgia EPD-IT Developer Documentation site!
 * [Use HTTPS](web-apps/use-https.html)
 * [Use Web Deploy](web-apps/use-web-deploy.html)
 
-## Web servers
+## Infrastructure
 
+* [Data exchange descriptions](data-exchanges/)
+* [Data exchange web services](data-exchanges/web-services.html)
 * [Web server setup](web-server-setup/)
-
-## Editing
-
-To edit this documentation, follow the instructions in the [site repository](https://bitbucket.org/gaepdit/gaepdit.bitbucket.io/src/master/readme.mkd).
