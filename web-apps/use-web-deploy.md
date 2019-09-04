@@ -4,33 +4,79 @@ title: Web Deploy
 
 # Web Deploy Setup and Use
 
-Web Deploy is a tool that enables one-click deployment of web applications directly from Visual Studio, with no need to open RDP or FTP. Web Deploy has been installed and configured on the five CMS web servers. Here are the basics for using it:
+Web Deploy is a tool that enables one-click deployment of web applications directly from Visual Studio to the web server, with no need to separately use RDP or FTP. Follow these steps to set it up for each application.
 
-1.  In IIS Manager on the web server, add individual SOG users to the web site using the IIS Manager Permissions tool:
+* [Server setup](#server-setup)
+* [Application setup](#application-setup)
+* [Publishing](#publishing)
+* [Optional configuration setup](#optional-configuration-setup)
 
-    * Select the website you want to publish to.
-    * Open the "IIS Manager Permissions" tool.
-    * Select the "Allow User..." Action.
-    * Enter the SOG account you want to add as a Windows user, e.g., "SOG\DWaldron".
-    * Select OK.
+## Server setup
 
-    Repeat this for each user on each web server as necessary.
+Open IIS Manager on the web server, select the website you want to configure in the Connections panel, and then open the "IIS Manager Permissions" tool.
 
-2.  In Visual Studio, add a Publishing Profile for each web server destination you want to publish to.
+![](web-deploy-server-step-1.png)
 
-    * First, enable the Visual Studio Web Deploy toolbar. Select View → Toolbars → Web One Click Publish.
-    * In the toolbar dropdown, select "New Custom Profile..."
-    * The Publish tool that gets displayed will differ depending on the type of project you are working on, but pay attention to these key fields:
-      * Server: `your-url.gaepd.org/msdeploy.axd?site=iis-site-name`
-      * Site name: This is the name of the website as listed in IIS. Generally, we have been using the URL for the name.
-      * **Leave User name and Password blank!** (You will be prompted for these every time you publish.)
-    * Select "Validate Connection" to test the settings.
-    * When you save the publishing profile, an XML file named `YourProfileName.pubxml` with your settings will be saved in your project. Some settings can be changed using the UI in Visual Studio, but other settings have to be changed by directly editing the XML file.
-    * To enable automatic backups, edit the XML file and ensure the `<EnableMSDeployBackup>` element is set to "True".
-    * Commit the new Publish Profile into your Git repository. Make sure your project `.gitignore` file is set to ignore `*.user` and NOT `*.pubxml`. The latest [recommended `.gitignore` file](https://bitbucket.org/snippets/gaepdit/de9zj/) is configured correctly.
+Select the "Allow User..." Action.
 
-    Repeat this for each web server/destination as necessary.
+![](web-deploy-server-step-2.png)
 
-3.  Optionally, [add `Web.config` transformations](https://docs.microsoft.com/en-us/aspnet/web-forms/overview/deployment/visual-studio-web-deployment/web-config-transformations) for settings that differ between publication destinations. Transformation files uses the [XDT transformation syntax](https://weblogs.asp.net/srkirkland/common-web-config-transformations-with-visual-studio-2010) to overwrite portions of the `Web.config` file when publishing.
+Select Windows user, then select "Object Types" and enable Groups. Type "Users" in the box and click "Check Names." It should validate the group name. Select OK.
+
+![](web-deploy-server-step-3.png)
+
+The Users group should display in the IIS Manager Permissions list.
+
+![](web-deploy-server-step-4.png)
+
+Repeat this for each website on each web server as necessary.
+
+## Application setup
+
+In Visual Studio, you will add a Publishing Profile for each web server destination that you want to publish to.
+
+First, enable the "Web One Click Publish" toolbar in Visual Studio. Select View → Toolbars → Web One Click Publish.
+
+In the Publish toolbar dropdown, select "New Custom Profile...".
+
+![](web-deploy-vs-step-1.png)
+
+Select "IIS, FTP, Web Deploy" as the publish target, then select "Create Profile".
+
+![](web-deploy-vs-step-2.png)
+
+The Publish tool that gets displayed may differ depending on the type of project you are working on, so these screenshots may not match exactly. Fill in the following fields:
+
+* **Server:** Enter either the website URL or server IP address.
+
+* **Site name:** Enter the name of the website as listed in IIS.
+
+* **User name** and **Password:** Leave these blank! You don't want this information in your source code repository. You will be prompted for these every time you publish.
+
+* **Destination URL:** The URL to launch once publishing is successful.
+
+Select "Validate Connection" to test the settings. *Note: You will log in with your SEI server credential, not your SOG credentials.*
+
+![](web-deploy-vs-step-3.png)
+
+Save the profile, which will create an XML file in your project with your settings. You can rename the profile, edit it, and create additional profiles from within the Visual Studio Publish screen.
+
+![](web-deploy-vs-step-4.png)
+
+Note that some settings can be changed using the UI in Visual Studio, but other settings may need to be changed by directly editing the XML file.
+
+Commit the new Publish Profile into your Git repository. Make sure your project `.gitignore` file is set to ignore `*.user` but NOT `*.pubxml`.
 
 Repeat for each web server destination you want to publish to (e.g., Dev, UAT, & Prod).
+
+## Publishing
+
+To publish your website, select the desired profile in the Publish toolbar dropdown, and click the globe icon. You will then be requested to enter your user name and password.
+
+![](web-deploy-vs-step-5.png)
+
+![](web-deploy-vs-step-6.png)
+
+## Optional configuration setup
+
+Optionally, you can set up [`Web.config` file transformations](https://docs.microsoft.com/en-us/aspnet/web-forms/overview/deployment/visual-studio-web-deployment/web-config-transformations) for settings that differ between publication destinations. Transformation files uses the [XDT transformation syntax](https://weblogs.asp.net/srkirkland/common-web-config-transformations-with-visual-studio-2010) to overwrite portions of the `Web.config` file when publishing. Repeat for each web server destination you want to publish to (e.g., Dev, UAT, & Prod).
