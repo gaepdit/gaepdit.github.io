@@ -8,12 +8,17 @@ title: Use HTTPS
 
 Summary: An SSL certificate for `*.gaepd.org` is installed on all web servers. The URL Rewrite IIS module is also installed, making it easy to set up redirection for HTTP requests.
 
-## Why use HTTPS? 
+* [Why use HTTPS?](#why-use-https)
+* [How to enable HTTPS for your website](#how-to-enable-https-for-your-website)
+* [Bonus: How to enable HSTS](#bonus-how-to-enable-hsts)
+* [TL;DR](#tl-dr)
+
+## Why use HTTPS?
 
 HTTPS helps protect the privacy and security of your users, even if personal information is not being transmitted. Also, HTTPS is required for many newer technologies (e.g., service workers, geo-location).
 
 > Every unencrypted HTTP request reveals information about a user’s behavior, and the interception and tracking of unencrypted browsing has become commonplace. Today, **there is no such thing as non-sensitive web traffic,** and public services should not depend on the benevolence of network operators.
-> 
+>
 > — <cite>[The HTTPS-Only Standard](https://https.cio.gov/everything/)</cite>
 
 This is especially true for government websites.
@@ -26,7 +31,7 @@ This policy applies to Dev and Test sites as well since those sites often still 
 
 ## How to enable HTTPS for your website
 
-In IIS Manager, select your site and then select "Bindings..." under the Edit Site Actions. Add a new binding, choose "https" for the type, select the "*.gaepd.org" SSL certificate, and enter the host name. 
+In IIS Manager, select your site and then select "Bindings..." under the Edit Site Actions. Add a new binding, choose "https" for the type, select the "*.gaepd.org" SSL certificate, and enter the host name.
 
 ![Screenshot of IIS "Add Site Binding" tool](img/https-add-binding.png)
 
@@ -38,7 +43,7 @@ Each website should have two bindings, one each for HTTP and HTTPS. (The HTTP bi
 
 *Another important note:* The SSL certificate installed does not work for domains other than `gaepd.org`. If you need to use a different domain name, include the purchase and maintenance of a separate SSL certificate in your development costs.
 
-## Ensure your site works correctly
+### Ensure your site works correctly
 
 In particular, watch out for hard-coded internal links and mixed security content. Mixed security content occurs when embedded scripts, images, etc. are served from HTTP while the main page is served over HTTPS. See [What Is Mixed Content?](https://developers.google.com/web/fundamentals/security/prevent-mixed-content/what-is-mixed-content) for a more detailed description.
 
@@ -47,46 +52,104 @@ link.
 
 Also, when linking to external sites, it is best practice to link to an HTTPS version if one exists.
 
-## Redirect HTTP requests
+### Redirect HTTP requests
 
 * HTTP requests to websites should be seamlessly redirected to an identical request over HTTPS.
 * Web APIs should either not listen on HTTP or close the connection with status code 400 (Bad Request).
 
-Once you have verified that the site is fully functional in HTTPS, the last step is to permanently redirect all HTTP traffic to the HTTPS site. The [URL Redirect Module](https://docs.microsoft.com/en-us/iis/extensions/url-rewrite-module/using-the-url-rewrite-module) has been installed on all web servers for this purpose. To enable it, copy this snippet into your web.config file:
+Once you have verified that the site is fully functional in HTTPS, the last step is to permanently redirect all HTTP traffic to the HTTPS site. The [URL Redirect Module](https://docs.microsoft.com/en-us/iis/extensions/url-rewrite-module/using-the-url-rewrite-module) has been installed on all web servers for this purpose. To enable it, copy this snippet into your web.config file within the `<system.webServer>`:
 
 ```xml
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-
-  <!-- lots of additional stuff not shown... -->
-    
-  <system.webServer>
-    <rewrite>
-      <rules>
-        <!-- Redirect HTTP to HTTPS. This requires the URL Rewrite module to be installed in IIS. -->
+<rewrite>
+    <!-- This section requires the URL Rewrite module to be installed in IIS. -->
+    <rules>
         <rule name="HTTP to HTTPS redirect" stopProcessing="true">
-          <match url="(.*)" />
-          <conditions>
-            <add input="{SERVER_PORT_SECURE}" pattern="^0$" />
-          </conditions>
-          <action type="Redirect" redirectType="Permanent" url="https://{HTTP_HOST}/{R:1}" />
+            <match url="(.*)" />
+            <conditions>
+                <add input="{SERVER_PORT_SECURE}" pattern="^0$" />
+            </conditions>
+            <action type="Redirect" redirectType="Permanent" 
+                url="https://{HTTP_HOST}/{R:1}" />
         </rule>
-      </rules>
-    </rewrite>
-  </system.webServer>
-</configuration>
+    </rules>
+</rewrite>
 ```
 
 This snippet uses a permanent redirect type (301 Moved Permanently).
 
-## Don't forget the cookies
+### Don't forget the cookies
 
-Browser cookies set by your application should be similarly secured. While you have web.config open, add this line:
+Browser cookies set by your application should be similarly secured. While you have web.config open, add this line within the `<system.web>` element:
 
 ```xml
+<httpCookies requireSSL="true" httpOnlyCookies="true"/>
+```
+
+## Bonus: How to enable HSTS
+
+If you are committed to HTTPS and have thoroughly tested your site, you should consider enabling HTTP Strict Transport Security (HSTS).
+
+> [HSTS] allows a website to declare itself as a secure host and to inform browsers that it should be contacted only through HTTPS connections. HSTS is an opt-in security enhancement that enforces HTTPS and significantly reduces the ability of man-in-the-middle type attacks to intercept requests and responses between servers and clients.
+>
+> — <cite>[IIS 10.0 Version 1709 HTTP Strict Transport Security (HSTS) Support](https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-10-version-1709/iis-10-version-1709-hsts#http-strict-transport-security-hsts)</cite>
+
+How to enable HSTS depends on which version of IIS you are using. The following instructions are valid for our current version. (But see the above link for later versions.)
+
+Within the `<rewrite>` element added above, include the following lines and test thoroughly:
+
+```xml
+<outboundRules>
+    <rule name="Add STS header when HTTPS" enabled="true">
+        <match serverVariable="RESPONSE_Strict_Transport_Security"
+            pattern=".*" />
+        <conditions>
+            <add input="{HTTPS}" pattern="on" ignoreCase="true" />
+        </conditions>
+        <action type="Rewrite" value="max-age=300" />
+    </rule>
+</outboundRules>
+```
+
+The **max-age** value is set in this example at 5 minutes (300 seconds). *This is for testing purposes only.*
+
+[It is recommended](https://hstspreload.org/#deployment-recommendations) to ramp up the **max-age** value stepwise to 1 week, 1 month, and finally 2 years, fully testing each for the enable time period.
+
+## TL;DR
+
+**Do NOT copy and paste the following without first reading the above and testing your site thoroughly. This is provided for reference only.**
+
+Once complete, the `web.config` file should look similar to the following (unrelated settings have been removed):
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-  <system.web>
-    <httpCookies requireSSL="true" httpOnlyCookies="true"/>
-  </system.web>
+    <system.webServer>
+        <!-- This section requires the URL Rewrite module to be installed in IIS. -->
+        <rewrite>
+            <rules>
+                <rule name="HTTP to HTTPS redirect" stopProcessing="true">
+                    <match url="(.*)" />
+                    <conditions>
+                        <add input="{SERVER_PORT_SECURE}" pattern="^0$" />
+                    </conditions>
+                    <action type="Redirect" redirectType="Permanent" 
+                        url="https://{HTTP_HOST}/{R:1}" />
+                </rule>
+            </rules>
+            <outboundRules>
+                <rule name="Add STS header when HTTPS" enabled="true">
+                    <match serverVariable="RESPONSE_Strict_Transport_Security"
+                        pattern=".*" />
+                    <conditions>
+                        <add input="{HTTPS}" pattern="on" ignoreCase="true" />
+                    </conditions>
+                    <action type="Rewrite" value="max-age=604800" />
+                </rule>
+            </outboundRules>
+        </rewrite>
+    </system.webServer>
+    <system.web>
+        <httpCookies requireSSL="true" httpOnlyCookies="true"/>
+    </system.web>
 </configuration>
 ```

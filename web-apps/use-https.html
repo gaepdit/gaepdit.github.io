@@ -81,6 +81,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 id="using-https-is-required">Using HTTPS Is Required</h1>
 <p><em>All Georgia EPD websites and web applications <strong>MUST</strong> be served over HTTPS only (including dev and test sites).</em></p>
 <p>Summary: An SSL certificate for <code>*.gaepd.org</code> is installed on all web servers. The URL Rewrite IIS module is also installed, making it easy to set up redirection for HTTP requests.</p>
+<ul>
+<li><a href="#why-use-https">Why use HTTPS?</a></li>
+<li><a href="#how-to-enable-https-for-your-website">How to enable HTTPS for your website</a></li>
+<li><a href="#bonus-how-to-enable-hsts">Bonus: How to enable HSTS</a></li>
+<li><a href="#tl-dr">TL;DR</a></li>
+</ul>
 <h2 id="why-use-https">Why use HTTPS?</h2>
 <p>HTTPS helps protect the privacy and security of your users, even if personal information is not being transmitted. Also, HTTPS is required for many newer technologies (e.g., service workers, geo-location).</p>
 <blockquote>
@@ -104,44 +110,87 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </figure>
 <p><em>Important note:</em> The SSL certificate has a wildcard sub-domain, but be aware that this only works for a single sub-domain segment. A sub-sub-domain (like <code>https://dev.geco.gaepd.org</code>) will <em>not</em> work correctly. Therefore, when creating URLs for test sites, use a hyphenated subdomain (e.g., <code>https://dev-geco.gaepd.org</code>).</p>
 <p><em>Another important note:</em> The SSL certificate installed does not work for domains other than <code>gaepd.org</code>. If you need to use a different domain name, include the purchase and maintenance of a separate SSL certificate in your development costs.</p>
-<h2 id="ensure-your-site-works-correctly">Ensure your site works correctly</h2>
+<h3 id="ensure-your-site-works-correctly">Ensure your site works correctly</h3>
 <p>In particular, watch out for hard-coded internal links and mixed security content. Mixed security content occurs when embedded scripts, images, etc. are served from HTTP while the main page is served over HTTPS. See <a href="https://developers.google.com/web/fundamentals/security/prevent-mixed-content/what-is-mixed-content">What Is Mixed Content?</a> for a more detailed description.</p>
 <p>To fix this, search for all instances of <code>http:</code> in your source code, verify that an HTTPS version is available for the resource, and then change the link.</p>
 <p>Also, when linking to external sites, it is best practice to link to an HTTPS version if one exists.</p>
-<h2 id="redirect-http-requests">Redirect HTTP requests</h2>
+<h3 id="redirect-http-requests">Redirect HTTP requests</h3>
 <ul>
 <li>HTTP requests to websites should be seamlessly redirected to an identical request over HTTPS.</li>
 <li>Web APIs should either not listen on HTTP or close the connection with status code 400 (Bad Request).</li>
 </ul>
-<p>Once you have verified that the site is fully functional in HTTPS, the last step is to permanently redirect all HTTP traffic to the HTTPS site. The <a href="https://docs.microsoft.com/en-us/iis/extensions/url-rewrite-module/using-the-url-rewrite-module">URL Redirect Module</a> has been installed on all web servers for this purpose. To enable it, copy this snippet into your web.config file:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;utf-8&quot;<span class="kw">?&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">&lt;configuration&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a>  <span class="co">&lt;!-- lots of additional stuff not shown... --&gt;</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>    </span>
-<span id="cb1-6"><a href="#cb1-6"></a>  <span class="kw">&lt;system.webServer&gt;</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a>    <span class="kw">&lt;rewrite&gt;</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>      <span class="kw">&lt;rules&gt;</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a>        <span class="co">&lt;!-- Redirect HTTP to HTTPS. This requires the URL Rewrite module to be installed in IIS. --&gt;</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a>        <span class="kw">&lt;rule</span><span class="ot"> name=</span><span class="st">&quot;HTTP to HTTPS redirect&quot;</span><span class="ot"> stopProcessing=</span><span class="st">&quot;true&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a>          <span class="kw">&lt;match</span><span class="ot"> url=</span><span class="st">&quot;(.*)&quot;</span> <span class="kw">/&gt;</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a>          <span class="kw">&lt;conditions&gt;</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a>            <span class="kw">&lt;add</span><span class="ot"> input=</span><span class="st">&quot;{SERVER_PORT_SECURE}&quot;</span><span class="ot"> pattern=</span><span class="st">&quot;^0$&quot;</span> <span class="kw">/&gt;</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a>          <span class="kw">&lt;/conditions&gt;</span></span>
-<span id="cb1-15"><a href="#cb1-15"></a>          <span class="kw">&lt;action</span><span class="ot"> type=</span><span class="st">&quot;Redirect&quot;</span><span class="ot"> redirectType=</span><span class="st">&quot;Permanent&quot;</span><span class="ot"> url=</span><span class="st">&quot;https://{HTTP_HOST}/{R:1}&quot;</span> <span class="kw">/&gt;</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a>        <span class="kw">&lt;/rule&gt;</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a>      <span class="kw">&lt;/rules&gt;</span></span>
-<span id="cb1-18"><a href="#cb1-18"></a>    <span class="kw">&lt;/rewrite&gt;</span></span>
-<span id="cb1-19"><a href="#cb1-19"></a>  <span class="kw">&lt;/system.webServer&gt;</span></span>
-<span id="cb1-20"><a href="#cb1-20"></a><span class="kw">&lt;/configuration&gt;</span></span></code></pre></div>
+<p>Once you have verified that the site is fully functional in HTTPS, the last step is to permanently redirect all HTTP traffic to the HTTPS site. The <a href="https://docs.microsoft.com/en-us/iis/extensions/url-rewrite-module/using-the-url-rewrite-module">URL Redirect Module</a> has been installed on all web servers for this purpose. To enable it, copy this snippet into your web.config file within the <code>&lt;system.webServer&gt;</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">&lt;rewrite&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="co">&lt;!-- This section requires the URL Rewrite module to be installed in IIS. --&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>    <span class="kw">&lt;rules&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>        <span class="kw">&lt;rule</span><span class="ot"> name=</span><span class="st">&quot;HTTP to HTTPS redirect&quot;</span><span class="ot"> stopProcessing=</span><span class="st">&quot;true&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>            <span class="kw">&lt;match</span><span class="ot"> url=</span><span class="st">&quot;(.*)&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>            <span class="kw">&lt;conditions&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>                <span class="kw">&lt;add</span><span class="ot"> input=</span><span class="st">&quot;{SERVER_PORT_SECURE}&quot;</span><span class="ot"> pattern=</span><span class="st">&quot;^0$&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>            <span class="kw">&lt;/conditions&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>            <span class="kw">&lt;action</span><span class="ot"> type=</span><span class="st">&quot;Redirect&quot;</span><span class="ot"> redirectType=</span><span class="st">&quot;Permanent&quot;</span> </span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="ot">                url=</span><span class="st">&quot;https://{HTTP_HOST}/{R:1}&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>        <span class="kw">&lt;/rule&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>    <span class="kw">&lt;/rules&gt;</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="kw">&lt;/rewrite&gt;</span></span></code></pre></div>
 <p>This snippet uses a permanent redirect type (301 Moved Permanently).</p>
-<h2 id="dont-forget-the-cookies">Don’t forget the cookies</h2>
-<p>Browser cookies set by your application should be similarly secured. While you have web.config open, add this line:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">&lt;configuration&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>  <span class="kw">&lt;system.web&gt;</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>    <span class="kw">&lt;httpCookies</span><span class="ot"> requireSSL=</span><span class="st">&quot;true&quot;</span><span class="ot"> httpOnlyCookies=</span><span class="st">&quot;true&quot;</span><span class="kw">/&gt;</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="kw">&lt;/system.web&gt;</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="kw">&lt;/configuration&gt;</span></span></code></pre></div>
+<h3 id="dont-forget-the-cookies">Don’t forget the cookies</h3>
+<p>Browser cookies set by your application should be similarly secured. While you have web.config open, add this line within the <code>&lt;system.web&gt;</code> element:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">&lt;httpCookies</span><span class="ot"> requireSSL=</span><span class="st">&quot;true&quot;</span><span class="ot"> httpOnlyCookies=</span><span class="st">&quot;true&quot;</span><span class="kw">/&gt;</span></span></code></pre></div>
+<h2 id="bonus-how-to-enable-hsts">Bonus: How to enable HSTS</h2>
+<p>If you are committed to HTTPS and have thoroughly tested your site, you should consider enabling HTTP Strict Transport Security (HSTS).</p>
+<blockquote>
+<p>[HSTS] allows a website to declare itself as a secure host and to inform browsers that it should be contacted only through HTTPS connections. HSTS is an opt-in security enhancement that enforces HTTPS and significantly reduces the ability of man-in-the-middle type attacks to intercept requests and responses between servers and clients.</p>
+<p>— <cite><a href="https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-10-version-1709/iis-10-version-1709-hsts#http-strict-transport-security-hsts">IIS 10.0 Version 1709 HTTP Strict Transport Security (HSTS) Support</a></cite></p>
+</blockquote>
+<p>How to enable HSTS depends on which version of IIS you are using. The following instructions are valid for our current version. (But see the above link for later versions.)</p>
+<p>Within the <code>&lt;rewrite&gt;</code> element added above, include the following lines and test thoroughly:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">&lt;outboundRules&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="kw">&lt;rule</span><span class="ot"> name=</span><span class="st">&quot;Add STS header when HTTPS&quot;</span><span class="ot"> enabled=</span><span class="st">&quot;true&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>        <span class="kw">&lt;match</span><span class="ot"> serverVariable=</span><span class="st">&quot;RESPONSE_Strict_Transport_Security&quot;</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="ot">            pattern=</span><span class="st">&quot;.*&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>        <span class="kw">&lt;conditions&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>            <span class="kw">&lt;add</span><span class="ot"> input=</span><span class="st">&quot;{HTTPS}&quot;</span><span class="ot"> pattern=</span><span class="st">&quot;on&quot;</span><span class="ot"> ignoreCase=</span><span class="st">&quot;true&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>        <span class="kw">&lt;/conditions&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>        <span class="kw">&lt;action</span><span class="ot"> type=</span><span class="st">&quot;Rewrite&quot;</span><span class="ot"> value=</span><span class="st">&quot;max-age=300&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>    <span class="kw">&lt;/rule&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="kw">&lt;/outboundRules&gt;</span></span></code></pre></div>
+<p>The <strong>max-age</strong> value is set in this example at 5 minutes (300 seconds). <em>This is for testing purposes only.</em></p>
+<p><a href="https://hstspreload.org/#deployment-recommendations">It is recommended</a> to ramp up the <strong>max-age</strong> value stepwise to 1 week, 1 month, and finally 2 years, fully testing each for the enable time period.</p>
+<h2 id="tldr">TL;DR</h2>
+<p><strong>Do NOT copy and paste the following without first reading the above and testing your site thoroughly. This is provided for reference only.</strong></p>
+<p>Once complete, the <code>web.config</code> file should look similar to the following (unrelated settings have been removed):</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;<span class="kw">?&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">&lt;configuration&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>    <span class="kw">&lt;system.webServer&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>        <span class="co">&lt;!-- This section requires the URL Rewrite module to be installed in IIS. --&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>        <span class="kw">&lt;rewrite&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>            <span class="kw">&lt;rules&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>                <span class="kw">&lt;rule</span><span class="ot"> name=</span><span class="st">&quot;HTTP to HTTPS redirect&quot;</span><span class="ot"> stopProcessing=</span><span class="st">&quot;true&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>                    <span class="kw">&lt;match</span><span class="ot"> url=</span><span class="st">&quot;(.*)&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>                    <span class="kw">&lt;conditions&gt;</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>                        <span class="kw">&lt;add</span><span class="ot"> input=</span><span class="st">&quot;{SERVER_PORT_SECURE}&quot;</span><span class="ot"> pattern=</span><span class="st">&quot;^0$&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>                    <span class="kw">&lt;/conditions&gt;</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>                    <span class="kw">&lt;action</span><span class="ot"> type=</span><span class="st">&quot;Redirect&quot;</span><span class="ot"> redirectType=</span><span class="st">&quot;Permanent&quot;</span> </span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="ot">                        url=</span><span class="st">&quot;https://{HTTP_HOST}/{R:1}&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a>                <span class="kw">&lt;/rule&gt;</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a>            <span class="kw">&lt;/rules&gt;</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a>            <span class="kw">&lt;outboundRules&gt;</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a>                <span class="kw">&lt;rule</span><span class="ot"> name=</span><span class="st">&quot;Add STS header when HTTPS&quot;</span><span class="ot"> enabled=</span><span class="st">&quot;true&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a>                    <span class="kw">&lt;match</span><span class="ot"> serverVariable=</span><span class="st">&quot;RESPONSE_Strict_Transport_Security&quot;</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a><span class="ot">                        pattern=</span><span class="st">&quot;.*&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a>                    <span class="kw">&lt;conditions&gt;</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a>                        <span class="kw">&lt;add</span><span class="ot"> input=</span><span class="st">&quot;{HTTPS}&quot;</span><span class="ot"> pattern=</span><span class="st">&quot;on&quot;</span><span class="ot"> ignoreCase=</span><span class="st">&quot;true&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb4-22"><a href="#cb4-22"></a>                    <span class="kw">&lt;/conditions&gt;</span></span>
+<span id="cb4-23"><a href="#cb4-23"></a>                    <span class="kw">&lt;action</span><span class="ot"> type=</span><span class="st">&quot;Rewrite&quot;</span><span class="ot"> value=</span><span class="st">&quot;max-age=604800&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb4-24"><a href="#cb4-24"></a>                <span class="kw">&lt;/rule&gt;</span></span>
+<span id="cb4-25"><a href="#cb4-25"></a>            <span class="kw">&lt;/outboundRules&gt;</span></span>
+<span id="cb4-26"><a href="#cb4-26"></a>        <span class="kw">&lt;/rewrite&gt;</span></span>
+<span id="cb4-27"><a href="#cb4-27"></a>    <span class="kw">&lt;/system.webServer&gt;</span></span>
+<span id="cb4-28"><a href="#cb4-28"></a>    <span class="kw">&lt;system.web&gt;</span></span>
+<span id="cb4-29"><a href="#cb4-29"></a>        <span class="kw">&lt;httpCookies</span><span class="ot"> requireSSL=</span><span class="st">&quot;true&quot;</span><span class="ot"> httpOnlyCookies=</span><span class="st">&quot;true&quot;</span><span class="kw">/&gt;</span></span>
+<span id="cb4-30"><a href="#cb4-30"></a>    <span class="kw">&lt;/system.web&gt;</span></span>
+<span id="cb4-31"><a href="#cb4-31"></a><span class="kw">&lt;/configuration&gt;</span></span></code></pre></div>
 </div>
 </body>
 </html>
