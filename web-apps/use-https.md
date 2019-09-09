@@ -11,7 +11,7 @@ Summary: An SSL certificate for `*.gaepd.org` is installed on all web servers. T
 * [Why use HTTPS?](#why-use-https)
 * [How to enable HTTPS for your website](#how-to-enable-https-for-your-website)
 * [Bonus: How to enable HSTS](#bonus-how-to-enable-hsts)
-* [TL;DR](#tl-dr)
+* [TL;DR](#tldr)
 
 ## Why use HTTPS?
 
