@@ -15,19 +15,19 @@ Web Deploy is a tool that enables one-click deployment of web applications direc
 
 Open IIS Manager on the web server, select the website you want to configure in the Connections panel, and then open the "IIS Manager Permissions" tool.
 
-![](web-deploy-server-step-1.png)
+![Screenshot of IIS Manager Permissions button](img/web-deploy-server-step-1.png)
 
 Select the "Allow User..." Action.
 
-![](web-deploy-server-step-2.png)
+![Screenshot of Allow User button](img/web-deploy-server-step-2.png)
 
 Select Windows user, then select "Object Types" and enable Groups. Type "Users" in the box and click "Check Names." It should validate the group name. Select OK.
 
-![](web-deploy-server-step-3.png)
+![Screenshot of "Select User or Group" tool](img/web-deploy-server-step-3.png)
 
 The Users group should display in the IIS Manager Permissions list.
 
-![](web-deploy-server-step-4.png)
+![Screenshot of users list in IIS Manager Permissions tool](img/web-deploy-server-step-4.png)
 
 Repeat this for each website on each web server as necessary.
 
@@ -39,11 +39,11 @@ First, enable the "Web One Click Publish" toolbar in Visual Studio. Select View 
 
 In the Publish toolbar dropdown, select "New Custom Profile...".
 
-![](web-deploy-vs-step-1.png)
+![Screenshot of Visual Studio Publish toolbar with publish target dropdown open](img/web-deploy-vs-step-1.png)
 
 Select "IIS, FTP, Web Deploy" as the publish target, then select "Create Profile".
 
-![](web-deploy-vs-step-2.png)
+![Screenshot of Web Deploy profile creation tool](img/web-deploy-vs-step-2.png)
 
 The Publish tool that gets displayed may differ depending on the type of project you are working on, so these screenshots may not match exactly. Fill in the following fields:
 
@@ -57,11 +57,11 @@ The Publish tool that gets displayed may differ depending on the type of project
 
 Select "Validate Connection" to test the settings. *Note: You will log in with your SEI server credential, not your SOG credentials.*
 
-![](web-deploy-vs-step-3.png)
+![Screenshot of Web Deploy setup tool](img/web-deploy-vs-step-3.png)
 
 Save the profile, which will create an XML file in your project with your settings. You can rename the profile, edit it, and create additional profiles from within the Visual Studio Publish screen.
 
-![](web-deploy-vs-step-4.png)
+![Screenshot of Visual Studio publishing tool](img/web-deploy-vs-step-4.png)
 
 Note that some settings can be changed using the UI in Visual Studio, but other settings may need to be changed by directly editing the XML file.
 
@@ -73,9 +73,9 @@ Repeat for each web server destination you want to publish to (e.g., Dev, UAT, &
 
 To publish your website, select the desired profile in the Publish toolbar dropdown, and click the globe icon. You will then be requested to enter your user name and password.
 
-![](web-deploy-vs-step-5.png)
+![Screenshot of Visual Studio Publish toolbar with Publish Web button highlighted](img/web-deploy-vs-step-5.png)
 
-![](web-deploy-vs-step-6.png)
+![Screenshot of Web Deploy Client credentials input](img/web-deploy-vs-step-6.png)
 
 ## Optional configuration setup
 
