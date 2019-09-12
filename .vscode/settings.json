@@ -1,0 +1,10 @@
+{
+    "markdownlint.config": {
+        "MD025": {
+            "front_matter_title": ""
+        },
+        "MD026": {
+            "punctuation": ".,;:。，；：！？"
+        }
+      }
+    }
