@@ -11,7 +11,8 @@ Summary: An SSL certificate for `*.gaepd.org` is installed on all web servers. T
 * [Why use HTTPS?](#why-use-https)
 * [How to enable HTTPS for your website](#how-to-enable-https-for-your-website)
 * [Bonus: How to enable HSTS](#bonus-how-to-enable-hsts)
-* [TL;DR](#tldr)
+* [Final `web.config` File](#final-web.config-file)
+* [Testing](#testing)
 
 ## Why use HTTPS?
 
@@ -68,7 +69,7 @@ Once you have verified that the site is fully functional in HTTPS, the last step
             <conditions>
                 <add input="{SERVER_PORT_SECURE}" pattern="^0$" />
             </conditions>
-            <action type="Redirect" redirectType="Permanent" 
+            <action type="Redirect" redirectType="Permanent"
                 url="https://{HTTP_HOST}/{R:1}" />
         </rule>
     </rules>
@@ -114,9 +115,9 @@ The **max-age** value is set in this example at 5 minutes (300 seconds). *This i
 
 [It is recommended](https://hstspreload.org/#deployment-recommendations) to ramp up the **max-age** value stepwise to 1 week, 1 month, and finally 2 years, fully testing each for the enable time period.
 
-## TL;DR
+## Final `web.config` file
 
-**Do NOT copy and paste the following without first reading the above and testing your site thoroughly. This is provided for reference only.**
+**Do NOT just copy and paste the following without first reading the above and testing your site thoroughly. This is provided for reference only.**
 
 Once complete, the `web.config` file should look similar to the following (unrelated settings have been removed):
 
@@ -124,15 +125,15 @@ Once complete, the `web.config` file should look similar to the following (unrel
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <system.webServer>
-        <!-- This section requires the URL Rewrite module to be installed in IIS. -->
         <rewrite>
+            <!-- This section requires the URL Rewrite module to be installed in IIS. -->
             <rules>
                 <rule name="HTTP to HTTPS redirect" stopProcessing="true">
                     <match url="(.*)" />
                     <conditions>
                         <add input="{SERVER_PORT_SECURE}" pattern="^0$" />
                     </conditions>
-                    <action type="Redirect" redirectType="Permanent" 
+                    <action type="Redirect" redirectType="Permanent"
                         url="https://{HTTP_HOST}/{R:1}" />
                 </rule>
             </rules>
@@ -153,3 +154,12 @@ Once complete, the `web.config` file should look similar to the following (unrel
     </system.web>
 </configuration>
 ```
+
+## Testing
+
+You can easily test that the above changes have taken effect using curl. Run `curl -I <url>` for both the HTTP and HTTPS versions of your URL and look for the correct headers highlighted below.
+
+* `curl -I http://<subdomain>.gaepd.org` should return the header `HTTP/1.1 301 Moved Permanently`.
+* `curl -I https://<subdomain>.gaepd.org` should return `HTTP/1.1 200 OK` and (if you have enabled HSTS) `Strict-Transport-Security: max-age=604800`.
+
+![Screenshot of curl examples](img/https-curl-examples.png)

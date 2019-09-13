@@ -85,7 +85,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#why-use-https">Why use HTTPS?</a></li>
 <li><a href="#how-to-enable-https-for-your-website">How to enable HTTPS for your website</a></li>
 <li><a href="#bonus-how-to-enable-hsts">Bonus: How to enable HSTS</a></li>
-<li><a href="#tldr">TL;DR</a></li>
+<li><a href="#final-web.config-file">Final <code>web.config</code> File</a></li>
+<li><a href="#testing">Testing</a></li>
 </ul>
 <h2 id="why-use-https">Why use HTTPS?</h2>
 <p>HTTPS helps protect the privacy and security of your users, even if personal information is not being transmitted. Also, HTTPS is required for many newer technologies (e.g., service workers, geo-location).</p>
@@ -124,7 +125,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-6"><a href="#cb1-6"></a>            <span class="kw">&lt;conditions&gt;</span></span>
 <span id="cb1-7"><a href="#cb1-7"></a>                <span class="kw">&lt;add</span><span class="ot"> input=</span><span class="st">&quot;{SERVER_PORT_SECURE}&quot;</span><span class="ot"> pattern=</span><span class="st">&quot;^0$&quot;</span> <span class="kw">/&gt;</span></span>
 <span id="cb1-8"><a href="#cb1-8"></a>            <span class="kw">&lt;/conditions&gt;</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a>            <span class="kw">&lt;action</span><span class="ot"> type=</span><span class="st">&quot;Redirect&quot;</span><span class="ot"> redirectType=</span><span class="st">&quot;Permanent&quot;</span> </span>
+<span id="cb1-9"><a href="#cb1-9"></a>            <span class="kw">&lt;action</span><span class="ot"> type=</span><span class="st">&quot;Redirect&quot;</span><span class="ot"> redirectType=</span><span class="st">&quot;Permanent&quot;</span></span>
 <span id="cb1-10"><a href="#cb1-10"></a><span class="ot">                url=</span><span class="st">&quot;https://{HTTP_HOST}/{R:1}&quot;</span> <span class="kw">/&gt;</span></span>
 <span id="cb1-11"><a href="#cb1-11"></a>        <span class="kw">&lt;/rule&gt;</span></span>
 <span id="cb1-12"><a href="#cb1-12"></a>    <span class="kw">&lt;/rules&gt;</span></span>
@@ -153,21 +154,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-10"><a href="#cb3-10"></a><span class="kw">&lt;/outboundRules&gt;</span></span></code></pre></div>
 <p>The <strong>max-age</strong> value is set in this example at 5 minutes (300 seconds). <em>This is for testing purposes only.</em></p>
 <p><a href="https://hstspreload.org/#deployment-recommendations">It is recommended</a> to ramp up the <strong>max-age</strong> value stepwise to 1 week, 1 month, and finally 2 years, fully testing each for the enable time period.</p>
-<h2 id="tldr">TL;DR</h2>
-<p><strong>Do NOT copy and paste the following without first reading the above and testing your site thoroughly. This is provided for reference only.</strong></p>
+<h2 id="final-web.config-file">Final <code>web.config</code> file</h2>
+<p><strong>Do NOT just copy and paste the following without first reading the above and testing your site thoroughly. This is provided for reference only.</strong></p>
 <p>Once complete, the <code>web.config</code> file should look similar to the following (unrelated settings have been removed):</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;<span class="kw">?&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="kw">&lt;configuration&gt;</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a>    <span class="kw">&lt;system.webServer&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a>        <span class="co">&lt;!-- This section requires the URL Rewrite module to be installed in IIS. --&gt;</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a>        <span class="kw">&lt;rewrite&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>        <span class="kw">&lt;rewrite&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>            <span class="co">&lt;!-- This section requires the URL Rewrite module to be installed in IIS. --&gt;</span></span>
 <span id="cb4-6"><a href="#cb4-6"></a>            <span class="kw">&lt;rules&gt;</span></span>
 <span id="cb4-7"><a href="#cb4-7"></a>                <span class="kw">&lt;rule</span><span class="ot"> name=</span><span class="st">&quot;HTTP to HTTPS redirect&quot;</span><span class="ot"> stopProcessing=</span><span class="st">&quot;true&quot;</span><span class="kw">&gt;</span></span>
 <span id="cb4-8"><a href="#cb4-8"></a>                    <span class="kw">&lt;match</span><span class="ot"> url=</span><span class="st">&quot;(.*)&quot;</span> <span class="kw">/&gt;</span></span>
 <span id="cb4-9"><a href="#cb4-9"></a>                    <span class="kw">&lt;conditions&gt;</span></span>
 <span id="cb4-10"><a href="#cb4-10"></a>                        <span class="kw">&lt;add</span><span class="ot"> input=</span><span class="st">&quot;{SERVER_PORT_SECURE}&quot;</span><span class="ot"> pattern=</span><span class="st">&quot;^0$&quot;</span> <span class="kw">/&gt;</span></span>
 <span id="cb4-11"><a href="#cb4-11"></a>                    <span class="kw">&lt;/conditions&gt;</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a>                    <span class="kw">&lt;action</span><span class="ot"> type=</span><span class="st">&quot;Redirect&quot;</span><span class="ot"> redirectType=</span><span class="st">&quot;Permanent&quot;</span> </span>
+<span id="cb4-12"><a href="#cb4-12"></a>                    <span class="kw">&lt;action</span><span class="ot"> type=</span><span class="st">&quot;Redirect&quot;</span><span class="ot"> redirectType=</span><span class="st">&quot;Permanent&quot;</span></span>
 <span id="cb4-13"><a href="#cb4-13"></a><span class="ot">                        url=</span><span class="st">&quot;https://{HTTP_HOST}/{R:1}&quot;</span> <span class="kw">/&gt;</span></span>
 <span id="cb4-14"><a href="#cb4-14"></a>                <span class="kw">&lt;/rule&gt;</span></span>
 <span id="cb4-15"><a href="#cb4-15"></a>            <span class="kw">&lt;/rules&gt;</span></span>
@@ -187,6 +188,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-29"><a href="#cb4-29"></a>        <span class="kw">&lt;httpCookies</span><span class="ot"> requireSSL=</span><span class="st">&quot;true&quot;</span><span class="ot"> httpOnlyCookies=</span><span class="st">&quot;true&quot;</span><span class="kw">/&gt;</span></span>
 <span id="cb4-30"><a href="#cb4-30"></a>    <span class="kw">&lt;/system.web&gt;</span></span>
 <span id="cb4-31"><a href="#cb4-31"></a><span class="kw">&lt;/configuration&gt;</span></span></code></pre></div>
+<h2 id="testing">Testing</h2>
+<p>You can easily test that the above changes have taken effect using curl. Run <code>curl -I &lt;url&gt;</code> for both the HTTP and HTTPS versions of your URL and look for the correct headers highlighted below.</p>
+<ul>
+<li><code>curl -I http://&lt;subdomain&gt;.gaepd.org</code> should return the header <code>HTTP/1.1 301 Moved Permanently</code>.</li>
+<li><code>curl -I https://&lt;subdomain&gt;.gaepd.org</code> should return <code>HTTP/1.1 200 OK</code> and (if you have enabled HSTS) <code>Strict-Transport-Security: max-age=604800</code>.</li>
+</ul>
+<p><img src="img/https-curl-examples.png" alt="Screenshot of curl examples" /></p>
 </div>
 </body>
 </html>
