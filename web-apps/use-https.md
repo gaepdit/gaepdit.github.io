@@ -160,6 +160,6 @@ Once complete, the `web.config` file should look similar to the following (unrel
 You can easily test that the above changes have taken effect using curl. Run `curl -I <url>` for both the HTTP and HTTPS versions of your URL and look for the correct headers highlighted below.
 
 * `curl -I http://<subdomain>.gaepd.org` should return the header `HTTP/1.1 301 Moved Permanently`.
-* `curl -I https://<subdomain>.gaepd.org` should return `HTTP/1.1 200 OK` and (if you have enabled HSTS) `Strict-Transport-Security: max-age=604800`.
+* `curl -I https://<subdomain>.gaepd.org` should return `HTTP/1.1 200 OK` and (if you have enabled HSTS) `Strict-Transport-Security: max-age=604800` (max-age value should match the value in `web.config`).
 
 ![Screenshot of curl examples](img/https-curl-examples.png)

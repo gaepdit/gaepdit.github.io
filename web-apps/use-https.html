@@ -192,7 +192,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You can easily test that the above changes have taken effect using curl. Run <code>curl -I &lt;url&gt;</code> for both the HTTP and HTTPS versions of your URL and look for the correct headers highlighted below.</p>
 <ul>
 <li><code>curl -I http://&lt;subdomain&gt;.gaepd.org</code> should return the header <code>HTTP/1.1 301 Moved Permanently</code>.</li>
-<li><code>curl -I https://&lt;subdomain&gt;.gaepd.org</code> should return <code>HTTP/1.1 200 OK</code> and (if you have enabled HSTS) <code>Strict-Transport-Security: max-age=604800</code>.</li>
+<li><code>curl -I https://&lt;subdomain&gt;.gaepd.org</code> should return <code>HTTP/1.1 200 OK</code> and (if you have enabled HSTS) <code>Strict-Transport-Security: max-age=604800</code> (max-age value should match the value in <code>web.config</code>).</li>
 </ul>
 <p><img src="img/https-curl-examples.png" alt="Screenshot of curl examples" /></p>
 </div>
