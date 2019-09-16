@@ -113,7 +113,7 @@ Within the `<rewrite>` element added above, include the following lines and test
 
 The **max-age** value is set in this example at 5 minutes (300 seconds). *This is for testing purposes only.*
 
-[It is recommended](https://hstspreload.org/#deployment-recommendations) to ramp up the **max-age** value stepwise to 1 week, 1 month, and finally 2 years, fully testing each for the enable time period.
+[It is recommended](https://hstspreload.org/#deployment-recommendations) to ramp up the **max-age** value stepwise to 1 week, 1 month, and finally 2 years, fully testing each for the enable time period. I've created a page to track [HSTS implementation status](https://bitbucket.org/snippets/gaepdit/4nX8Ee) for my applications; you may want to use something similar.
 
 ## Final `web.config` file
 

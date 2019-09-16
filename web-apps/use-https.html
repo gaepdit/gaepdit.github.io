@@ -153,7 +153,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-9"><a href="#cb3-9"></a>    <span class="kw">&lt;/rule&gt;</span></span>
 <span id="cb3-10"><a href="#cb3-10"></a><span class="kw">&lt;/outboundRules&gt;</span></span></code></pre></div>
 <p>The <strong>max-age</strong> value is set in this example at 5 minutes (300 seconds). <em>This is for testing purposes only.</em></p>
-<p><a href="https://hstspreload.org/#deployment-recommendations">It is recommended</a> to ramp up the <strong>max-age</strong> value stepwise to 1 week, 1 month, and finally 2 years, fully testing each for the enable time period.</p>
+<p><a href="https://hstspreload.org/#deployment-recommendations">It is recommended</a> to ramp up the <strong>max-age</strong> value stepwise to 1 week, 1 month, and finally 2 years, fully testing each for the enable time period. I’ve created a page to track <a href="https://bitbucket.org/snippets/gaepdit/4nX8Ee">HSTS implementation status</a> for my applications; you may want to use something similar.</p>
 <h2 id="final-web.config-file">Final <code>web.config</code> file</h2>
 <p><strong>Do NOT just copy and paste the following without first reading the above and testing your site thoroughly. This is provided for reference only.</strong></p>
 <p>Once complete, the <code>web.config</code> file should look similar to the following (unrelated settings have been removed):</p>
