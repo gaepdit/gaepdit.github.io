@@ -22,7 +22,7 @@ Web server: 167.192.208.134
 SQL Server database: 167.192.209.7  
     Database: MFL_GA_STG  
     User: MFL_GA_STG  
-Exception log: https://dx.gaepd.org/exception_log/FIS_ExceptionLog.txt
+[Exception log](https://dx.gaepd.org/exception_log/FIS_ExceptionLog.txt)
 
 ### Dev
 
@@ -30,7 +30,7 @@ Web server: 167.192.208.199
 SQL Server database: 167.192.209.70  
     Database: MFL_GA_STG  
     User: MFL_GA_STG  
-Exception log: https://dev-dx.gaepd.org/exception_log/FIS_ExceptionLog.txt  
+[Exception log](https://dev-dx.gaepd.org/exception_log/FIS_ExceptionLog.txt)
 
 ## GEOS (Georgia EPD Online System)
 
@@ -50,7 +50,7 @@ Web server: 167.192.208.134
 SQL Server database: 167.192.209.7  
     Database: MFL_GA_STG  
     User: MFL_GA_STG  
-Exception log: https://dx.gaepd.org/exception_log/GEOS_ExceptionLog.txt  
+[Exception log](https://dx.gaepd.org/exception_log/GEOS_ExceptionLog.txt)
 
 ### Dev
 
@@ -58,7 +58,7 @@ Web server: 167.192.208.199
 SQL Server database: 167.192.209.70  
     Database: MFL_GA_STG  
     User: MFL_GA_STG  
-Exception log: https://dev-dx.gaepd.org/exception_log/GEOS_ExceptionLog.txt
+[Exception log](https://dev-dx.gaepd.org/exception_log/GEOS_ExceptionLog.txt)
 
 ## ICIS-Air/EIS
 

@@ -6,7 +6,10 @@ title: Georgia EPD Data Exchanges
 
 Brief outlines of each data exchange we manage.
 
-[Web services](web-services.html)
+See also:
+
+* [Diagram of all data exchanges](data-exchange-diagram.pdf) (original at `\\dnr-n3400-05a\dnr-tt-dat\SHARED\DO\EPD DOIT\Data Exchanges\Diagrams\`)
+* [Description of web services](web-services.html)
 
 ## FIS (Facility Identification System)
 
@@ -14,7 +17,7 @@ Brief outlines of each data exchange we manage.
 
 ### GAPDES (Georgia Pollution Discharge Elimination System)
 
-```
+```text
 *Windsor* GAPDES application
 |
 | web service
@@ -32,7 +35,7 @@ Brief outlines of each data exchange we manage.
 
 ### Air Branch
 
-```
+```text
 IAIP/GECO applications
 ↓
 [AIRBRANCH]
@@ -52,7 +55,7 @@ IAIP/GECO applications
 
 ### Air Branch
 
-```
+```text
 *EnfoTech* GEOS application
 |
 | web service
@@ -73,12 +76,12 @@ IAIP application
 
 ### GAPDES
 
-- NPDES Municipal (in production)
-- NPDES Industrial (still in planning)
-- Stormwater Construction (soon)
-- Stormwater Industrial (under development)
+* NPDES Municipal (in production)
+* NPDES Industrial (still in planning)
+* Stormwater Construction (soon)
+* Stormwater Industrial (under development)
 
-```
+```text
 *EnfoTech* GEOS application
 |
 | web service
@@ -96,7 +99,7 @@ IAIP application
 
 ### SDWIS (Safe Drinking Water Information System)
 
-```
+```text
 SDWIS application
 |
 | web service calls stored procedure
@@ -114,7 +117,7 @@ SDWIS application
 
 ### GAPDES
 
-```
+```text
 *EnfoTech* GEOS application
 ↓
 *EnfoTech* FIMS application
@@ -124,7 +127,7 @@ SDWIS application
 
 👉 Air emission info sent to EPA
 
-```
+```text
 GECO application
 ↓
 [AIRBRANCH]
@@ -145,7 +148,7 @@ GECO application
 
 ### ICIS-Air
 
-```
+```text
 IAIP application
 ↓
 [AIRBRANCH]
@@ -161,7 +164,7 @@ IAIP application
 
 ### ICIS-NPDES
 
-```
+```text
 *Windsor* GAPDES application
 ↓
 *EPA* ICIS-NPDES
