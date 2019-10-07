@@ -4,83 +4,79 @@ title: Data Exchange Web Services
 
 # Data Exchange Web Services
 
+## Servers
+
+All listed data exchanges run on the following servers.
+
+### CMS
+
+Prod web server: 167.192.208.134  
+Prod database: 167.192.209.7  
+
+Dev web server: 167.192.208.199  
+Dev database: 167.192.209.70  
+
+### SEI
+
+Prod web server: 10.149.210.227 (internal), 167.200.249.130 (external)  
+Prod database: 10.149.210.242  
+
+Test web server: 10.149.211.66 (internal), 167.200.249.132 (external)  
+Test database: 10.149.211.83  
+
 ## FIS (Facility Identification System)
 
 Enfotech service runs as a Windows scheduled task.
 
-Program location: E:\FISDataService\  
-Configuration file: E:\FISDataService\FacilityProfiler.DataServices.exe.config
+Task: "FISDataService"  
+Schedule: 2am daily
 
-Windows Task Scheduler  
-Task: FISDataService  
-Runs: E:\FISDataService\FacilityProfiler.DataServices.exe  
-Schedule: 2am every day
+Database: MFL_GA_STG  
+User: MFL_GA_STG  
 
-### Prod
+### CMS Configuration
 
-Web server: 167.192.208.134  
-SQL Server database: 167.192.209.7  
-    Database: MFL_GA_STG  
-    User: MFL_GA_STG  
-[Exception log](https://dx.gaepd.org/exception_log/FIS_ExceptionLog.txt)
+Application: `E:\FISDataService\FacilityProfiler.DataServices.exe`  
+Configuration file: `E:\FISDataService\FacilityProfiler.DataServices.exe.config`
 
-### Dev
+### SEI Configuration
 
-Web server: 167.192.208.199  
-SQL Server database: 167.192.209.70  
-    Database: MFL_GA_STG  
-    User: MFL_GA_STG  
-[Exception log](https://dev-dx.gaepd.org/exception_log/FIS_ExceptionLog.txt)
+Application: `D:\Services\FISDataService\FacilityProfiler.DataServices.exe`  
+Configuration file: `D:\Services\FISDataService\FacilityProfiler.DataServices.exe.config`  
 
 ## GEOS (Georgia EPD Online System)
 
 Enfotech service runs as a Windows scheduled task.
 
-Program location: E:\GEOS_TO_IAIP\  
-Configuration file: E:\GEOS_TO_IAIP\GovOnline.DataExchange.exe.config  
+Task: "GEOS_to_IAIP"  
+Schedule: 1am daily
 
-Windows Task Scheduler  
-Task: GEOS_to_IAIP  
-Runs: E:\GEOS_TO_IAIP\GovOnline.DataExchange.exe  
-Schedule: 1am every day  
+### CMS Configuration
 
-### Prod
+Application: `E:\GEOS_TO_IAIP\GovOnline.DataExchange.exe`  
+Configuration file: `E:\GEOS_TO_IAIP\GovOnline.DataExchange.exe.config`  
 
-Web server: 167.192.208.134  
-SQL Server database: 167.192.209.7  
-    Database: MFL_GA_STG  
-    User: MFL_GA_STG  
-[Exception log](https://dx.gaepd.org/exception_log/GEOS_ExceptionLog.txt)
+### SEI Configuration
 
-### Dev
-
-Web server: 167.192.208.199  
-SQL Server database: 167.192.209.70  
-    Database: MFL_GA_STG  
-    User: MFL_GA_STG  
-[Exception log](https://dev-dx.gaepd.org/exception_log/GEOS_ExceptionLog.txt)
+Application: `D:\Services\GEOSDataService\GovOnline.DataExchange.exe`  
+Configuration file: `D:\Services\GEOSDataService\GovOnline.DataExchange.exe`  
 
 ## ICIS-Air/EIS
 
-VES service runs as a Windows Service.  
-ICIS-Air data exchange runs as a scheduled task in VESA. EIS data exchanged is trigger manually by Air Branch staff.
+VES Connector runs as a Windows Service named "VES Connector".
 
-Windows Service name: CDX Connector  
-Program location: C:\Program Files\EPA.gov\VirtualNodeConnector\CDXConnectorServer.exe  
-Configuration file: C:\Program Files\EPA.gov\VirtualNodeConnector\CDXConnectorServer.exe.config  
+* ICIS-Air data exchange runs as scheduled tasks in VESA. Schedule: [23 separate tasks](https://bitbucket.org/gaepdit/icis-air-data-exchange/src/master/docs/VESA%20tasks%20in%20order.md) run weekly, from 7pm Thursday through 12:15am Friday.
+* EIS data exchanged is trigger manually by Air Branch staff.
 
-ICIS-Air VESA Schedule: [23 separate tasks](https://bitbucket.org/gaepdit/icis-air-data-exchange/src/master/docs/VESA%20tasks%20in%20order.md) run weekly, from 7pm Thursday through 12:15am Friday
+Database: NETWORKNODEFLOW  
+User: NETWORKNODEFLOW  
 
-### Prod
+### CMS Configuration
 
-Web server: 167.192.208.134  
-SQL Server database: 167.192.209.7:1433  
-    Database: NETWORKNODEFLOW  
-    User: NETWORKNODEFLOW  
+Service: `C:\Program Files\EPA.gov\VESConnector\VESConnectorServer.exe`  
+Configuration file: `C:\Program Files\EPA.gov\VESConnector\VESConnectorServer.exe.config`  
 
-### Dev
+### SEI Configuration
 
-Web server: 167.192.208.199  
-SQL Server database: 167.192.209.70:1433  
-    Database: NETWORKNODEFLOW  
-    User: NETWORKNODEFLOW  
+Service program location: `D:\Services\VESConnector\VESConnectorServer.exe`  
+Configuration file: `D:\Services\VESConnector\VESConnectorServer.exe.config`  
