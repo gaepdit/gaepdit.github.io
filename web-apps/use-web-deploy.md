@@ -6,12 +6,12 @@ title: Web Deploy
 
 Web Deploy is a tool that enables one-click deployment of web applications directly from Visual Studio to the web server, with no need to separately use RDP or FTP. Follow these steps to set it up for each application.
 
-* [Server setup](#server-setup)
-* [Application setup](#application-setup)
+* [IIS setup](#iis-setup)
+* [Visual Studio setup](#visual-studio-setup)
 * [Publishing](#publishing)
 * [Optional configuration setup](#optional-configuration-setup)
 
-## Server setup
+## IIS Ssetup
 
 Open IIS Manager on the web server, select the website you want to configure in the Connections panel, and then open the "IIS Manager Permissions" tool.
 
@@ -31,7 +31,7 @@ The Users group should display in the IIS Manager Permissions list.
 
 Repeat this for each website on each web server as necessary.
 
-## Application setup
+## Visual Studio Setup
 
 In Visual Studio, you will add a Publishing Profile for each web server destination that you want to publish to.
 
@@ -49,29 +49,31 @@ The Publish tool that gets displayed may differ depending on the type of project
 
 * **Server:** Enter either the website URL or server IP address.
 
-* **Site name:** Enter the name of the website as listed in IIS.
+    *IMPORTANT:* Production URLs cannot be used for Web Deploy. Instead, you should use `sei1.gaepd.org` for Prod App&nbsp;1 or `sei2.gaepd.org` for Prod App&nbsp;2.
 
-* **User name** and **Password:** Leave these blank! You don't want this information in your source code repository. You will be prompted for these every time you publish.
+* **Site name:** Enter the name of the website *as listed in IIS.*
 
-* **Destination URL:** The URL to launch once publishing is successful.
+* **User name** and **Password:** Leave these blank! You don't want this information in your source code repository. You will be prompted for these when you publish.
 
-Select "Validate Connection" to test the settings. *Note: You will log in with your SEI server credential, not your SOG credentials.*
+* **Destination URL:** The address of your website. Once publishing is successful, this URL will be launched in your default browser.
+
+Select "Validate Connection" to test the settings. *Note: Enter your SEI server credentials, not your SOG credentials.*
 
 ![Screenshot of Web Deploy setup tool](img/web-deploy-vs-step-3.png)
 
-Save the profile, which will create an XML file in your project with your settings. You can rename the profile, edit it, and create additional profiles from within the Visual Studio Publish screen.
+Save the profile. Visual Studio will create an XML file in your project with these settings. You can rename the profile, edit it, and create additional profiles from within the Visual Studio "Publish" screen.
 
 ![Screenshot of Visual Studio publishing tool](img/web-deploy-vs-step-4.png)
 
 Note that some settings can be changed using the UI in Visual Studio, but other settings may need to be changed by directly editing the XML file.
 
-Commit the new Publish Profile into your Git repository. Make sure your project `.gitignore` file is set to ignore `*.user` but NOT `*.pubxml`.
+Commit the new Publish Profile into your Git repository. Make sure your project `.gitignore` file is set to ignore `*.user` but NOT ignore `*.pubxml`.
 
 Repeat for each web server destination you want to publish to (e.g., Dev, UAT, & Prod).
 
 ## Publishing
 
-To publish your website, select the desired profile in the Publish toolbar dropdown, and click the globe icon. You will then be requested to enter your user name and password.
+To publish your website, select the desired profile in the Publish toolbar dropdown, and click the globe icon. You will then be requested to enter your user name and password. *Note: Enter your SEI server credentials, not your SOG credentials.*
 
 ![Screenshot of Visual Studio Publish toolbar with Publish Web button highlighted](img/web-deploy-vs-step-5.png)
 
