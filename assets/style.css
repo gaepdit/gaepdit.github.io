@@ -318,3 +318,15 @@ code {
     margin-top: 16px;
   }
 }
+
+/* AnchorJS */
+.anchorjs-link {
+  transition: all 0.25s linear;
+}
+.anchorjs-link:hover,
+.anchorjs-link:focus {
+  text-decoration: none;
+}
+*:hover > .anchorjs-link {
+  margin-left: -1.125em !important;
+}
