@@ -23,6 +23,9 @@ a:focus {
 a:active {
   color: #b541c4;
 }
+a.no-underline {
+  text-decoration: none;
+}
 h1,
 h2,
 h3,

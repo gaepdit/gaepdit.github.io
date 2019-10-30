@@ -30,10 +30,10 @@ $for(header-includes)$
 $endfor$
 </head>
 <body class="$for(author)$$author$ $endfor$">
+<div class="wrapper">
 $for(include-before)$
 $include-before$
 $endfor$
-<div class="wrapper">
 $body$
 </div>
 $for(include-after)$
