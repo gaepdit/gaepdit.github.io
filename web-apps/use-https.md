@@ -113,7 +113,7 @@ Within the `<rewrite>` element added above, include the following lines and test
 
 The **max-age** value is set in this example at 5 minutes (300 seconds). *This is for testing purposes only.*
 
-[It is recommended](https://hstspreload.org/#deployment-recommendations) to ramp up the **max-age** value stepwise to 1 week, 1 month, and finally 2 years, fully testing each for the enable time period. I've created a page to track [HSTS implementation status](https://bitbucket.org/snippets/gaepdit/4nX8Ee) for my applications; you may want to use something similar.
+[It is recommended](https://hstspreload.org/#deployment-recommendations) to ramp up the **max-age** value stepwise from 5 minutes to 1 week, 1 month, and finally 2 years, fully testing each step for the enabled time period. I've created a page to track [HSTS implementation status](https://bitbucket.org/snippets/gaepdit/4nX8Ee) for my applications; you may want to use something similar.
 
 ## Final `web.config` file
 
@@ -160,6 +160,6 @@ Once complete, the `web.config` file should look similar to the following (unrel
 You can easily test that the above changes have taken effect using curl. Run `curl -I <url>` for both the HTTP and HTTPS versions of your URL and look for the correct headers highlighted below.
 
 * `curl -I http://<subdomain>.gaepd.org` should return the header `HTTP/1.1 301 Moved Permanently`.
-* `curl -I https://<subdomain>.gaepd.org` should return `HTTP/1.1 200 OK` and (if you have enabled HSTS) `Strict-Transport-Security: max-age=604800` (max-age value should match the value in `web.config`).
+* `curl -I https://<subdomain>.gaepd.org` should return `HTTP/2 200 OK` and (if you have enabled HSTS) `Strict-Transport-Security: max-age=604800` (max-age value should match the value in `web.config`).
 
 ![Screenshot of curl examples](img/https-curl-examples.png)
