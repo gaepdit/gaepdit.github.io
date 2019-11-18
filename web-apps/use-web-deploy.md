@@ -11,7 +11,7 @@ Web Deploy is a tool that enables one-click deployment of web applications direc
 * [Publishing](#publishing)
 * [Optional configuration setup](#optional-configuration-setup)
 
-## IIS Ssetup
+## IIS Setup
 
 Open IIS Manager on the web server, select the website you want to configure in the Connections panel, and then open the "IIS Manager Permissions" tool.
 
