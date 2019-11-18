@@ -1,1 +1,1 @@
-<a href="/" class="no-underline"><img src="/icon.png" alt="" width=16 height=16 /> Home</a>
+<a href="/"><img src="/icon.png" alt="" width=16 height=16 /> Home</a>
