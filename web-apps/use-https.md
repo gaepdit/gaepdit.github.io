@@ -10,7 +10,7 @@ Summary: An SSL certificate for `*.gaepd.org` is installed on all web servers. T
 
 * [Why use HTTPS?](#why-use-https)
 * [How to enable HTTPS for your website](#how-to-enable-https-for-your-website)
-* [Then enable HSTS](#then-enable-hsts)
+* [How to enable HSTS](#how-to-enable-hsts)
 * [Quick check](#quick-check)
 
 ## Why use HTTPS?
@@ -84,7 +84,7 @@ Browser cookies set by your application should be similarly secured. While you h
 <httpCookies requireSSL="true" httpOnlyCookies="true"/>
 ```
 
-## Then enable HSTS
+## How to enable HSTS
 
 Once you've switched to HTTPS and thoroughly tested your site, you should enable HTTP Strict Transport Security (HSTS).
 
@@ -98,7 +98,22 @@ HSTS is nothing more than a `Strict-Transport-Security` header included with the
 Strict-Transport-Security: max-age=<expire-time>
 ```
 
-The above document describes multiple ways HSTS can be enabled at the server level in IIS. [It is recommended](https://hstspreload.org/#deployment-recommendations) to ramp up the **max-age** value stepwise from 5 minutes to 1 week, then 1 month, and finally 2 years, fully testing each step for the enabled time period. 
+The above document describes multiple ways HSTS can be enabled at the server level. The following method is valid for our current version of IIS. Within the `<rewrite>` element added above, include the following lines and test thoroughly:
+
+```xml
+<outboundRules>
+    <rule name="Add STS header when HTTPS" enabled="true">
+        <match serverVariable="RESPONSE_Strict_Transport_Security"
+            pattern=".*" />
+        <conditions>
+            <add input="{HTTPS}" pattern="on" ignoreCase="true" />
+        </conditions>
+        <action type="Rewrite" value="max-age=300" />
+    </rule>
+</outboundRules>
+```
+
+The **max-age** value is set in this example at 5 minutes (300 seconds). [It is recommended](https://hstspreload.org/#deployment-recommendations) to ramp up the **max-age** value stepwise from 5 minutes to 1 week, then 1 month, and finally 2 years, fully testing each step for the enabled time period. 
 
 | Duration  | HSTS value         |
 |-----------|--------------------|
@@ -111,7 +126,7 @@ I've created a page to track [HSTS implementation status](https://bitbucket.org/
 
 ## Quick check
 
-You can quickly check that the above changes have taken effect using curl. Run `curl -I <url>` for both the HTTP and HTTPS versions of your URL and look for the correct headers highlighted below. (This is not a replacement for fully testing in a browser.)
+You can quickly check that the above changes have taken effect using curl.exe. Run `curl -I <url>` for both the HTTP and HTTPS versions of your URL and look for the correct headers highlighted below. (This is not a replacement for fully testing in a browser.)
 
 * `curl -I http://<subdomain>.gaepd.org` should return the header `HTTP/1.1 301 Moved Permanently`.
 * `curl -I https://<subdomain>.gaepd.org` should return `HTTP/2 200 OK` and (if you have enabled HSTS) `Strict-Transport-Security: max-age=604800` (max-age value should match the value in `web.config`).

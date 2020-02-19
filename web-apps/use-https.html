@@ -9,9 +9,9 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
   <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -21,14 +21,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -37,9 +39,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -76,13 +78,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </head>
 <body class="">
 <div class="wrapper">
+<a href="/"><img src="/icon.png" alt="" width=16 height=16 /> Home</a>
 <h1 id="using-https-is-required">Using HTTPS Is Required</h1>
 <p><em>All Georgia EPD websites and web applications <strong>MUST</strong> be served over HTTPS only (including dev and test sites).</em></p>
 <p>Summary: An SSL certificate for <code>*.gaepd.org</code> is installed on all web servers. The URL Rewrite IIS module is also installed, making it easy to set up redirection for HTTP requests.</p>
 <ul>
 <li><a href="#why-use-https">Why use HTTPS?</a></li>
 <li><a href="#how-to-enable-https-for-your-website">How to enable HTTPS for your website</a></li>
-<li><a href="#then-enable-hsts">Then enable HSTS</a></li>
+<li><a href="#how-to-enable-hsts">How to enable HSTS</a></li>
 <li><a href="#quick-check">Quick check</a></li>
 </ul>
 <h2 id="why-use-https">Why use HTTPS?</h2>
@@ -114,24 +117,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Web APIs should either not listen on HTTP or close the connection with status code 400 (Bad Request).</li>
 </ul>
 <p>Once you have verified that the site is fully functional in HTTPS, the next step is to permanently redirect all HTTP traffic to the HTTPS site. The <a href="https://docs.microsoft.com/en-us/iis/extensions/url-rewrite-module/using-the-url-rewrite-module">URL Redirect Module</a> has been installed on all web servers for this purpose. To enable it, copy this snippet into your web.config file within the <code>&lt;system.webServer&gt;</code> element:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">&lt;rewrite&gt;</span></a>
-<a class="sourceLine" id="cb1-2" title="2">    <span class="co">&lt;!-- This section requires the URL Rewrite module to be installed in IIS. --&gt;</span></a>
-<a class="sourceLine" id="cb1-3" title="3">    <span class="kw">&lt;rules&gt;</span></a>
-<a class="sourceLine" id="cb1-4" title="4">        <span class="kw">&lt;rule</span><span class="ot"> name=</span><span class="st">&quot;HTTP to HTTPS redirect&quot;</span><span class="ot"> stopProcessing=</span><span class="st">&quot;true&quot;</span><span class="kw">&gt;</span></a>
-<a class="sourceLine" id="cb1-5" title="5">            <span class="kw">&lt;match</span><span class="ot"> url=</span><span class="st">&quot;(.*)&quot;</span> <span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb1-6" title="6">            <span class="kw">&lt;conditions&gt;</span></a>
-<a class="sourceLine" id="cb1-7" title="7">                <span class="kw">&lt;add</span><span class="ot"> input=</span><span class="st">&quot;{SERVER_PORT_SECURE}&quot;</span><span class="ot"> pattern=</span><span class="st">&quot;^0$&quot;</span> <span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb1-8" title="8">            <span class="kw">&lt;/conditions&gt;</span></a>
-<a class="sourceLine" id="cb1-9" title="9">            <span class="kw">&lt;action</span><span class="ot"> type=</span><span class="st">&quot;Redirect&quot;</span><span class="ot"> redirectType=</span><span class="st">&quot;Permanent&quot;</span></a>
-<a class="sourceLine" id="cb1-10" title="10"><span class="ot">                url=</span><span class="st">&quot;https://{HTTP_HOST}/{R:1}&quot;</span> <span class="kw">/&gt;</span></a>
-<a class="sourceLine" id="cb1-11" title="11">        <span class="kw">&lt;/rule&gt;</span></a>
-<a class="sourceLine" id="cb1-12" title="12">    <span class="kw">&lt;/rules&gt;</span></a>
-<a class="sourceLine" id="cb1-13" title="13"><span class="kw">&lt;/rewrite&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">&lt;rewrite&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="co">&lt;!-- This section requires the URL Rewrite module to be installed in IIS. --&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>    <span class="kw">&lt;rules&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>        <span class="kw">&lt;rule</span><span class="ot"> name=</span><span class="st">&quot;HTTP to HTTPS redirect&quot;</span><span class="ot"> stopProcessing=</span><span class="st">&quot;true&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>            <span class="kw">&lt;match</span><span class="ot"> url=</span><span class="st">&quot;(.*)&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>            <span class="kw">&lt;conditions&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>                <span class="kw">&lt;add</span><span class="ot"> input=</span><span class="st">&quot;{SERVER_PORT_SECURE}&quot;</span><span class="ot"> pattern=</span><span class="st">&quot;^0$&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>            <span class="kw">&lt;/conditions&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>            <span class="kw">&lt;action</span><span class="ot"> type=</span><span class="st">&quot;Redirect&quot;</span><span class="ot"> redirectType=</span><span class="st">&quot;Permanent&quot;</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="ot">                url=</span><span class="st">&quot;https://{HTTP_HOST}/{R:1}&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>        <span class="kw">&lt;/rule&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>    <span class="kw">&lt;/rules&gt;</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="kw">&lt;/rewrite&gt;</span></span></code></pre></div>
 <p>This snippet uses a permanent redirect type (301 Moved Permanently).</p>
 <h3 id="dont-forget-the-cookies">Don’t forget the cookies</h3>
 <p>Browser cookies set by your application should be similarly secured. While you have <code>web.config</code> open, add this line within the <code>&lt;system.web&gt;</code> element:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">&lt;httpCookies</span><span class="ot"> requireSSL=</span><span class="st">&quot;true&quot;</span><span class="ot"> httpOnlyCookies=</span><span class="st">&quot;true&quot;</span><span class="kw">/&gt;</span></a></code></pre></div>
-<h2 id="then-enable-hsts">Then enable HSTS</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">&lt;httpCookies</span><span class="ot"> requireSSL=</span><span class="st">&quot;true&quot;</span><span class="ot"> httpOnlyCookies=</span><span class="st">&quot;true&quot;</span><span class="kw">/&gt;</span></span></code></pre></div>
+<h2 id="how-to-enable-hsts">How to enable HSTS</h2>
 <p>Once you’ve switched to HTTPS and thoroughly tested your site, you should enable HTTP Strict Transport Security (HSTS).</p>
 <blockquote>
 <p>[HSTS] allows a website to declare itself as a secure host and to inform browsers that it should be contacted only through HTTPS connections. HSTS is an opt-in security enhancement that enforces HTTPS and significantly reduces the ability of man-in-the-middle type attacks to intercept requests and responses between servers and clients.</p>
@@ -139,7 +142,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>HSTS is nothing more than a <code>Strict-Transport-Security</code> header included with the HTTP response, with a <code>max-age</code> value indicating the time in seconds that the browser should cache this setting:</p>
 <pre><code>Strict-Transport-Security: max-age=&lt;expire-time&gt;</code></pre>
-<p>The above document describes multiple ways HSTS can be enabled at the server level in IIS. <a href="https://hstspreload.org/#deployment-recommendations">It is recommended</a> to ramp up the <strong>max-age</strong> value stepwise from 5 minutes to 1 week, then 1 month, and finally 2 years, fully testing each step for the enabled time period.</p>
+<p>The above document describes multiple ways HSTS can be enabled at the server level. The following method is valid for our current version of IIS. Within the <code>&lt;rewrite&gt;</code> element added above, include the following lines and test thoroughly:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">&lt;outboundRules&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>    <span class="kw">&lt;rule</span><span class="ot"> name=</span><span class="st">&quot;Add STS header when HTTPS&quot;</span><span class="ot"> enabled=</span><span class="st">&quot;true&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>        <span class="kw">&lt;match</span><span class="ot"> serverVariable=</span><span class="st">&quot;RESPONSE_Strict_Transport_Security&quot;</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="ot">            pattern=</span><span class="st">&quot;.*&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>        <span class="kw">&lt;conditions&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>            <span class="kw">&lt;add</span><span class="ot"> input=</span><span class="st">&quot;{HTTPS}&quot;</span><span class="ot"> pattern=</span><span class="st">&quot;on&quot;</span><span class="ot"> ignoreCase=</span><span class="st">&quot;true&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>        <span class="kw">&lt;/conditions&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>        <span class="kw">&lt;action</span><span class="ot"> type=</span><span class="st">&quot;Rewrite&quot;</span><span class="ot"> value=</span><span class="st">&quot;max-age=300&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>    <span class="kw">&lt;/rule&gt;</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="kw">&lt;/outboundRules&gt;</span></span></code></pre></div>
+<p>The <strong>max-age</strong> value is set in this example at 5 minutes (300 seconds). <a href="https://hstspreload.org/#deployment-recommendations">It is recommended</a> to ramp up the <strong>max-age</strong> value stepwise from 5 minutes to 1 week, then 1 month, and finally 2 years, fully testing each step for the enabled time period.</p>
 <table>
 <thead>
 <tr class="header">
@@ -168,7 +182,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p>I’ve created a page to track <a href="https://bitbucket.org/snippets/gaepdit/4nX8Ee">HSTS implementation status</a> that can be used if desired.</p>
 <h2 id="quick-check">Quick check</h2>
-<p>You can quickly check that the above changes have taken effect using curl. Run <code>curl -I &lt;url&gt;</code> for both the HTTP and HTTPS versions of your URL and look for the correct headers highlighted below. (This is not a replacement for fully testing in a browser.)</p>
+<p>You can quickly check that the above changes have taken effect using curl.exe. Run <code>curl -I &lt;url&gt;</code> for both the HTTP and HTTPS versions of your URL and look for the correct headers highlighted below. (This is not a replacement for fully testing in a browser.)</p>
 <ul>
 <li><code>curl -I http://&lt;subdomain&gt;.gaepd.org</code> should return the header <code>HTTP/1.1 301 Moved Permanently</code>.</li>
 <li><code>curl -I https://&lt;subdomain&gt;.gaepd.org</code> should return <code>HTTP/2 200 OK</code> and (if you have enabled HSTS) <code>Strict-Transport-Security: max-age=604800</code> (max-age value should match the value in <code>web.config</code>).</li>
