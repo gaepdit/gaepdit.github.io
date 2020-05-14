@@ -36,8 +36,8 @@
 <p>Even better is to use tools that automatically format the code for you.</p>
 <p>If you need to reformat a file that has already been committed, <em>never</em> combine formatting changes and functional changes in the same commit.</p>
 <h2 id="prefer-rebase-over-merge">Prefer rebase over merge</h2>
-<p>This is mainly an issue that arises when two devs are working on the same branch. After committing some changes, you find you can’t push your new commits to Bitbucket because your partner has already pushed to the same branch, and your local branch is now behind the remote branch.</p>
-<p>The usual way of dealing with this is to pull the remote changes, merge, and then push the merged code back to Bitbucket.</p>
+<p>This is mainly an issue that arises when two devs are working on the same branch. After committing some changes, you find you can’t push your new commits to GitHub because your partner has already pushed to the same branch, and your local branch is now behind the remote branch.</p>
+<p>The usual way of dealing with this is to pull the remote changes, merge, and then push the merged code back to GitHub.</p>
 <p>But if your commits are short and complete, this method creates untidy and unnecessary merge commits. Setting your tool to automatically rebase instead of merge when pulling from the remote branch will eliminate the unnecessary merge commits, resulting in a cleaner commit timeline.</p>
 <p>Note: Rebasing does not increase or decrease the chances of a merge conflict. Conflicts will have to be resolved exactly the same way in both methods.</p>
 <h2 id="create-branches">Create branches</h2>

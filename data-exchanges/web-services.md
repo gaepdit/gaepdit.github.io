@@ -65,7 +65,7 @@ Configuration file: `D:\Services\GEOSDataService\GovOnline.DataExchange.exe`
 
 VES Connector runs as a Windows Service named "VES Connector".
 
-* ICIS-Air data exchange runs as scheduled tasks in VESA. Schedule: [23 separate tasks](https://bitbucket.org/gaepdit/icis-air-data-exchange/src/master/docs/VESA%20tasks%20in%20order.md) run weekly, from 7pm Thursday through 12:15am Friday.
+* ICIS-Air data exchange runs as scheduled tasks in VESA. Schedule: [23 separate tasks](https://github.com/gaepdit/icis-air-data-exchange/blob/master/docs/VESA%20tasks%20in%20order.md) run weekly, from 7pm Thursday through 12:15am Friday.
 * EIS data exchanged is trigger manually by Air Branch staff.
 
 Database: NETWORKNODEFLOW  

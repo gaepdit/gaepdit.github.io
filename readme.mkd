@@ -1,6 +1,6 @@
 # EPD-IT Developer Documentation
 
-Source code for the Georgia EPD-IT developers documentation site at [https://gaepdit.bitbucket.io/](https://gaepdit.bitbucket.io/).
+Source code for the Georgia EPD-IT developers documentation site at [https://gaepdit.github.io/](https://gaepdit.github.io/).
 
 ## Instructions
 

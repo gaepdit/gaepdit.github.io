@@ -36,9 +36,9 @@ If you need to reformat a file that has already been committed, *never* combine 
 
 ## Prefer rebase over merge
 
-This is mainly an issue that arises when two devs are working on the same branch. After committing some changes, you find you can't push your new commits to Bitbucket because your partner has already pushed to the same branch, and your local branch is now behind the remote branch. 
+This is mainly an issue that arises when two devs are working on the same branch. After committing some changes, you find you can't push your new commits to GitHub because your partner has already pushed to the same branch, and your local branch is now behind the remote branch. 
 
-The usual way of dealing with this is to pull the remote changes, merge, and then push the merged code back to Bitbucket.
+The usual way of dealing with this is to pull the remote changes, merge, and then push the merged code back to GitHub.
 
 But if your commits are short and complete, this method creates untidy and unnecessary merge commits. Setting your tool to automatically rebase instead of merge when pulling from the remote branch will eliminate the unnecessary merge commits, resulting in a cleaner commit timeline.
 
