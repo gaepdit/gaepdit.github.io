@@ -122,8 +122,6 @@ The **max-age** value is set in this example at 5 minutes (300 seconds). [It is 
 | 1 month   | `max-age=2592000`  |
 | 2 years   | `max-age=63072000` |
 
-I've created a page to track [HSTS implementation status](https://bitbucket.org/snippets/gaepdit/4nX8Ee) that can be used if desired.
-
 ## Quick check
 
 You can quickly check that the above changes have taken effect using curl.exe. Run `curl -I <url>` for both the HTTP and HTTPS versions of your URL and look for the correct headers highlighted below. (This is not a replacement for fully testing in a browser.)
