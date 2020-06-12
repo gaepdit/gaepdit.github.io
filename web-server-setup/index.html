@@ -43,7 +43,7 @@ Updated on: 06/24/2016
 <ul>
 <li>Telnet Client</li>
 </ul></li>
-<li><p>In the application drive create %ROOT% generally the E: drive</p></li>
+<li><p>In the application drive create %ROOT%\inetpub\ generally the E:\ drive</p></li>
 <li><p>IIS Logging</p>
 <ul>
 <li>Go to IIS Logging and change the logging Directory to E: from %SystemDrive%</li>
@@ -51,17 +51,17 @@ Updated on: 06/24/2016
 <li><p>Default Site location</p>
 <ul>
 <li>Sites &gt; Default Site &gt; RC &gt; Manage Web Site &gt; Advanced Settings</li>
-<li>change General Physical Path to E: from %SystemDrive%</li>
+<li>change General Physical Path to E:\ from %SystemDrive%</li>
 </ul></li>
-<li><p>from Command Prompt (run as administrator) OR run aspnet_regiis.bat found in EPD DOIT- Servers</p>
+<li><p>from Command Prompt (run as administrator) OR run aspnet_regiis.bat found in EPD DOIT\DataCenters\CMS - Servers</p>
 <ul>
-<li><p>cd Microsoft.Net. (press tab for folder)</p></li>
+<li><p>cd Microsoft.Net\Framework\v2. (press tab for folder)</p></li>
 <li><p>run command: <code>aspnet_regiis -i</code></p></li>
-<li><p>cd Microsoft.Net. (press tab for folder)</p></li>
+<li><p>cd Microsoft.Net\Framework\v4. (press tab for folder)</p></li>
 <li><p>run command: <code>aspnet_regiis -i</code></p></li>
-<li><p>cd Microsoft.Net64. (press tab for folder)</p></li>
+<li><p>cd Microsoft.Net\Framework64\v2. (press tab for folder)</p></li>
 <li><p>run command: <code>aspnet_regiis -i</code></p></li>
-<li><p>cd Microsoft.Net64. (press tab for folder)</p></li>
+<li><p>cd Microsoft.Net\Framework64\v4. (press tab for folder)</p></li>
 <li><p>run command: <code>aspnet_regiis -i</code></p></li>
 </ul></li>
 <li><p>Set-up SMTP</p>
@@ -73,14 +73,14 @@ Updated on: 06/24/2016
 </ul></li>
 </ul>
 <h2 id="additional-details-for-web-site-management">Additional details for Web Site Management</h2>
-<p>Please use the E:location for all deployments. Make sure that you create a complete domain(sub) for the website folders. Ex. If I am deploying a website for geco.georgiaair.org, I will create a folder named geco.georgiaair.org in the wwwroot folder.</p>
+<p>Please use the E:\inetpub\wwwroot location for all deployments. Make sure that you create a complete domain(sub) for the website folders. Ex. If I am deploying a website for geco.georgiaair.org, I will create a folder named geco.georgiaair.org in the wwwroot folder.</p>
 <ul>
-<li>Go to E:and create the application folder e.g. geco.georgiaair.org</li>
+<li>Go to E:\inetpub\wwwroot and create the application folder e.g. geco.georgiaair.org</li>
 <li>Go to Server Manager &gt; Roles &gt; Web Server (IIS) &gt; IIS Manager &gt; localhost &gt; Sites</li>
 <li>RC and Add Web Site…
 <ul>
 <li>Site name: same as the application folder and let IIS create the application pool</li>
-<li>Physical Path E:e.g. geco.georgiaair.org</li>
+<li>Physical Path E:\inetpub\wwwroot\FOLDER e.g. geco.georgiaair.org</li>
 <li>Host name: godaddy url for the site - may change based on PROD, DEV, or UAT</li>
 </ul></li>
 <li>Add http binding</li>

@@ -27,27 +27,27 @@ title: Web Application Server Setup
 - Add Feature(s)
     + Telnet Client
 
-- In the application drive create %ROOT%\inetpub\ generally the E:\ drive
+- In the application drive create %ROOT%\\inetpub\\ generally the E:\\ drive
 
 - IIS Logging
     + Go to IIS Logging and change the logging Directory to E: from %SystemDrive%
 
 - Default Site location
     + Sites > Default Site > RC > Manage Web Site > Advanced Settings
-    + change General Physical Path to E:\ from %SystemDrive%
+    + change General Physical Path to E:\\ from %SystemDrive%
 
-- from Command Prompt (run as administrator) OR run aspnet_regiis.bat found in EPD DOIT\DataCenters\CMS - Servers
+- from Command Prompt (run as administrator) OR run aspnet_regiis.bat found in EPD DOIT\\DataCenters\\CMS - Servers
 
-    + cd Microsoft.Net\Framework\v2. (press tab for folder)
+    + cd Microsoft.Net\\Framework\\v2. (press tab for folder)
     + run command: `aspnet_regiis -i`
 
-    + cd Microsoft.Net\Framework\v4. (press tab for folder)
+    + cd Microsoft.Net\\Framework\\v4. (press tab for folder)
     + run command: `aspnet_regiis -i`
 
-    + cd Microsoft.Net\Framework64\v2. (press tab for folder)
+    + cd Microsoft.Net\\Framework64\\v2. (press tab for folder)
     + run command: `aspnet_regiis -i`
 
-    + cd Microsoft.Net\Framework64\v4. (press tab for folder)
+    + cd Microsoft.Net\\Framework64\\v4. (press tab for folder)
     + run command: `aspnet_regiis -i`
 
 - Set-up SMTP
@@ -56,14 +56,14 @@ title: Web Application Server Setup
 
 ## Additional details for Web Site Management
 
-Please use the E:\inetpub\wwwroot location for all deployments.
+Please use the E:\\inetpub\\wwwroot location for all deployments.
 Make sure that you create a complete domain(sub) for the website folders. Ex. If I am deploying a website for geco.georgiaair.org, I will create a folder named geco.georgiaair.org in the wwwroot folder.
 
-- Go to E:\inetpub\wwwroot and create the application folder e.g. geco.georgiaair.org
+- Go to E:\\inetpub\\wwwroot and create the application folder e.g. geco.georgiaair.org
 - Go to Server Manager > Roles > Web Server (IIS) > IIS Manager > localhost > Sites
 - RC and Add Web Site...
     + Site name: same as the application folder and let IIS create the application pool
-    + Physical Path E:\inetpub\wwwroot\FOLDER e.g. geco.georgiaair.org
+    + Physical Path E:\\inetpub\\wwwroot\\FOLDER e.g. geco.georgiaair.org
     + Host name: godaddy url for the site - may change based on PROD, DEV, or UAT
 - Add http binding
 

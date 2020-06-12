@@ -41,7 +41,7 @@ Install the following software as needed:
 * [Inkscape](https://inkscape.org/en/) (Vector graphics editor)
 * [Greenshot](http://getgreenshot.org/) (Screenshot tool)
 * [ApexSQL Refactor](https://www.apexsql.com/sql_tools_refactor.aspx) (SSMS plugin for formatting SQL)
-* [ApexSQL Refactor settings file](https://github.com/gaepdit/database-resources/tree/master/Formatting) (for use with above)
+* [ApexSQL Refactor settings file](https://github.com/gaepdit/database-resources/tree/main/Formatting) (for use with above)
 
 ## Optional online services
 

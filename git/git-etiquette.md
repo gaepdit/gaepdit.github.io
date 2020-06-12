@@ -50,13 +50,32 @@ If you need more time and space to work on a change, or you feel like the change
 
 Branching is cheap and easy in Git. Create a branch and push it to GitLab. Others can check out that branch and see the current state of your work. They can add commits that you can pull. Create multiple branches if you need to work on multiple features. Branches can be deleted or merged so there is little risk.
 
-And none of this violates the rule to keep commits short and complete, because when you merge your crazy long branch back into master, it's only the merge commit that matters. In other words, the entire branch that is merged can be considered a single merge action fulfilling the above rule. It is the merge commit itself that represents the "before" and "after" state of the main branch.
+And none of this violates the rule to keep commits short and complete, because when you merge your crazy long branch back into the main branch, it's only the merge commit that matters. In other words, the entire branch that is merged can be considered a single merge action fulfilling the above rule. It is the merge commit itself that represents the "before" and "after" state of the main branch.
 
-But make sure you only merge into master once the change is complete and ready to be released because the master branch should always build.
+But make sure you only merge into the main branch once the change is complete and ready to be released because the main branch should always build.
 
-## The master branch should always build
+## Rename your default branch to main
 
-No one expects bug-free code, so this is not to say the master branch should be free from defects. But every attempt should be made to maintain the master branch in a build-able, ship-able state.
+The [IETF points out](https://tools.ietf.org/id/draft-knodel-terminology-00.html) that "it is important for Authors to consider the kinds of terms or language conventions that may inadvertently get in the way of effective communication" and the term "master" is one of those conventions. Fortunately, it is relatively simple to choose a different name for the default branch. We recommend "main" for most scenarios. For more complex schemes, "stable" or "production" are also good options.
+
+It's easiest to rename the default branch for a new repository (with no commits): 
+
+```
+git init
+git checkout -b main
+```
+
+Or you can create an alias "git new" to use instead of `git init`:
+
+```
+git config --global alias.new '!git init && git symbolic-ref HEAD refs/heads/main'
+```
+
+For repositories with existing commits and especially those that have been shared with others, a little more care is needed. Scott Hanselman has written [a blog post with some advice](https://www.hanselman.com/blog/EasilyRenameYourGitDefaultBranchFromToMain.aspx).
+
+## The main branch should always build
+
+No one expects bug-free code, so this is not to say the main branch should be free from defects. But every attempt should be made to maintain it in a build-able, ship-able state.
 
 This is just another way of saying, if you need more time and space to work on a change, create a branch.
 

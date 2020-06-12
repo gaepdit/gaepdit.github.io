@@ -43,10 +43,18 @@
 <h2 id="create-branches">Create branches</h2>
 <p>If you need more time and space to work on a change, or you feel like the change you are working on should be spread across multiple commits, or you want to commit an unfinished work in progress to request help from a fellow developer, <em>create a branch.</em></p>
 <p>Branching is cheap and easy in Git. Create a branch and push it to GitLab. Others can check out that branch and see the current state of your work. They can add commits that you can pull. Create multiple branches if you need to work on multiple features. Branches can be deleted or merged so there is little risk.</p>
-<p>And none of this violates the rule to keep commits short and complete, because when you merge your crazy long branch back into master, it’s only the merge commit that matters. In other words, the entire branch that is merged can be considered a single merge action fulfilling the above rule. It is the merge commit itself that represents the “before” and “after” state of the main branch.</p>
-<p>But make sure you only merge into master once the change is complete and ready to be released because the master branch should always build.</p>
-<h2 id="the-master-branch-should-always-build">The master branch should always build</h2>
-<p>No one expects bug-free code, so this is not to say the master branch should be free from defects. But every attempt should be made to maintain the master branch in a build-able, ship-able state.</p>
+<p>And none of this violates the rule to keep commits short and complete, because when you merge your crazy long branch back into the main branch, it’s only the merge commit that matters. In other words, the entire branch that is merged can be considered a single merge action fulfilling the above rule. It is the merge commit itself that represents the “before” and “after” state of the main branch.</p>
+<p>But make sure you only merge into the main branch once the change is complete and ready to be released because the main branch should always build.</p>
+<h2 id="rename-your-default-branch-to-main">Rename your default branch to main</h2>
+<p>The <a href="https://tools.ietf.org/id/draft-knodel-terminology-00.html">IETF points out</a> that “it is important for Authors to consider the kinds of terms or language conventions that may inadvertently get in the way of effective communication” and the term “master” is one of those conventions. Fortunately, it is relatively simple to choose a different name for the default branch. We recommend “main” for most scenarios. For more complex schemes, “stable” or “production” are also good options.</p>
+<p>It’s easiest to rename the default branch for a new repository (with no commits):</p>
+<pre><code>git init
+git checkout -b main</code></pre>
+<p>Or you can create an alias “git new” to use instead of <code>git init</code>:</p>
+<pre><code>git config --global alias.new &#39;!git init &amp;&amp; git symbolic-ref HEAD refs/heads/main&#39;</code></pre>
+<p>For repositories with existing commits and especially those that have been shared with others, a little more care is needed. Scott Hanselman has written <a href="https://www.hanselman.com/blog/EasilyRenameYourGitDefaultBranchFromToMain.aspx">a blog post with some advice</a>.</p>
+<h2 id="the-main-branch-should-always-build">The main branch should always build</h2>
+<p>No one expects bug-free code, so this is not to say the main branch should be free from defects. But every attempt should be made to maintain it in a build-able, ship-able state.</p>
 <p>This is just another way of saying, if you need more time and space to work on a change, create a branch.</p>
 <h2 id="dont-work-with-old-code">Don’t work with old code</h2>
 <p>When starting new work (whether creating a new branch or not), do a <code>fetch</code> or <code>pull</code> first to make sure you have the latest version of the codebase. If you start with out-of-date code, you are more likely to encounter merge conflicts when you’re finished. Plus, you might be recreating code that already exists!</p>
