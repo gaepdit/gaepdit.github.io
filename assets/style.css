@@ -1,7 +1,5 @@
 /* Started with Github Markdown CSS https://gist.github.com/andyferra/2554919 */
 /* Modified over time by DWW */
-@import url("https://fonts.googleapis.com/css?family=Barlow+Condensed:500|Lato:400,400i,700&display=swap");
-
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -187,7 +185,8 @@ pre code {
   border: none;
 }
 body {
-  font-family: Lato, sans-serif;
+  font-family: Barlow, sans-serif;
+  font-weight: 500;
   font-size: 14px;
   color: #333;
   margin: 24px 0 36px;
@@ -227,6 +226,7 @@ h4,
 h5,
 h6 {
   font-family: "Barlow Condensed", sans-serif;
+  font-weight: 700;
   margin: 24px 0 8px;
 }
 h1 span,
