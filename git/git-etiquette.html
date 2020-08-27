@@ -53,11 +53,9 @@
 <p>But make sure you only merge into the main branch once the change is complete and ready to be released because the main branch should always build.</p>
 <h2 id="rename-your-default-branch-to-main">Rename your default branch to main</h2>
 <p>The <a href="https://tools.ietf.org/id/draft-knodel-terminology-00.html">IETF points out</a> that “it is important for Authors to consider the kinds of terms or language conventions that may inadvertently get in the way of effective communication” and the term “master” is one of those conventions. Fortunately, it is relatively simple to choose a different name for the default branch. We recommend “main” for most scenarios. For more complex schemes, “stable” or “production” are also good options.</p>
-<p>It’s easiest to rename the default branch for a new repository (with no commits):</p>
-<pre><code>git init
-git checkout -b main</code></pre>
-<p>Or you can create an alias “git new” to use instead of <code>git init</code>:</p>
-<pre><code>git config --global alias.new &#39;!git init &amp;&amp; git symbolic-ref HEAD refs/heads/main&#39;</code></pre>
+<p>If you have Git 2.28 or later installed, you can change the default branch name used for new repositories:</p>
+<pre><code>git config --global init.defaultBranch main</code></pre>
+<p>If you use GitHub to create new repositories, the default branch is already set to “main”.</p>
 <p>For repositories with existing commits and especially those that have been shared with others, a little more care is needed. Scott Hanselman has written <a href="https://www.hanselman.com/blog/EasilyRenameYourGitDefaultBranchFromToMain.aspx">a blog post with some advice</a>.</p>
 <h2 id="the-main-branch-should-always-build">The main branch should always build</h2>
 <p>No one expects bug-free code, so this is not to say the main branch should be free from defects. But every attempt should be made to maintain it in a build-able, ship-able state.</p>

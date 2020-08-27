@@ -58,18 +58,13 @@ But make sure you only merge into the main branch once the change is complete an
 
 The [IETF points out](https://tools.ietf.org/id/draft-knodel-terminology-00.html) that "it is important for Authors to consider the kinds of terms or language conventions that may inadvertently get in the way of effective communication" and the term "master" is one of those conventions. Fortunately, it is relatively simple to choose a different name for the default branch. We recommend "main" for most scenarios. For more complex schemes, "stable" or "production" are also good options.
 
-It's easiest to rename the default branch for a new repository (with no commits): 
+If you have Git 2.28 or later installed, you can change the default branch name used for new repositories:
 
 ```
-git init
-git checkout -b main
+git config --global init.defaultBranch main
 ```
 
-Or you can create an alias "git new" to use instead of `git init`:
-
-```
-git config --global alias.new '!git init && git symbolic-ref HEAD refs/heads/main'
-```
+If you use GitHub to create new repositories, the default branch is already set to "main". 
 
 For repositories with existing commits and especially those that have been shared with others, a little more care is needed. Scott Hanselman has written [a blog post with some advice](https://www.hanselman.com/blog/EasilyRenameYourGitDefaultBranchFromToMain.aspx).
 

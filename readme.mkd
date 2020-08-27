@@ -8,4 +8,4 @@ To modify the documents on this site, clone this repository and edit the Markdow
 
 To generate HTML files from your Markdown files, run `build.bat`. Building requires that [Pandoc](https://pandoc.org/installing.html) be installed.
 
-Once `build` has been run, commit the HTML files. All HTML files in the "master" branch are automatically published on the site.
+Once `build` has been run, commit the HTML files. All HTML files in the "main" branch are automatically published on the site.
