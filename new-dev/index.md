@@ -18,6 +18,7 @@ Install the [Git CLI](https://git-scm.com/) then configure Git by running each o
 
 * `git config --global user.name "Your Name"`
 * `git config --global user.email your.email@dnr.ga.gov`
+* `git config --global init.defaultBranch main`
 
 Add a [global .gitignore file](../git/#gitignore-files) to your user profile directory.
 
