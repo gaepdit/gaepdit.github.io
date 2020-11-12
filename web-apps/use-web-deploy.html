@@ -29,18 +29,15 @@
 <li><a href="#optional-configuration-setup">Optional configuration setup</a></li>
 </ul>
 <h2 id="iis-setup">IIS Setup</h2>
-<p>Open IIS Manager on the web server, select the website you want to configure in the Connections panel, and then open the “IIS Manager Permissions” tool.</p>
-<p><img src="img/web-deploy-server-step-1.png" alt="Screenshot of IIS Manager Permissions button" /></p>
-<p>Select the “Allow User…” Action.</p>
+<p>Open IIS Manager on the web server, right-click on the website you want to configure in the Connections panel, and select Deploy ▶ “Configure Web Deploy Publishing…”</p>
+<p><img src="img/web-deploy-server-step-1.png" alt="Screenshot of IIS Deploy menu" /></p>
+<p>Ensure your user account is selected in the first drop-down and select “Setup”, then “Close”.</p>
 <p><img src="img/web-deploy-server-step-2.png" alt="Screenshot of Allow User button" /></p>
-<p>Select Windows user, then select “Object Types” and enable Groups. Type “Users” in the box and click “Check Names.” It should validate the group name. Select OK.</p>
+<p>This will configure the website to enable Web Deploy from your account. It will also create a file on the Desktop that is not needed and can be deleted.</p>
 <p><img src="img/web-deploy-server-step-3.png" alt="Screenshot of “Select User or Group” tool" /></p>
-<p>The Users group should display in the IIS Manager Permissions list.</p>
-<p><img src="img/web-deploy-server-step-4.png" alt="Screenshot of users list in IIS Manager Permissions tool" /></p>
 <p>Repeat this for each website on each web server as necessary.</p>
 <h2 id="visual-studio-setup">Visual Studio Setup</h2>
-<p>In Visual Studio, you will add a Publishing Profile for each web server destination that you want to publish to.</p>
-<p>First, enable the “Web One Click Publish” toolbar in Visual Studio. Select View → Toolbars → Web One Click Publish.</p>
+<p>In Visual Studio, you will need a Publishing Profile for each web server destination that you want to publish to. First, enable the “Web One Click Publish” toolbar in Visual Studio. Select View ▶ Toolbars ▶ “Web One Click Publish”.</p>
 <p>In the Publish toolbar dropdown, select “New Custom Profile…”.</p>
 <p><img src="img/web-deploy-vs-step-1.png" alt="Screenshot of Visual Studio Publish toolbar with publish target dropdown open" /></p>
 <p>Select “IIS, FTP, Web Deploy” as the publish target, then select “Create Profile”.</p>
@@ -48,9 +45,9 @@
 <p>The Publish tool that gets displayed may differ depending on the type of project you are working on, so these screenshots may not match exactly. Fill in the following fields:</p>
 <ul>
 <li><p><strong>Server:</strong> Enter either the website URL or server IP address.</p>
-<p><em>IMPORTANT:</em> Production URLs cannot be used for Web Deploy. Instead, you should use <code>sei1.gaepd.org</code> for Prod App 1 or <code>sei2.gaepd.org</code> for Prod App 2.</p></li>
+<p><strong>IMPORTANT:</strong> Production URLs cannot be used for Web Deploy. Instead, you should use <code>sei1.gaepd.org</code> for Prod App 1 or <code>sei2.gaepd.org</code> for Prod App 2.</p></li>
 <li><p><strong>Site name:</strong> Enter the name of the website <em>as listed in IIS.</em></p></li>
-<li><p><strong>User name</strong> and <strong>Password:</strong> Leave these blank! You don’t want this information in your source code repository. You will be prompted for these when you publish.</p></li>
+<li><p><strong>User name</strong> and <strong>Password:</strong> <em>Leave these blank!</em> You don’t want this information in your source code repository. You will be prompted for these when you publish.</p></li>
 <li><p><strong>Destination URL:</strong> The address of your website. Once publishing is successful, this URL will be launched in your default browser.</p></li>
 </ul>
 <p>Select “Validate Connection” to test the settings. <em>Note: Enter your SEI server credentials, not your SOG credentials.</em></p>
@@ -61,7 +58,7 @@
 <p>Commit the new Publish Profile into your Git repository. Make sure your project <code>.gitignore</code> file is set to ignore <code>*.user</code> but NOT ignore <code>*.pubxml</code>.</p>
 <p>Repeat for each web server destination you want to publish to (e.g., Dev, UAT, &amp; Prod).</p>
 <h2 id="publishing">Publishing</h2>
-<p>To publish your website, select the desired profile in the Publish toolbar dropdown, and click the globe icon. You will then be requested to enter your user name and password. <em>Note: Enter your SEI server credentials, not your SOG credentials.</em></p>
+<p>To publish your website, select the desired profile in the Publish toolbar dropdown, and click the globe icon. You will be requested to enter your user name and password. <em>Note: Enter your SEI server credentials, not your SOG credentials.</em></p>
 <p><img src="img/web-deploy-vs-step-5.png" alt="Screenshot of Visual Studio Publish toolbar with Publish Web button highlighted" /></p>
 <p><img src="img/web-deploy-vs-step-6.png" alt="Screenshot of Web Deploy Client credentials input" /></p>
 <h2 id="optional-configuration-setup">Optional configuration setup</h2>

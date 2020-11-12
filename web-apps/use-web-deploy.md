@@ -13,29 +13,23 @@ Web Deploy is a tool that enables one-click deployment of web applications direc
 
 ## IIS Setup
 
-Open IIS Manager on the web server, select the website you want to configure in the Connections panel, and then open the "IIS Manager Permissions" tool.
+Open IIS Manager on the web server, right-click on the website you want to configure in the Connections panel, and select Deploy ▶ "Configure Web Deploy Publishing…"
 
-![Screenshot of IIS Manager Permissions button](img/web-deploy-server-step-1.png)
+![Screenshot of IIS Deploy menu](img/web-deploy-server-step-1.png)
 
-Select the "Allow User..." Action.
+Ensure your user account is selected in the first drop-down and select "Setup", then "Close".
 
 ![Screenshot of Allow User button](img/web-deploy-server-step-2.png)
 
-Select Windows user, then select "Object Types" and enable Groups. Type "Users" in the box and click "Check Names." It should validate the group name. Select OK.
+This will configure the website to enable Web Deploy from your account. It will also create a file on the Desktop that is not needed and can be deleted.
 
 ![Screenshot of "Select User or Group" tool](img/web-deploy-server-step-3.png)
-
-The Users group should display in the IIS Manager Permissions list.
-
-![Screenshot of users list in IIS Manager Permissions tool](img/web-deploy-server-step-4.png)
 
 Repeat this for each website on each web server as necessary.
 
 ## Visual Studio Setup
 
-In Visual Studio, you will add a Publishing Profile for each web server destination that you want to publish to.
-
-First, enable the "Web One Click Publish" toolbar in Visual Studio. Select View → Toolbars → Web One Click Publish.
+In Visual Studio, you will need a Publishing Profile for each web server destination that you want to publish to. First, enable the "Web One Click Publish" toolbar in Visual Studio. Select View ▶ Toolbars ▶ "Web One Click Publish".
 
 In the Publish toolbar dropdown, select "New Custom Profile...".
 
@@ -49,11 +43,11 @@ The Publish tool that gets displayed may differ depending on the type of project
 
 * **Server:** Enter either the website URL or server IP address.
 
-    *IMPORTANT:* Production URLs cannot be used for Web Deploy. Instead, you should use `sei1.gaepd.org` for Prod App&nbsp;1 or `sei2.gaepd.org` for Prod App&nbsp;2.
+    **IMPORTANT:** Production URLs cannot be used for Web Deploy. Instead, you should use `sei1.gaepd.org` for Prod App&nbsp;1 or `sei2.gaepd.org` for Prod App&nbsp;2.
 
 * **Site name:** Enter the name of the website *as listed in IIS.*
 
-* **User name** and **Password:** Leave these blank! You don't want this information in your source code repository. You will be prompted for these when you publish.
+* **User name** and **Password:** *Leave these blank!* You don't want this information in your source code repository. You will be prompted for these when you publish.
 
 * **Destination URL:** The address of your website. Once publishing is successful, this URL will be launched in your default browser.
 
@@ -73,7 +67,7 @@ Repeat for each web server destination you want to publish to (e.g., Dev, UAT, &
 
 ## Publishing
 
-To publish your website, select the desired profile in the Publish toolbar dropdown, and click the globe icon. You will then be requested to enter your user name and password. *Note: Enter your SEI server credentials, not your SOG credentials.*
+To publish your website, select the desired profile in the Publish toolbar dropdown, and click the globe icon. You will be requested to enter your user name and password. *Note: Enter your SEI server credentials, not your SOG credentials.*
 
 ![Screenshot of Visual Studio Publish toolbar with Publish Web button highlighted](img/web-deploy-vs-step-5.png)
 
