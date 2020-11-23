@@ -147,17 +147,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>HSTS is nothing more than a <code>Strict-Transport-Security</code> header included with the HTTP response, with a <code>max-age</code> value indicating the time in seconds that the browser should cache this setting:</p>
 <pre><code>Strict-Transport-Security: max-age=&lt;expire-time&gt;</code></pre>
-<p>The above document describes multiple ways HSTS can be enabled at the server level. The following method is valid for our current version of IIS. Within the <code>&lt;rewrite&gt;</code> element added above, include the following lines and test thoroughly:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">&lt;outboundRules&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>    <span class="kw">&lt;rule</span><span class="ot"> name=</span><span class="st">&quot;Add STS header when HTTPS&quot;</span><span class="ot"> enabled=</span><span class="st">&quot;true&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>        <span class="kw">&lt;match</span><span class="ot"> serverVariable=</span><span class="st">&quot;RESPONSE_Strict_Transport_Security&quot;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="ot">            pattern=</span><span class="st">&quot;.*&quot;</span> <span class="kw">/&gt;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>        <span class="kw">&lt;conditions&gt;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>            <span class="kw">&lt;add</span><span class="ot"> input=</span><span class="st">&quot;{HTTPS}&quot;</span><span class="ot"> pattern=</span><span class="st">&quot;on&quot;</span><span class="ot"> ignoreCase=</span><span class="st">&quot;true&quot;</span> <span class="kw">/&gt;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>        <span class="kw">&lt;/conditions&gt;</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>        <span class="kw">&lt;action</span><span class="ot"> type=</span><span class="st">&quot;Rewrite&quot;</span><span class="ot"> value=</span><span class="st">&quot;max-age=300&quot;</span> <span class="kw">/&gt;</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>    <span class="kw">&lt;/rule&gt;</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="kw">&lt;/outboundRules&gt;</span></span></code></pre></div>
+<p>HSTS is built into ASP<span>.NET</span> Core by <a href="https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-3.1&amp;tabs=visual-studio#http-strict-transport-security-protocol-hsts">configuring <code>UseHsts()</code></a>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c#"><code class="sourceCode cs"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">public</span> <span class="dt">void</span> <span class="fu">ConfigureServices</span>(IServiceCollection services)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>{</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>    services.<span class="fu">AddHsts</span>(options =&gt;</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>    {</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>        options.<span class="fu">MaxAge</span> = TimeSpan.<span class="fu">FromDays</span>(<span class="dv">60</span>);</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>    });</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>}</span></code></pre></div>
+<p>Alternatively, the <a href="(https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-10-version-1709/iis-10-version-1709-hsts#http-strict-transport-security-hsts)">IIS support document</a> describes multiple ways HSTS can be enabled at the server level. The following method is valid for our current version of IIS. Within the <code>&lt;rewrite&gt;</code> element added above, include the following lines and test thoroughly:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">&lt;outboundRules&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>    <span class="kw">&lt;rule</span><span class="ot"> name=</span><span class="st">&quot;Add STS header when HTTPS&quot;</span><span class="ot"> enabled=</span><span class="st">&quot;true&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>        <span class="kw">&lt;match</span><span class="ot"> serverVariable=</span><span class="st">&quot;RESPONSE_Strict_Transport_Security&quot;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="ot">            pattern=</span><span class="st">&quot;.*&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>        <span class="kw">&lt;conditions&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>            <span class="kw">&lt;add</span><span class="ot"> input=</span><span class="st">&quot;{HTTPS}&quot;</span><span class="ot"> pattern=</span><span class="st">&quot;on&quot;</span><span class="ot"> ignoreCase=</span><span class="st">&quot;true&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a>        <span class="kw">&lt;/conditions&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a>        <span class="kw">&lt;action</span><span class="ot"> type=</span><span class="st">&quot;Rewrite&quot;</span><span class="ot"> value=</span><span class="st">&quot;max-age=300&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a>    <span class="kw">&lt;/rule&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a><span class="kw">&lt;/outboundRules&gt;</span></span></code></pre></div>
 <p>The <strong>max-age</strong> value is set in this example at 5 minutes (300 seconds). <a href="https://hstspreload.org/#deployment-recommendations">It is recommended</a> to ramp up the <strong>max-age</strong> value stepwise from 5 minutes to 1 week, then 1 month, and finally 2 years, fully testing each step for the enabled time period.</p>
 <table>
 <thead>

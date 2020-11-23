@@ -98,7 +98,19 @@ HSTS is nothing more than a `Strict-Transport-Security` header included with the
 Strict-Transport-Security: max-age=<expire-time>
 ```
 
-The above document describes multiple ways HSTS can be enabled at the server level. The following method is valid for our current version of IIS. Within the `<rewrite>` element added above, include the following lines and test thoroughly:
+HSTS is built into ASP<span>.NET</span> Core by [configuring `UseHsts()`](https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-3.1&tabs=visual-studio#http-strict-transport-security-protocol-hsts):
+
+```c#
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddHsts(options =>
+    {
+        options.MaxAge = TimeSpan.FromDays(60);
+    });
+}
+```
+
+Alternatively, the [IIS support document]((https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-10-version-1709/iis-10-version-1709-hsts#http-strict-transport-security-hsts)) describes multiple ways HSTS can be enabled at the server level. The following method is valid for our current version of IIS. Within the `<rewrite>` element added above, include the following lines and test thoroughly:
 
 ```xml
 <outboundRules>
