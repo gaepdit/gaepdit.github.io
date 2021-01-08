@@ -123,24 +123,9 @@ SDWIS application
 *EnfoTech* FIMS application
 ```
 
-## EIS (Emission Inventory System)
+## EIS (Emissions Inventory System)
 
-👉 Air emission info sent to EPA
-
-```text
-GECO application
-↓
-[AIRBRANCH]
-|
-| [AIRBRANCH].etl.SP_EIS_FI_LOAD_STAGING
-| [AIRBRANCH].etl.SP_EIS_PSE_LOAD_STAGING
-↓
-[NETWORKNODEFLOW]
-|
-| web service (ENSC/VES)
-↓
-*EPA* EIS Gateway
-```
+👉 The Emissions Inventory is now handled by EPA's CAERS.
 
 ## ICIS (Integrated Compliance Information System)
 
