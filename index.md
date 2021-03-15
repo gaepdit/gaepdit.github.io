@@ -14,7 +14,7 @@ Welcome to the Georgia EPD-IT Developer Documentation site! To edit this documen
 
 ## Application development
 
-* [Use HTTPS](web-apps/use-https.html)
+* [Use HTTPS & HSTS](web-apps/use-https.html)
 * [Use Web Deploy](web-apps/use-web-deploy.html)
 
 ## Infrastructure
