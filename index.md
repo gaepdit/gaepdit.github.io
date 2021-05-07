@@ -20,4 +20,4 @@ Welcome to the Georgia EPD-IT Developer Documentation site! To edit this documen
 ## Infrastructure
 
 * [Data exchanges](data-exchanges/)
-* [Web server setup](web-server-setup/)
+* [Web server setup](web-server-setup/web-server-setup.html)
