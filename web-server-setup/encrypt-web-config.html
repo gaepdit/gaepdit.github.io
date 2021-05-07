@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>GA EPD-IT Developer Documentation</title>
+  <title>encrypt-web-config</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -19,25 +19,12 @@
 </head>
 <body class="">
 <div class="wrapper">
-<h1 id="georgia-epd-it-developer-documentation">Georgia EPD-IT Developer Documentation</h1>
-<p>Welcome to the Georgia EPD-IT Developer Documentation site! To edit this documentation, follow the instructions in the <a href="https://github.com/gaepdit/gaepdit.github.io/blob/main/readme.mkd">site repository</a>.</p>
-<h2 id="getting-started">Getting started</h2>
-<ul>
-<li><a href="new-dev/">New employee onboarding</a></li>
-<li><a href="git/">Git resources and training</a></li>
-<li><a href="git/git-etiquette.html">Git etiquette</a></li>
-</ul>
-<h2 id="application-development">Application development</h2>
-<ul>
-<li><a href="web-apps/use-https.html">Use HTTPS &amp; HSTS</a></li>
-<li><a href="web-apps/use-web-deploy.html">Use Web Deploy</a></li>
-</ul>
-<h2 id="infrastructure">Infrastructure</h2>
-<ul>
-<li><a href="data-exchanges/">Data exchanges</a></li>
-<li><a href="web-server-setup/web-server-setup.html">Web server setup</a></li>
-<li><a href="web-server-setup/encrypt-web-config.html">Encrypting web config files</a></li>
-</ul>
+<a href="/"><img src="/icon.png" alt="" width=16 height=16 /> Home</a>
+<h1 id="encrypting-web-config-files">Encrypting web config files</h1>
+<p>Run the following on the server from an elevated command prompt as needed for each website.</p>
+<pre class="cmd"><code>\Windows\Microsoft.NET\Framework\v4.0.30319\aspnet_regiis.exe -pef &quot;connectionStrings&quot; &quot;D:\inetpub\wwwroot\geco.gaepd.org&quot;
+
+\Windows\Microsoft.NET\Framework\v4.0.30319\aspnet_regiis.exe -pef &quot;appSettings&quot; &quot;D:\inetpub\wwwroot\geco.gaepd.org&quot;</code></pre>
 </div>
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js"
