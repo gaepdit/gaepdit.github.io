@@ -62,7 +62,7 @@ Once you have verified that the site is fully functional in HTTPS, the next step
 <rewrite>
     <!-- This section requires the URL Rewrite module to be installed in IIS. -->
     <rules>
-        <rule name="HTTP to HTTPS redirect" stopProcessing="true">
+        <rule name="HTTP to HTTPS redirect">
             <match url="(.*)" />
             <conditions>
                 <add input="{SERVER_PORT_SECURE}" pattern="^0$" />
@@ -140,5 +140,6 @@ You can quickly check that the above changes have taken effect using curl.exe. R
 
 * `curl -I http://<subdomain>.gaepd.org` should return the header `HTTP/1.1 301 Moved Permanently`.
 * `curl -I https://<subdomain>.gaepd.org` should return `HTTP/2 200 OK` and (if you have enabled HSTS) `Strict-Transport-Security: max-age=604800` (max-age value should match the value in `web.config`).
+* **Pro tip:** `curl -LI http://<subdomain>.gaepd.org` will follow any redirects, so it's a quick way to test both URLs at once.
 
 ![Screenshot of curl examples](img/https-curl-examples.png)
