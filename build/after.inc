@@ -1,8 +1,6 @@
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js"
-  integrity="sha256-m1eTvwEHwmsw4+XKF7BshClVJEPwTVycveNl0CS0Mkk="
-  crossorigin="anonymous"
-></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.3.1/anchor.min.js" 
+integrity="sha512-zPB79j2C+3sFS9zcA3vg/z6bVKzJVEyu9pY5w89akQRys76zpAT2t6S3wZKla3QQ14O5l/Yt0RUQ/DHXx82Y5g==" 
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
   anchors.options.placement = "left";
   anchors.add();
