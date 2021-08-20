@@ -10,16 +10,16 @@ body {
   background-color: white;
 }
 a {
-  color: #4183c4;
+  color: #0157ac;
   text-decoration: none;
 }
 a:hover,
 a:focus {
-  color: #9041c4;
+  color: #802cb7;
   text-decoration: underline;
 }
 a:active {
-  color: #b541c4;
+  color: #9614a7;
 }
 a.no-underline {
   text-decoration: none;
