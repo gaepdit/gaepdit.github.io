@@ -8,7 +8,7 @@ Steps to get set up as a new developer with EPD IT.
 
 ## Required online accounts
 
-* Create an [Atlassian account](https://id.atlassian.com/signup) and a [GitHub account](https://github.com/join). Provide your manager with your user name for each so you can be added to the EPD-IT teams.
+* Create a [GitHub account](https://github.com/signup) and provide your manager with your user name so you can be added to the EPD-IT team.
 
 ## Required Git setup
 
@@ -26,14 +26,19 @@ Add a [global .gitignore file](../git/#gitignore-files) to your user profile dir
 
 Install the following software as needed:
 
-### Recommended
+### Recommended for application developers
 
 * [Visual Studio](https://www.visualstudio.com/vs/) (.NET IDE)
 * [Visual Studio Code](http://code.visualstudio.com/) (Text editor and IDE)
+
+### Recommended for database developers
+
 * [SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms) (Database managment)
 * [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/) (Database managment)
 
-### Optional
+### Optional software 
+
+These are helpful tools for development but are not required.
 
 * [KDiff3](https://sourceforge.net/projects/kdiff3/files/) (Visual diff/merge editor)
 * [Axosoft GitKraken](https://www.gitkraken.com/download) (Git GUI - get license from manager)

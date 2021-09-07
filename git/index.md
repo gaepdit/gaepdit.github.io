@@ -20,11 +20,14 @@ The Git DVCS is required for use with all source code, so make sure you spend so
 
 ## .gitignore files
 
-Use [gitignore.io](https://www.gitignore.io) to generate global and project-level .gitignore files:
+Use these links to generate global .gitignore files. These files should be added to your user directory (`%userprofile%` on Windows) and must be named `.gitignore` (with no other extension).
 
-* [Windows global](https://www.gitignore.io/api/ssh,windows,microsoftoffice)
-* [MacOS global](https://www.gitignore.io/api/ssh,macos,microsoftoffice)
-* [.NET project](https://www.gitignore.io/api/dotnetcore,visualstudio,visualstudiocode)
+* [Windows](https://www.toptal.com/developers/gitignore/api/ssh,windows,microsoftoffice)
+* [MacOS](https://www.toptal.com/developers/gitignore/api/ssh,macos,microsoftoffice)
+
+The following is a recommended .gitignore file for use with .NET application development. (Visual Studio can also generate a similar file for you.)
+
+* [.NET project](https://www.toptal.com/developers/gitignore/api/dotnetcore,visualstudio,visualstudiocode,rider)
 
 ## Tips
 
