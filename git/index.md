@@ -20,7 +20,7 @@ The Git DVCS is required for use with all source code, so make sure you spend so
 
 ## .gitignore files
 
-Use these links to generate global .gitignore files. These files should be added to your user directory (`%userprofile%` on Windows) and must be named "`.gitignore`" (with no other extension).
+Use these links to generate global .gitignore files. These files should be added to your user directory (`%userprofile%` on Windows) and must be named `.gitignore` (with no other extension).
 
 * [Windows](https://www.toptal.com/developers/gitignore/api/ssh,windows,microsoftoffice)
 * [MacOS](https://www.toptal.com/developers/gitignore/api/ssh,macos,microsoftoffice)

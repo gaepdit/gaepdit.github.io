@@ -22,30 +22,29 @@
 <div class="wrapper">
 <a href="/"><img src="/icon.svg" alt="" width="32" height="32" /> Home</a>
 <h1 id="tracking-deployments-in-raygun">Tracking Deployments in Raygun</h1>
-<p>Raygun is an application error reporting and performance monitoring service. Though not mandatory, adding <a href="https://raygun.com/platform/deployment-tracking">deployment information to Raygun</a> enables additional features for monitoring software health. A GitHub action is available to automate this.</p>
-<p>Raygun deployment tracking correlates deployment information for application releases with version information sent with error reports.</p>
+<p>Raygun is an application error reporting and performance monitoring service. Though not mandatory, adding <a href="https://raygun.com/platform/deployment-tracking">deployment information to Raygun</a> enables additional features for monitoring software health. Raygun deployment tracking correlates application releases with the version information sent with error reports. A GitHub action is available to automate this.</p>
 <h2 id="setup">Setup</h2>
 <ol type="1">
 <li><p>To add the GitHub action to your repository, go to the “Actions” tab on the repo webpage.</p>
 <p><img src="img/github-actions-1.png" /></p></li>
-<li><p>Look for and select the “Raygun Deployment Tracking Workflow” action.</p>
+<li><p>Look for and select the “Raygun Deployment Tracking Workflow” action. (If other actions have already been added to the repo, click the “New workflow” button.)</p>
 <p><img src="img/github-actions-2.png" /></p></li>
 <li><p>Review the workflow file and update the tag version prefix if needed.</p>
 <p><img src="img/github-actions-3.png" /></p></li>
 <li><p>Click “Start commit” and update the commit message and description as desired.</p>
 <p><img src="img/github-actions-4.png" /></p></li>
-<li><p>Go to the “Settings” tab on the repo, select “Secrets”, and add two new “Actions secrets”:</p>
+<li><p>Go to the “Settings” tab on the repo, select “Secrets” in the menu, and add two new repository secrets:</p>
 <ul>
 <li><code>RAYGUN_AUTHTOKEN</code> is an “External Access Token” generated in your <a href="https://app.raygun.com/user">Raygun user account</a>.</li>
-<li><code>RAYGUN_APIKEY</code> is the API Key found in the Raygun application settings.</li>
+<li><code>RAYGUN_APIKEY</code> is the API Key for the application in Raygun.</li>
 </ul>
 <p><img src="img/github-actions-5.png" /></p></li>
 </ol>
 <h2 id="tracking-app-deployment">Tracking App Deployment</h2>
-<p>There are two steps for tracking software deployment in Raygun:</p>
+<p>There are two steps for tracking a new deployment in Raygun:</p>
 <ol type="1">
-<li><p><em>Set a version number in your application.</em> The version number is automatically sent to Raygun with each error report when an exception occurs in the application. In .NET projects, the version number can be set by specifying the <a href="https://docs.microsoft.com/en-us/troubleshoot/visualstudio/general/assembly-version-assembly-file-version"><code>AssemblyVersion</code> attribute</a> in the project file.</p></li>
-<li><p><em>Add a version tag to the repository.</em> The GitHub action above will be triggered when a new version tag is pushed to the repository. Version tags should begin with a prefix, for example, <code>prod/1.0.0</code> or <code>v/1.0.0</code>. The prefix is specified in the GitHub action, and the version number in the tag should match the application version number.</p></li>
+<li><p><em>Set a version number in your application.</em> The version number is automatically sent to Raygun with each error report. In .NET projects, the version number can be set by specifying the <a href="https://docs.microsoft.com/en-us/troubleshoot/visualstudio/general/assembly-version-assembly-file-version"><code>AssemblyVersion</code> attribute</a> in the project file.</p></li>
+<li><p><em>Add a version tag to the repository.</em> The GitHub action above will be triggered when a new version tag is pushed to the repository. Version tags should begin with a prefix, for example, <code>prod/1.0.0</code> or <code>v/1.0.0</code>. The prefix is specified in the GitHub action, and the version number in the tag should match the application version.</p></li>
 </ol>
 <p><img src="img/github-actions-7.png" /></p>
 <h2 id="results">Results</h2>
