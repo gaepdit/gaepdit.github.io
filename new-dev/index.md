@@ -9,6 +9,7 @@ Steps to get set up as a new developer with EPD IT.
 ## Required online accounts
 
 * Create a [GitHub account](https://github.com/signup) and provide your manager with your user name so you can be added to the EPD-IT team.
+* For application developers, request a Raygun account invite.
 
 ## Required Git setup
 
@@ -18,7 +19,6 @@ Install the [Git CLI](https://git-scm.com/) then configure Git by running each o
 
 * `git config --global user.name "Your Name"`
 * `git config --global user.email your.email@dnr.ga.gov`
-* `git config --global init.defaultBranch main`
 
 Add a [global .gitignore file](../git/#gitignore-files) to your user profile directory.
 
