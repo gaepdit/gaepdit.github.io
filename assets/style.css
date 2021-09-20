@@ -154,6 +154,7 @@ table tr td :last-child {
 }
 img {
   max-width: 100%;
+  vertical-align: middle;
   -ms-interpolation-mode: bicubic;
 }
 code {

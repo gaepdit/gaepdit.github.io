@@ -1,1 +1,1 @@
-<a href="/"><img src="/icon.png" alt="" width=16 height=16 /> Home</a>
+<a href="/"><img src="/icon.svg" alt="" width="32" height="32" /> Home</a>
