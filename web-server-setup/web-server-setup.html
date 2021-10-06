@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>Web Application Server Setup</title>
+  <title>web-server-setup</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -21,91 +21,14 @@
 <body class="">
 <div class="wrapper">
 <a href="/"><img src="/icon.svg" alt="" width="32" height="32" /> Home</a>
-<p><strong>WARNING: Instructions below are out of date!</strong></p>
-<h1 id="web-application-server-setup">Web Application Server Setup</h1>
-<pre><code>=========================
-Created by: Brian Gregory
-Created on: 06/24/2016
-=========================
-Updated by: Brian Gregory
-Updated on: 06/24/2016
-=========================</code></pre>
-<h2 id="setup-steps">Setup steps</h2>
-<ul>
-<li><p>Add Roles</p>
-<ul>
-<li>File Services (default)
-<ul>
-<li>File Server</li>
-</ul></li>
-<li>Web Server (IIS)
-<ul>
-<li>All Features</li>
-</ul></li>
-<li>SMTP Server</li>
-</ul></li>
-<li><p>Install Offline .Net 4.6.1 (or latest) Framework and any other versions needed</p></li>
-<li><p>Install SAP Crystal Report runtime version 13.0.16 (or latest); 64 and 32 bit versions</p></li>
-<li><p>Add Feature(s)</p>
-<ul>
-<li>Telnet Client</li>
-</ul></li>
-<li><p>In the application drive create %ROOT%\inetpub\ generally the E:\ drive</p></li>
-<li><p>IIS Logging</p>
-<ul>
-<li>Go to IIS Logging and change the logging Directory to E: from %SystemDrive%</li>
-</ul></li>
-<li><p>Default Site location</p>
-<ul>
-<li>Sites &gt; Default Site &gt; RC &gt; Manage Web Site &gt; Advanced Settings</li>
-<li>change General Physical Path to E:\ from %SystemDrive%</li>
-</ul></li>
-<li><p>from Command Prompt (run as administrator) OR run aspnet_regiis.bat found in EPD DOIT\DataCenters\CMS - Servers</p>
-<ul>
-<li><p>cd Microsoft.Net\Framework\v2. (press tab for folder)</p></li>
-<li><p>run command: <code>aspnet_regiis -i</code></p></li>
-<li><p>cd Microsoft.Net\Framework\v4. (press tab for folder)</p></li>
-<li><p>run command: <code>aspnet_regiis -i</code></p></li>
-<li><p>cd Microsoft.Net\Framework64\v2. (press tab for folder)</p></li>
-<li><p>run command: <code>aspnet_regiis -i</code></p></li>
-<li><p>cd Microsoft.Net\Framework64\v4. (press tab for folder)</p></li>
-<li><p>run command: <code>aspnet_regiis -i</code></p></li>
-</ul></li>
-<li><p>Set-up SMTP</p>
-<ul>
-<li>Go to Roles &gt; Web Server IIS &gt; IIS Manager &gt; localhost &gt; ASP.NET &gt; SMTP Email
-<ul>
-<li>SMTP Server: smtp.gets.ga.gov port 25</li>
-</ul></li>
-</ul></li>
-</ul>
-<h2 id="additional-details-for-web-site-management">Additional details for Web Site Management</h2>
-<p>Please use the E:\inetpub\wwwroot location for all deployments. Make sure that you create a complete domain(sub) for the website folders. Ex. If I am deploying a website for geco.georgiaair.org, I will create a folder named geco.georgiaair.org in the wwwroot folder.</p>
-<ul>
-<li>Go to E:\inetpub\wwwroot and create the application folder e.g. geco.georgiaair.org</li>
-<li>Go to Server Manager &gt; Roles &gt; Web Server (IIS) &gt; IIS Manager &gt; localhost &gt; Sites</li>
-<li>RC and Add Web Site…
-<ul>
-<li>Site name: same as the application folder and let IIS create the application pool</li>
-<li>Physical Path E:\inetpub\wwwroot\FOLDER e.g. geco.georgiaair.org</li>
-<li>Host name: godaddy url for the site - may change based on PROD, DEV, or UAT</li>
-</ul></li>
-<li>Add http binding</li>
-</ul>
-<p><strong>All sites should manage their own web.config file for connection management.</strong></p>
-<p><strong>We are not using the global web.config file for any application related settings. Please do not edit the global web.config and machine.config files.</strong></p>
-<p>Nochange</p>
-<h2 id="additional-software-to-install">Additional Software To Install</h2>
-<h3 id="net-core">.NET Core</h3>
-<p>Install the <a href="https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/index?view=aspnetcore-2.2#install-the-net-core-hosting-bundle">.NET Core Windows Server Hosting bundle</a></p>
-<h3 id="web-deploy">Web Deploy</h3>
-<ul>
-<li>Install the <a href="https://www.iis.net/downloads/microsoft/web-deploy">Web Deployment Tool</a> (Choose “Complete” installation)</li>
-</ul>
-<h3 id="https-url-rewrite">HTTPS (URL Rewrite)</h3>
-<ul>
-<li>Install the <a href="https://www.iis.net/downloads/microsoft/url-rewrite">IIS URL Rewrite module</a></li>
-</ul>
+<h1 id="web-application-server-additional-software-to-install">Web Application Server Additional Software To Install</h1>
+<h2 id="net">.NET</h2>
+<p>Install the “recommended” version of the <a href="https://dotnet.microsoft.com/download/dotnet-framework">.NET Framework</a> (currently 4.8).</p>
+<p>Install the “recommended” version of <a href="https://dotnet.microsoft.com/download/dotnet">.NET</a> (currently 5.0). Select the ASP.NET Core Runtime, Windows Hosting Bundle installer.</p>
+<h2 id="web-deploy">Web Deploy</h2>
+<p>Install <a href="https://www.iis.net/downloads/microsoft/web-deploy">Web Deploy</a>. Choose “Complete” installation.</p>
+<h2 id="url-rewrite">URL Rewrite</h2>
+<p>Install the IIS <a href="https://www.iis.net/downloads/microsoft/url-rewrite">URL Rewrite</a> module.</p>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.3.1/anchor.min.js" 
 integrity="sha512-zPB79j2C+3sFS9zcA3vg/z6bVKzJVEyu9pY5w89akQRys76zpAT2t6S3wZKla3QQ14O5l/Yt0RUQ/DHXx82Y5g==" 
