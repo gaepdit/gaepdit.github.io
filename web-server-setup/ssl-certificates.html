@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>ssl-certificates</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500&family=Barlow:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css?v=20210820">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" charset="utf-8">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#e5f6fa">
+</head>
+<body class="">
+<div class="wrapper">
+<a href="/"><img src="/icon.svg" alt="" width="32" height="32" /> Home</a>
+<h1 id="creating-and-installing-a-new-ssl-certificate">Creating and installing a new SSL certificate</h1>
+<p>Follow these steps to create a new SSL certificate and install it on one of the web servers.</p>
+<ol type="1">
+<li><p><a href="https://support.godaddy.com/help/iis-10windows-server-2016-generate-csrs-certificate-signing-requests-27348">Generate a Certificate Signing Request</a> (CSR) on the web server.</p></li>
+<li><p>Purchase and <a href="https://support.godaddy.com/help/request-my-ssl-certificate-with-a-certificate-signing-request-csr-40441">request an SSL certificate</a> from GoDaddy.</p></li>
+<li><p>Download and <a href="https://support.godaddy.com/help/manually-install-an-ssl-certificate-on-my-iis-10-server-27349">manually install the SSL certificate</a> on the web server that was used in step 1.</p></li>
+</ol>
+<p>Then, follow the instructions below to export the certificate and install it on the remaining web servers.</p>
+<h2 id="export-ssl-certificate-using-iis">Export SSL Certificate using IIS</h2>
+<ol type="1">
+<li><p>Go to <strong>Start &gt;&gt; Administrative Tools &gt;&gt; Internet Information Services (IIS) Manager</strong>.</p></li>
+<li><p>Select the server on which the certificate is installed.</p></li>
+<li><p>Choose the <strong>Server Certificates</strong> option on the central menu:</p>
+<p><img src="img/ssl-1.png" /></p></li>
+<li><p>Right-click on the needed certificate and select <strong>Export</strong>.</p>
+<p><img src="img/ssl-2.png" /></p></li>
+<li><p>Specify the filename, location, and PFX export password and click <strong>OK</strong>:</p>
+<p><img src="img/ssl-3.png" /></p></li>
+</ol>
+<p>A PFX file has now been exported and can be found in the specified location. Importing a certificate on a new server can be also performed by using either Microsoft Management Console or IIS Manager.</p>
+<h2 id="import-pfx-using-iis-manager">Import PFX using IIS Manager</h2>
+<ol type="1">
+<li><p>Launch Internet Information Services Manager (<strong>Start &gt;&gt; Administrative Tools &gt;&gt; Internet Information Services (IIS) Manager</strong>) and choose the server the certificate should be imported to.</p></li>
+<li><p>Double-click <strong>Server Certificates</strong> in the central menu.</p>
+<p><img src="img/ssl-4.png" /></p></li>
+<li><p>Click the <strong>Import</strong> button in the right-hand menu:</p>
+<p><img src="img/ssl-5.png" /></p></li>
+<li><p>Locate the PFX file on your machine and specify the password that was used when exporting the certificate. Optionally, you may check <strong>Allow this certificate to be exported</strong>. Then, click <strong>OK</strong>:</p>
+<p><img src="img/ssl-6.png" /></p></li>
+</ol>
+<h3 id="assigning-a-certificate-to-a-website">Assigning a certificate to a website</h3>
+<p>Once the certificate has been imported by any of the methods described above, it will be shown in the list of server certificates in IIS Manager.</p>
+<p>After that, please make sure to complete the <strong>binding</strong> of the certificate to a specific website.</p>
+<p><img src="img/ssl-7.png" /></p>
+<p><img src="img/ssl-8.png" /></p>
+<p><img src="img/ssl-9.png" /></p>
+<p><strong><em>Note:</em></strong> <em>Usually, there is no need to restart the server, so after the SSL certificate has been installed and the binding created, your site should show new certificate, if not then restart the server and test again.</em></p>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.3.1/anchor.min.js" 
+integrity="sha512-zPB79j2C+3sFS9zcA3vg/z6bVKzJVEyu9pY5w89akQRys76zpAT2t6S3wZKla3QQ14O5l/Yt0RUQ/DHXx82Y5g==" 
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  anchors.options.placement = "left";
+  anchors.add();
+</script>
+</body>
+</html>

@@ -22,4 +22,5 @@ Welcome to the Georgia EPD-IT Developer Documentation site! To edit this documen
 
 * [Data exchanges](data-exchanges/)
 * [Web server setup](web-server-setup/web-server-setup.html)
-* [Encrypting web config files](web-server-setup/encrypt-web-config.html)
+* [How to encrypt web config files](web-server-setup/encrypt-web-config.html)
+* [How to install SSL certificates](web-server-setup/ssl-certificates.html)
