@@ -26,19 +26,19 @@
 <h2 id="setup">Setup</h2>
 <ol type="1">
 <li><p>To add the GitHub action to your repository, go to the “Actions” tab on the repo webpage.</p>
-<p><img src="img/github-actions-1.png" /></p></li>
+<p><img src="img/github-actions-1.png" alt="Screenshot: A GitHub repo page with the “Actions” tab selected" /></p></li>
 <li><p>Look for and select the “Raygun Deployment Tracking Workflow” action. (If other actions have already been added to the repo, click the “New workflow” button.)</p>
-<p><img src="img/github-actions-2.png" /></p></li>
+<p><img src="img/github-actions-2.png" alt="Screenshot: The “Workflows created by Georgia EPD IT” section of the GitHub actions page" /></p></li>
 <li><p>Review the workflow file and update the tag version prefix if needed.</p>
-<p><img src="img/github-actions-3.png" /></p></li>
+<p><img src="img/github-actions-3.png" alt="Screenshot: The Raygun deployment YAML file open in the GitHub file editor, highlighting the “tags” entry" /></p></li>
 <li><p>Click “Start commit” and update the commit message and description as desired.</p>
-<p><img src="img/github-actions-4.png" /></p></li>
+<p><img src="img/github-actions-4.png" alt="Screenshot: The GitHub file editor “Commit new file” dialog" /></p></li>
 <li><p>Go to the “Settings” tab on the repo, select “Secrets” in the menu, and add two new repository secrets:</p>
 <ul>
 <li><code>RAYGUN_AUTHTOKEN</code> is an “External Access Token” generated in your <a href="https://app.raygun.com/user">Raygun user account</a>.</li>
 <li><code>RAYGUN_APIKEY</code> is the API Key for the application in Raygun.</li>
 </ul>
-<p><img src="img/github-actions-5.png" /></p></li>
+<p><img src="img/github-actions-5.png" alt="Screenshot: The “New secret” section of the GitHub repo “Actions secrets” page" /></p></li>
 </ol>
 <h2 id="tracking-app-deployment">Tracking App Deployment</h2>
 <p>There are two steps for tracking a new deployment in Raygun:</p>
@@ -46,11 +46,11 @@
 <li><p><em>Set a version number in your application.</em> The version number is automatically sent to Raygun with each error report. In .NET projects, the version number can be set by specifying the <a href="https://docs.microsoft.com/en-us/troubleshoot/visualstudio/general/assembly-version-assembly-file-version"><code>AssemblyVersion</code> attribute</a> in the project file.</p></li>
 <li><p><em>Add a version tag to the repository.</em> The GitHub action above will be triggered when a new version tag is pushed to the repository. Version tags should begin with a prefix, for example, <code>prod/1.0.0</code> or <code>v/1.0.0</code>. The prefix is specified in the GitHub action, and the version number in the tag should match the application version.</p></li>
 </ol>
-<p><img src="img/github-actions-7.png" /></p>
+<p><img src="img/github-actions-7.png" alt="Screenshot: An abbreviated git log command showing the most recent commit to bump the version number with a tag matching the version number" /></p>
 <h2 id="results">Results</h2>
 <p>After pushing a new release/tag, you can verify that the action successfully ran by visiting the Actions tab in the repo and the Deployments tab in the Raygun application.</p>
-<p><img src="img/github-actions-8.png" /></p>
-<p><img src="img/github-actions-9.png" /></p>
+<p><img src="img/github-actions-8.png" alt="Screenshot: The GitHub “Actions” tab showing the successful Raygun Deployment Tracking workflow" /></p>
+<p><img src="img/github-actions-9.png" alt="Screenshot: the Raygun “Deployments” page showing the versioned deployment entry" /></p>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.3.1/anchor.min.js" 
 integrity="sha512-zPB79j2C+3sFS9zcA3vg/z6bVKzJVEyu9pY5w89akQRys76zpAT2t6S3wZKla3QQ14O5l/Yt0RUQ/DHXx82Y5g==" 

@@ -16,15 +16,15 @@ Then, follow the instructions below to export the certificate and install it on 
 2.	Select the server on which the certificate is installed.
 3.	Choose the **Server Certificates** option on the central menu:
 
-    ![](img/ssl-1.png)
+    ![Screenshot: IIS server page with the "Server Certificates" option selected](img/ssl-1.png)
 
 4.	Right-click on the needed certificate and select **Export**.
 
-    ![](img/ssl-2.png)
+    ![Screenshot: IIS Server Certificates page with the certificate selected and the option menu (right-click menu) open, highlighting the "Export" option](img/ssl-2.png)
 
 5.	Specify the filename, location, and PFX export password and click **OK**:
 
-    ![](img/ssl-3.png)
+    ![Screenshot: IIS Export Certificate dialog](img/ssl-3.png)
 
 A PFX file has now been exported and can be found in the specified location. Importing a certificate on a new server can be also performed by using either Microsoft Management Console or IIS Manager.
 
@@ -33,15 +33,15 @@ A PFX file has now been exported and can be found in the specified location. Imp
 1.	Launch Internet Information Services Manager (**Start >> Administrative Tools >> Internet Information Services (IIS) Manager**) and choose the server the certificate should be imported to.
 2.	Double-click **Server Certificates** in the central menu.
 
-    ![](img/ssl-4.png)
+    ![Screenshot: IIS server page with the "Server Certificates" option selected](img/ssl-1.png)
 
 3.	Click the **Import** button in the right-hand menu:
 
-    ![](img/ssl-5.png)
+    ![Screenshot: IIS Server Certificates page with the certificate selected, highlighting the "Import" option](img/ssl-5.png)
 
 4.	Locate the PFX file on your machine and specify the password that was used when exporting the certificate. Optionally, you may check **Allow this certificate to be exported**. Then, click **OK**:
 
-    ![](img/ssl-6.png)
+    ![Screenshot: IIS Import Certificate dialog](img/ssl-6.png)
 
 ### Assigning a certificate to a website
 
@@ -49,10 +49,10 @@ Once the certificate has been imported by any of the methods described above, it
 
 After that, please make sure to complete the **binding** of the certificate to a specific website.
  
-![](img/ssl-7.png)
+![Screenshot: IIS Web Site page highlighting the "Bindings" option](img/ssl-7.png)
 
-![](img/ssl-8.png)
+![Screenshot: IIS Site Bindings dialog with the "https" entry selected, highlighting the "Edit" option](img/ssl-8.png)
 
-![](img/ssl-9.png)
+![Screenshot: IIS Edit Site Binding dialog for the "https" entry highlighting the "SSL certificate" dropdown and the "OK" button](img/ssl-9.png)
 
 ***Note:*** *Usually, there is no need to restart the server, so after the SSL certificate has been installed and the binding created, your site should show new certificate, if not then restart the server and test again.*

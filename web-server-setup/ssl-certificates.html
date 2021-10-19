@@ -34,29 +34,29 @@
 <li><p>Go to <strong>Start &gt;&gt; Administrative Tools &gt;&gt; Internet Information Services (IIS) Manager</strong>.</p></li>
 <li><p>Select the server on which the certificate is installed.</p></li>
 <li><p>Choose the <strong>Server Certificates</strong> option on the central menu:</p>
-<p><img src="img/ssl-1.png" /></p></li>
+<p><img src="img/ssl-1.png" alt="Screenshot: IIS server page with the “Server Certificates” option selected" /></p></li>
 <li><p>Right-click on the needed certificate and select <strong>Export</strong>.</p>
-<p><img src="img/ssl-2.png" /></p></li>
+<p><img src="img/ssl-2.png" alt="Screenshot: IIS Server Certificates page with the certificate selected and the option menu (right-click menu) open, highlighting the “Export” option" /></p></li>
 <li><p>Specify the filename, location, and PFX export password and click <strong>OK</strong>:</p>
-<p><img src="img/ssl-3.png" /></p></li>
+<p><img src="img/ssl-3.png" alt="Screenshot: IIS Export Certificate dialog" /></p></li>
 </ol>
 <p>A PFX file has now been exported and can be found in the specified location. Importing a certificate on a new server can be also performed by using either Microsoft Management Console or IIS Manager.</p>
 <h2 id="import-pfx-using-iis-manager">Import PFX using IIS Manager</h2>
 <ol type="1">
 <li><p>Launch Internet Information Services Manager (<strong>Start &gt;&gt; Administrative Tools &gt;&gt; Internet Information Services (IIS) Manager</strong>) and choose the server the certificate should be imported to.</p></li>
 <li><p>Double-click <strong>Server Certificates</strong> in the central menu.</p>
-<p><img src="img/ssl-4.png" /></p></li>
+<p><img src="img/ssl-1.png" alt="Screenshot: IIS server page with the “Server Certificates” option selected" /></p></li>
 <li><p>Click the <strong>Import</strong> button in the right-hand menu:</p>
-<p><img src="img/ssl-5.png" /></p></li>
+<p><img src="img/ssl-5.png" alt="Screenshot: IIS Server Certificates page with the certificate selected, highlighting the “Import” option" /></p></li>
 <li><p>Locate the PFX file on your machine and specify the password that was used when exporting the certificate. Optionally, you may check <strong>Allow this certificate to be exported</strong>. Then, click <strong>OK</strong>:</p>
-<p><img src="img/ssl-6.png" /></p></li>
+<p><img src="img/ssl-6.png" alt="Screenshot: IIS Import Certificate dialog" /></p></li>
 </ol>
 <h3 id="assigning-a-certificate-to-a-website">Assigning a certificate to a website</h3>
 <p>Once the certificate has been imported by any of the methods described above, it will be shown in the list of server certificates in IIS Manager.</p>
 <p>After that, please make sure to complete the <strong>binding</strong> of the certificate to a specific website.</p>
-<p><img src="img/ssl-7.png" /></p>
-<p><img src="img/ssl-8.png" /></p>
-<p><img src="img/ssl-9.png" /></p>
+<p><img src="img/ssl-7.png" alt="Screenshot: IIS Web Site page highlighting the “Bindings” option" /></p>
+<p><img src="img/ssl-8.png" alt="Screenshot: IIS Site Bindings dialog with the “https” entry selected, highlighting the “Edit” option" /></p>
+<p><img src="img/ssl-9.png" alt="Screenshot: IIS Edit Site Binding dialog for the “https” entry highlighting the “SSL certificate” dropdown and the “OK” button" /></p>
 <p><strong><em>Note:</em></strong> <em>Usually, there is no need to restart the server, so after the SSL certificate has been installed and the binding created, your site should show new certificate, if not then restart the server and test again.</em></p>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.3.1/anchor.min.js" 
