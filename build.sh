@@ -1,3 +1,0 @@
-find ./ -iname "*.md" -type f -exec sh -c 'pandoc -f markdown+startnum-implicit_figures -t html5 --email-obfuscation=references --template="build/default.html5" -H "build/head.inc" -A "build/after.inc" -B "build/before.inc" -o "${0%.md}.html" "${0}" ' {} \;
- pandoc -f markdown+startnum-implicit_figures -t html5 --email-obfuscation=references --template="build/default.html5" -H "build/head.inc" -A "build/after.inc" -o "index.html" "index.md"
- 

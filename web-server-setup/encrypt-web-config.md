@@ -1,4 +1,6 @@
-# Encrypting web config files
+---
+title: Encrypting web config files
+---
 
 Run the following on the server from an elevated command prompt as needed for each website.
 

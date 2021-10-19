@@ -2,15 +2,13 @@
 title: Git Resources and Training
 ---
 
-# Git Resources and Training
-
 The Git DVCS is required for use with all source code, so make sure you spend some time getting comfortable using it.
 
 ## Tutorials
 
-* [Git Tutorials and Training | Atlassian Git Tutorial](https://www.atlassian.com/git/tutorials)
+* [Git Tutorials and Training (Atlassian Git Tutorial)](https://www.atlassian.com/git/tutorials)
 * [Resources to learn Git](https://try.github.io/)
-* [Azure Repos Git tutorial | Microsoft Docs](https://docs.microsoft.com/en-us/azure/devops/repos/git/gitworkflow?view=azure-devops)
+* [Azure Repos Git tutorial (Microsoft Docs)](https://docs.microsoft.com/en-us/azure/devops/repos/git/gitworkflow?view=azure-devops)
 
 ## Reference material
 

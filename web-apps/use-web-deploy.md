@@ -1,8 +1,6 @@
 ---
-title: Web Deploy
+title: Web Deploy Setup and Use
 ---
-
-# Web Deploy Setup and Use
 
 Web Deploy is a tool that enables one-click deployment of web applications directly from Visual Studio to the web server, with no need to separately use RDP or FTP. Follow these steps to set it up for each application.
 

@@ -1,4 +1,6 @@
-# Tracking Deployments in Raygun
+---
+title: Tracking Deployments in Raygun
+---
 
 Raygun is an application error reporting and performance monitoring service. Though not mandatory, adding [deployment information to Raygun](https://raygun.com/platform/deployment-tracking) enables additional features for monitoring software health. Raygun deployment tracking correlates application releases with the version information sent with error reports. A GitHub action is available to automate this.
 

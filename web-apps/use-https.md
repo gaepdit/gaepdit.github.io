@@ -1,8 +1,6 @@
 ---
-title: Use HTTPS
+title: Using HTTPS Is Required
 ---
-
-# Using HTTPS Is Required
 
 *All Georgia EPD websites and web applications **MUST** be served over HTTPS only (including dev and test sites).*
 
