@@ -19,6 +19,7 @@
         <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
         <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
         <a href="{{ '/' | relative_url }}" class="btn">Home</a>
+        <a href="https://github.dev/gaepdit/gaepdit.github.io" class="btn">Edit</a>
         {% if site.github.is_project_page %}
         <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
         {% endif %}
@@ -32,6 +33,8 @@
         {{ content }}
 
         <footer class="site-footer">
+            <a href="#">▲ Top</a><br>
+            <a href="{{ '/' | relative_url }}">◀ Home</a>"
             {% if site.github.is_project_page %}
             <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>
             {% endif %}
