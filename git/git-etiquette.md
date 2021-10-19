@@ -2,8 +2,6 @@
 title: Git Etiquette
 ---
 
-# Git Etiquette
-
 A set of best practices for collaborating using Git. Best practices here means that these are recommendations that in general make collaboration easier. There may be times when it makes sense to break one of these rules, and that's fine. Just make sure you have a good reason to do so.
 
 ## Commits should be short and complete

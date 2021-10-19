@@ -1,10 +1,14 @@
-# Web Application Server Additional Software To Install
+---
+title: Web Application Server Setup
+---
+
+The following additional software must be installed on the web servers.
 
 ## .NET
 
 Install the "recommended" version of the [.NET Framework](https://dotnet.microsoft.com/download/dotnet-framework) (currently 4.8).
 
-Install the "recommended" version of [.NET](https://dotnet.microsoft.com/download/dotnet) (currently 5.0). Select the ASP&period;NET Core Runtime, Windows Hosting Bundle installer.
+Install the "recommended" version of [.NET](https://dotnet.microsoft.com/download/dotnet) (currently 5.0). Select the ASP.NET Core Runtime, Windows Hosting Bundle installer.
 
 ## Web Deploy
 

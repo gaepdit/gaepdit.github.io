@@ -2,8 +2,6 @@
 title: Georgia EPD Data Exchanges
 ---
 
-# Georgia EPD Data Exchanges
-
 Brief outlines of each data exchange we manage.
 
 See also:

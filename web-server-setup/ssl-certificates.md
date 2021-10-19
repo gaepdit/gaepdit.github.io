@@ -1,4 +1,6 @@
-# Creating and installing a new SSL certificate
+---
+title: Creating and installing a new SSL certificate
+---
 
 Follow these steps to create a new SSL certificate and install it on one of the web servers.
 
@@ -13,7 +15,9 @@ Then, follow the instructions below to export the certificate and install it on 
 ## Export SSL Certificate using IIS
 
 1.	Go to **Start >> Administrative Tools >> Internet Information Services (IIS) Manager**.
+
 2.	Select the server on which the certificate is installed.
+
 3.	Choose the **Server Certificates** option on the central menu:
 
     ![Screenshot: IIS server page with the "Server Certificates" option selected](img/ssl-1.png)
@@ -31,6 +35,7 @@ A PFX file has now been exported and can be found in the specified location. Imp
 ## Import PFX using IIS Manager
 
 1.	Launch Internet Information Services Manager (**Start >> Administrative Tools >> Internet Information Services (IIS) Manager**) and choose the server the certificate should be imported to.
+
 2.	Double-click **Server Certificates** in the central menu.
 
     ![Screenshot: IIS server page with the "Server Certificates" option selected](img/ssl-1.png)

@@ -2,8 +2,6 @@
 title: New Developer Setup
 ---
 
-# New Developer Setup
-
 Steps to get set up as a new developer with EPD IT.
 
 ## Required online accounts
