@@ -43,7 +43,7 @@ The Publish tool that gets displayed may differ depending on the type of project
 
 * **Server:** Enter either the website URL or server IP address.
 
-    **IMPORTANT:** Production URLs cannot be used for Web Deploy. Instead, you should use `sei1.gaepd.org` for Prod App&nbsp;1 or `sei2.gaepd.org` for Prod App&nbsp;2.
+    **IMPORTANT:** Production URLs cannot be used for Web Deploy. Instead, you should use `sei1.gaepd.org` for Prod App&nbsp;1, `sei2.gaepd.org` for Prod App&nbsp;2, and `sei3.gaepd.org` for Prod App &nbsp;3.
 
 * **Site name:** Enter the name of the website *as listed in IIS.*
 
