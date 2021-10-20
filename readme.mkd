@@ -3,6 +3,9 @@
 Source code for the [Georgia EPD-IT developers documentation site](https://gaepdit.github.io/). To modify this documentation:
 
 1. Clone this repository or open the [GitHub Codespace](https://github.dev/gaepdit/gaepdit.github.io).
-2. Add/edit the Markdown (`.md`) files.
+
+2. Add/edit Markdown (`.md`) files.
+
 3. Update the table of contents in the root `index.md` file as needed.
+
 4. Any changes on the `main` branch are automatically built and served by GitHub.
