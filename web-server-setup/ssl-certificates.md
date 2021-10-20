@@ -53,11 +53,29 @@ A PFX file has now been exported and can be found in the specified location. Imp
 Once the certificate has been imported by any of the methods described above, it will be shown in the list of server certificates in IIS Manager.
 
 After that, please make sure to complete the **binding** of the certificate to a specific website.
- 
-![Screenshot: IIS Web Site page highlighting the "Bindings" option](img/ssl-7.png)
 
-![Screenshot: IIS Site Bindings dialog with the "https" entry selected, highlighting the "Edit" option](img/ssl-8.png)
+1. Choose a website from the list of sites on the left and click **Bindings**:
 
-![Screenshot: IIS Edit Site Binding dialog for the "https" entry highlighting the "SSL certificate" dropdown and the "OK" button](img/ssl-9.png)
+    ![Screenshot: IIS Web Site page highlighting the "Bindings" option](img/ssl-7.png)
 
-***Note:*** *Usually, there is no need to restart the server, so after the SSL certificate has been installed and the binding created, your site should show new certificate, if not then restart the server and test again.*
+2. Select the "https" binding in the list and click **Edit**:
+
+    ![Screenshot: IIS Site Bindings dialog with the "https" entry selected, highlighting the "Edit" option](img/ssl-8.png)
+
+3. Select the correct certificate from the **SSL certificate** dropdown and click **OK**:
+
+    ![Screenshot: IIS Edit Site Binding dialog for the "https" entry highlighting the "SSL certificate" dropdown and the "OK" button](img/ssl-9.png)
+
+***Note:*** *Usually, there is no need to restart the server, so after the SSL certificate has been installed and the binding created, your site should show the new certificate; if not then restart the server and test again.*
+
+### Assigning a certificate for Web Deploy
+
+Finally, set up Web Deploy to use the same certificate.
+
+1.	On the server page, select the **Management Service** option in the lower section:
+
+    ![Screenshot: IIS server page with the "Management Service" option selected](img/ssl-10.png)
+
+2. Select the correct certificate from the **SSL certificate** dropdown, click **Apply**, and then click **Start**:
+
+    ![Screenshot: IIS Management Service page highlighting the "SSL certificate" dropdown, the "Apply" button, and the "Start" button](img/ssl-11.png)

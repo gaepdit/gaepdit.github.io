@@ -31,8 +31,8 @@ Install the following software as needed:
 
 ### Recommended for database developers
 
-* [SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms) (Database managment)
-* [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/) (Database managment)
+* [SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms) (Database management)
+* [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/) (Database management)
 
 ### Optional software 
 
@@ -44,8 +44,6 @@ These are helpful tools for development but are not required.
 * [Pandoc](http://pandoc.org/installing.html) (Document format converter)
 * [Inkscape](https://inkscape.org/en/) (Vector graphics editor)
 * [Greenshot](http://getgreenshot.org/) (Screenshot tool)
-* [ApexSQL Refactor](https://www.apexsql.com/sql_tools_refactor.aspx) (SSMS plugin for formatting SQL)
-* [ApexSQL Refactor settings file](https://github.com/gaepdit/database-resources/tree/main/Formatting) (for use with above)
 
 ## Optional online services
 
