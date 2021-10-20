@@ -38,8 +38,9 @@ Install the following software as needed:
 
 These are helpful tools for development but are not required.
 
-* [KDiff3](https://sourceforge.net/projects/kdiff3/files/) (Visual diff/merge editor)
+* [Remote Desktop Manager](https://rdm.devolutions.net/home/downloadfree)
 * [Axosoft GitKraken](https://www.gitkraken.com/download) (Git GUI - get license from manager)
+* [KDiff3](https://sourceforge.net/projects/kdiff3/files/) (Visual diff/merge editor)
 * [Node.js and NPM](http://blog.teamtreehouse.com/install-node-js-npm-windows) (JavaScript runtime and package manager)
 * [Pandoc](http://pandoc.org/installing.html) (Document format converter)
 * [Inkscape](https://inkscape.org/en/) (Vector graphics editor)
