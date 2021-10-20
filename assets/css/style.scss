@@ -3,6 +3,18 @@
 
 @import "{{ site.theme }}";
 
+/* Header */
+
+.page-header {
+  @include large {
+    padding: 2rem 6rem;
+  }
+
+  @include medium {
+    padding: 2rem 4rem;
+  }
+}
+
 /* AnchorJS */
 .anchorjs-link {
   transition: all 0.25s linear;
