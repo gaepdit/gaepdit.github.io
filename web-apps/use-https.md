@@ -134,10 +134,9 @@ The **max-age** value is set in this example at 5 minutes (300 seconds). [It is 
 
 ## Quick check
 
-You can quickly check that the above changes have taken effect using curl.exe. Run `curl -I <url>` for both the HTTP and HTTPS versions of your URL and look for the correct headers highlighted below. (This is not a replacement for fully testing in a browser.)
+You can quickly check that the above changes have taken effect using [curl](https://curl.se/) to view the response headers. Run `curl -LI http://<subdomain>.gaepd.org` for the **HTTP** version of your URL and look for the correct redirect and HSTS headers highlighted below. (This is not a replacement for fully testing in a browser.)
 
-* `curl -I http://<subdomain>.gaepd.org` should return the header `HTTP/1.1 301 Moved Permanently`.
-* `curl -I https://<subdomain>.gaepd.org` should return `HTTP/2 200 OK` and (if you have enabled HSTS) `Strict-Transport-Security: max-age=604800` (max-age value should match the value in `web.config`).
-* **Pro tip:** `curl -LI http://<subdomain>.gaepd.org` will follow any redirects, so it's a quick way to test both URLs at once.
+* The first response should return the status code `301 Moved Permanently` and the HTTPS URL as the new location.
+* The second response should return `200 OK` and `Strict-Transport-Security: max-age=604800` (max-age should be your selected value).
 
-![Screenshot of curl examples](img/https-curl-examples.png)
+![Screenshot of curl examples](img/https-curl-example.png)
