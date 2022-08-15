@@ -15,36 +15,30 @@ See also:
 
 ### GAPDES (Georgia Pollution Discharge Elimination System)
 
-```text
-*Windsor* GAPDES application
-|
-| web service
-↓
-[NODE_FLOW_FACID]
-|
-| [NODE_FLOW_FACID].dbo.sp_Load_FIS
-↓
-[MFL_GA_STG]
-|
-| web service
-↓
-*EnfoTech* FIS application
+```mermaid
+flowchart TD;
+
+    A(Windsor GAPDES application)
+    A -- web service --> B
+    B[(NODE_FLOW_FACID)]
+    B -- NODE_FLOW_FACID.dbo.sp_Load_FIS --> C
+    C[(MFL_GA_STG)]
+    C -- web service --> D
+    D(EnfoTech FIS application)
 ```
 
 ### Air Branch
 
-```text
-IAIP/GECO applications
-↓
-[AIRBRANCH]
-|
-| [AIRBRANCH].etl.USP_IAIP_TO_STG
-↓
-[MFL_GA_STG]
-|
-| web service
-↓
-*EnfoTech* FIS application
+```mermaid
+flowchart TD;
+
+A(IAIP/GECO applications)
+A --> B
+B[(AIRBRANCH)]
+B -- AIRBRANCH.etl.USP_IAIP_TO_STG --> C
+C[(MFL_GA_STG)]
+C -- web service --> D
+D(EnfoTech FIS application)
 ```
 
 ## GEOS (Georgia EPD Online System)
@@ -53,23 +47,18 @@ IAIP/GECO applications
 
 ### Air Branch
 
-```text
-*EnfoTech* GEOS application
-|
-| web service
-↓
-[MFL_GA_STG]
-|
-| [MFL_GA_STG].dbo.USP_STG_TO_IAIP
-↓
-[AIRBRANCH].dbo.GST_*
-|
-| [AIRBRANCH].etl.GEOS_STG_TO_IAIP_APPLICATIONS
-| [AIRBRANCH].etl.GEOS_STG_TO_IAIP_INSPECTIONS
-↓
-[AIRBRANCH]
-↓
-IAIP application
+```mermaid
+flowchart TD;
+
+A(EnfoTech GEOS application)
+A -- web service --> B
+B[(MFL_GA_STG)]
+B -- MFL_GA_STG.dbo.USP_STG_TO_IAIP --> C
+C[(AIRBRANCH.dbo.GST_*)]
+C -- AIRBRANCH.etl.GEOS_STG_TO_IAIP_* --> D
+D[(AIRBRANCH)]
+D --> E
+E(IAIP application)
 ```
 
 ### GAPDES
@@ -79,16 +68,14 @@ IAIP application
 * Stormwater Construction (soon)
 * Stormwater Industrial (under development)
 
-```text
-*EnfoTech* GEOS application
-|
-| web service
-↓
-[MFL_GA_STG]
-|
-| web service???
-↓
-*Windsor* GAPDES application
+```mermaid
+flowchart TD;
+
+A(EnfoTech GEOS application)
+A -- web service --> B
+B[(MFL_GA_STG)]
+B -- web service? --> C
+C(Windsor GAPDES application)
 ```
 
 ## FIMS (Financial Information Management System)
@@ -97,28 +84,24 @@ IAIP application
 
 ### SDWIS (Safe Drinking Water Information System)
 
-```text
-SDWIS application
-|
-| web service calls stored procedure
-↓
-[MFL_GA_STG].sdw.*
-|
-| [MFL_GA_STG].dbo.USP_TRANSFER_SDWIS_DATA
-↓
-[MFL_GA_STG].FIMS.*
-|
-| web service
-↓
-*EnfoTech* FIMS application
+```mermaid
+flowchart TD;
+
+A(SDWIS application)
+A -- web service calls stored procedure --> B
+B[(MFL_GA_STG.sdw.*)]
+B -- MFL_GA_STG.dbo.USP_TRANSFER_SDWIS_DATA --> C
+C[(MFL_GA_STG.FIMS.*)]
+C -- web service --> D
+D(EnfoTech FIMS application)
 ```
 
 ### GAPDES
 
-```text
-*EnfoTech* GEOS application
-↓
-*EnfoTech* FIMS application
+```mermaid
+flowchart LR;
+
+A(EnfoTech GEOS application) --> B(EnfoTech FIMS application)
 ```
 
 ## EIS (Emissions Inventory System)
@@ -131,24 +114,21 @@ SDWIS application
 
 ### ICIS-Air
 
-```text
-IAIP application
-↓
-[AIRBRANCH]
-|
-| [AIRBRANCH].etl.ICIS_*
-↓
-[NETWORKNODEFLOW]
-|
-| web service (VESA)
-↓
-*EPA* ICIS-Air
+```mermaid
+flowchart TD;
+
+A(IAIP application) --> 
+B[(AIRBRANCH)]
+B -- AIRBRANCH.etl.ICIS_* --> C
+C[(NETWORKNODEFLOW)]
+C -- "web service (VESA)" --> D
+D(EPA ICIS-Air)
 ```
 
 ### ICIS-NPDES
 
-```text
-*Windsor* GAPDES application
-↓
-*EPA* ICIS-NPDES
+```mermaid
+flowchart LR;
+
+A(Windsor GAPDES application) --> B(EPA ICIS-NPDES)
 ```

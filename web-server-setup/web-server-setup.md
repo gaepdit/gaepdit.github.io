@@ -6,9 +6,9 @@ The following additional software must be installed on the web servers.
 
 ## .NET
 
-Install the "recommended" version of the [.NET Framework](https://dotnet.microsoft.com/download/dotnet-framework) (currently 4.8).
+Install the "recommended" version of the [.NET Framework](https://dotnet.microsoft.com/download/dotnet-framework).
 
-Install the "recommended" version of [.NET](https://dotnet.microsoft.com/download/dotnet) (currently 5.0). Select the ASP.NET Core Runtime, Windows Hosting Bundle installer.
+Install the latest LTS version of [.NET](https://dotnet.microsoft.com/download/dotnet). Select the ASP.NET Core Runtime, Windows Hosting Bundle installer.
 
 ## Web Deploy
 
