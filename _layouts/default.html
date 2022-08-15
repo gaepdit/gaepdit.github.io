@@ -42,7 +42,7 @@
         </footer>
     </main>
     {% include body-scripts.html %}
-    {% if page.mermaid %}
+    {%- if content contains 'mermaid' -%}
     {% include mermaid.html %}
     {% endif %}
 </body>
