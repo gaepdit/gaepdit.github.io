@@ -29,3 +29,5 @@ Even better is to use tools that automatically format the code for you.
 Always create a new Git branch when starting work on a new feature or bugfix. Branches allow you the time and space to work on a change without interfering in other ongoing work on the same project. They also allow you to more easily collaborate with fellow developers.
 
 Maintain a main or default branch that represents the deployed codebase. When a feature/bugfix branch is finished, merge it into the main branch and deploy from there.
+
+*TIP:* If you don't have write access to a project, you will first need to create a fork (copy) of the project. This can be done from the project page on GitHub. Then create a branch in your own fork. Once your work is complete, create a Pull Request from your fork back to the original.
