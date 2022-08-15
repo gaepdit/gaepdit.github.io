@@ -32,13 +32,13 @@ flowchart TD;
 ```mermaid
 flowchart TD;
 
-A(IAIP/GECO applications)
-A --> B
-B[(AIRBRANCH)]
-B -- AIRBRANCH.etl.USP_IAIP_TO_STG --> C
-C[(MFL_GA_STG)]
-C -- web service --> D
-D(EnfoTech FIS application)
+    A(IAIP/GECO applications)
+    A --> B
+    B[(AIRBRANCH)]
+    B -- AIRBRANCH.etl.USP_IAIP_TO_STG --> C
+    C[(MFL_GA_STG)]
+    C -- web service --> D
+    D(EnfoTech FIS application)
 ```
 
 ## GEOS (Georgia EPD Online System)
@@ -50,15 +50,15 @@ D(EnfoTech FIS application)
 ```mermaid
 flowchart TD;
 
-A(EnfoTech GEOS application)
-A -- web service --> B
-B[(MFL_GA_STG)]
-B -- MFL_GA_STG.dbo.USP_STG_TO_IAIP --> C
-C[(AIRBRANCH.dbo.GST_*)]
-C -- AIRBRANCH.etl.GEOS_STG_TO_IAIP_* --> D
-D[(AIRBRANCH)]
-D --> E
-E(IAIP application)
+    A(EnfoTech GEOS application)
+    A -- web service --> B
+    B[(MFL_GA_STG)]
+    B -- MFL_GA_STG.dbo.USP_STG_TO_IAIP --> C
+    C[(AIRBRANCH.dbo.GST_*)]
+    C -- AIRBRANCH.etl.GEOS_STG_TO_IAIP_* --> D
+    D[(AIRBRANCH)]
+    D --> E
+    E(IAIP application)
 ```
 
 ### GAPDES
@@ -71,11 +71,11 @@ E(IAIP application)
 ```mermaid
 flowchart TD;
 
-A(EnfoTech GEOS application)
-A -- web service --> B
-B[(MFL_GA_STG)]
-B -- web service? --> C
-C(Windsor GAPDES application)
+    A(EnfoTech GEOS application)
+    A -- web service --> B
+    B[(MFL_GA_STG)]
+    B -- web service? --> C
+    C(Windsor GAPDES application)
 ```
 
 ## FIMS (Financial Information Management System)
@@ -87,13 +87,13 @@ C(Windsor GAPDES application)
 ```mermaid
 flowchart TD;
 
-A(SDWIS application)
-A -- web service calls stored procedure --> B
-B[(MFL_GA_STG.sdw.*)]
-B -- MFL_GA_STG.dbo.USP_TRANSFER_SDWIS_DATA --> C
-C[(MFL_GA_STG.FIMS.*)]
-C -- web service --> D
-D(EnfoTech FIMS application)
+    A(SDWIS application)
+    A -- web service calls stored procedure --> B
+    B[(MFL_GA_STG.sdw.*)]
+    B -- MFL_GA_STG.dbo.USP_TRANSFER_SDWIS_DATA --> C
+    C[(MFL_GA_STG.FIMS.*)]
+    C -- web service --> D
+    D(EnfoTech FIMS application)
 ```
 
 ### GAPDES
@@ -101,7 +101,7 @@ D(EnfoTech FIMS application)
 ```mermaid
 flowchart LR;
 
-A(EnfoTech GEOS application) --> B(EnfoTech FIMS application)
+    A(EnfoTech GEOS application) --> B(EnfoTech FIMS application)
 ```
 
 ## EIS (Emissions Inventory System)
@@ -117,12 +117,13 @@ A(EnfoTech GEOS application) --> B(EnfoTech FIMS application)
 ```mermaid
 flowchart TD;
 
-A(IAIP application) --> 
-B[(AIRBRANCH)]
-B -- AIRBRANCH.etl.ICIS_* --> C
-C[(NETWORKNODEFLOW)]
-C -- "web service (VESA)" --> D
-D(EPA ICIS-Air)
+    A(IAIP application)
+    A --> B
+    B[(AIRBRANCH)]
+    B -- AIRBRANCH.etl.ICIS_* --> C
+    C[(NETWORKNODEFLOW)]
+    C -- "web service (VESA)" --> D
+    D(EPA ICIS-Air)
 ```
 
 ### ICIS-NPDES
@@ -130,5 +131,5 @@ D(EPA ICIS-Air)
 ```mermaid
 flowchart LR;
 
-A(Windsor GAPDES application) --> B(EPA ICIS-NPDES)
+    A(Windsor GAPDES application) --> B(EPA ICIS-NPDES)
 ```
