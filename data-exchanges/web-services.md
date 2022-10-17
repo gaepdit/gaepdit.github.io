@@ -8,16 +8,6 @@ title: Data Exchange Web Services
 
 All listed data exchanges run on the following servers.
 
-### CMS
-
-Prod web server: 167.192.208.134  
-Prod database: 167.192.209.7  
-
-Dev web server: 167.192.208.199  
-Dev database: 167.192.209.70  
-
-### SEI
-
 Prod web server: 10.149.210.227 (internal), 167.200.249.130 (external)  
 Prod database: 10.149.210.242  
 
@@ -34,12 +24,7 @@ Schedule: 2am daily
 Database: MFL_GA_STG  
 User: MFL_GA_STG  
 
-### CMS Configuration
-
-Application: `E:\FISDataService\FacilityProfiler.DataServices.exe`  
-Configuration file: `E:\FISDataService\FacilityProfiler.DataServices.exe.config`
-
-### SEI Configuration
+### Configuration
 
 Application: `D:\Services\FISDataService\FacilityProfiler.DataServices.exe`  
 Configuration file: `D:\Services\FISDataService\FacilityProfiler.DataServices.exe.config`  
@@ -51,12 +36,7 @@ Enfotech service runs as a Windows scheduled task.
 Task: "GEOS_to_IAIP"  
 Schedule: 1am daily
 
-### CMS Configuration
-
-Application: `E:\GEOS_TO_IAIP\GovOnline.DataExchange.exe`  
-Configuration file: `E:\GEOS_TO_IAIP\GovOnline.DataExchange.exe.config`  
-
-### SEI Configuration
+### Configuration
 
 Application: `D:\Services\GEOSDataService\GovOnline.DataExchange.exe`  
 Configuration file: `D:\Services\GEOSDataService\GovOnline.DataExchange.exe`  
@@ -70,12 +50,7 @@ The ICIS-Air data exchange runs as scheduled tasks in VESA. Schedule: [23 separa
 Database: NETWORKNODEFLOW  
 User: NETWORKNODEFLOW  
 
-### CMS Configuration
-
-Service: `C:\Program Files\EPA.gov\VESConnector\VESConnectorServer.exe`  
-Configuration file: `C:\Program Files\EPA.gov\VESConnector\VESConnectorServer.exe.config`  
-
-### SEI Configuration
+### Configuration
 
 Service program location: `D:\Services\VESConnector\VESConnectorServer.exe`  
 Configuration file: `D:\Services\VESConnector\VESConnectorServer.exe.config`  
