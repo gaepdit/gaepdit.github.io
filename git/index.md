@@ -27,7 +27,7 @@ Use these links to generate a *global* ".gitignore" file. This file should be ad
 
 Always add a *project-specific* ".gitignore" file to the root directory of your repository. This file is committed and tracked just like any other file in the repo. The following is the recommended ".gitignore" file for use with .NET application development.
 
-* [.NET project](https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,rider)
+* [.NET project](https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,jetbrains)
 
 ## Tips
 

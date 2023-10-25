@@ -28,5 +28,11 @@ Install the [VES Connector Service](https://ves.epa.gov/vesa/Node/Reference) on 
 
 ## Other
 
-[SSL Certificates](ssl-certificates.md), Crystal Reports, Active Directory Authentication Library, MS ODBC Driver, Notepad++, SSRS reports, ESRI ArcGIS Server
-
+- [SSL Certificates](ssl-certificates.html)
+- [Notepad++](https://notepad-plus-plus.org/downloads/)
+- Crystal Reports
+- Active Directory Authentication Library
+- MS ODBC Driver
+- SSRS reports
+- ESRI ArcGIS Server
+- [OpenNode2](https://windsorsolutions.github.io/opennode2/)
