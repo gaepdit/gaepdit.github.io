@@ -6,13 +6,17 @@ The following additional software must be installed on the web servers.
 
 ## .NET
 
-In the Server Manager, install the ASP.NET server role:
+* In the Server Manager, install the ASP.NET server role:
 
-![Screenshot of adding ASP.NET role in Server Manager](img/asp-net-server-roles.png)
+  ![Screenshot of adding ASP.NET role in Server Manager](img/asp-net-role.png)
 
-Install the latest supported version of the [.NET Framework](https://dotnet.microsoft.com/download/dotnet-framework).
+  And the Management Service server role:
 
-Install the latest LTS version of [.NET](https://dotnet.microsoft.com/download/dotnet). Use the ASP.NET Core Runtime, Windows Hosting Bundle installer.
+  ![Screenshot of adding the Management Service role in Server Manager](img/management-service.png)
+
+* Install the latest supported version of the [.NET Framework](https://dotnet.microsoft.com/download/dotnet-framework).
+
+* Install the latest LTS version of [.NET](https://dotnet.microsoft.com/download/dotnet). Use the ASP.NET Core Runtime, Windows Hosting Bundle installer.
 
 ## Server components and other software
 
