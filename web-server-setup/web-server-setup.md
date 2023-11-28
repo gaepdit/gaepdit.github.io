@@ -6,13 +6,15 @@ The following additional software must be installed on the web servers.
 
 ## .NET
 
-* In the Server Manager, install the ASP.NET server role:
+* In the Server Manager, install the "Web Server" → "Web Server" → "Application Development" → "ASP" and "ASP.NET 4.8" server roles:
 
-  ![Screenshot of adding ASP.NET role in Server Manager](img/asp-net-role.png)
+  ![Screenshot of adding the ASP and ASP.NET roles in Server Manager](img/app-dev-roles.png)
 
-  And the Management Service server role:
+  Also add the "Web Server" → "Management Service" server role:
 
   ![Screenshot of adding the Management Service role in Server Manager](img/management-service.png)
+
+  Note: When the above roles are selected, some additional roles will be added by default.
 
 * Install the latest supported version of the [.NET Framework](https://dotnet.microsoft.com/download/dotnet-framework).
 
