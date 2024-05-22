@@ -8,15 +8,10 @@ The Git version control system is required for use with all source code, so make
 
 There are plenty of Git tutorials online, and they all take a slightly different approach. Try to find one that fits your learning style. Keep in mind that many are published by companies that also sell Git-related products. These can be very high quality, but might be geared toward highlighting their own products.
 
-* [Introduction to Git from Microsoft Learn](https://docs.microsoft.com/en-us/learn/paths/intro-to-vc-git/)
-* [Git Tutorials from Atlassian](https://www.atlassian.com/git/tutorials) (ignore the Bitbucket sections)
-* [Git Tutorials from GitKraken](https://www.gitkraken.com/learn/git/tutorials)
-
-## Reference material
-
-* [GitHub Documentation](https://docs.github.com/en/get-started)
+* [Introduction to Git Microsoft Learn](https://docs.microsoft.com/en-us/learn/paths/intro-to-vc-git/)
+* [Git/GitHub Tutorials](https://docs.github.com/en/get-started)
+* [Git/GitKraken Tutorials](https://www.gitkraken.com/learn/git/tutorials)
 * [Git Documentation](https://git-scm.com/doc)
-* [Pro Git Book](https://git-scm.com/book/en/v2)
 
 ## Git ignore files
 

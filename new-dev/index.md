@@ -39,14 +39,13 @@ Install the following software as needed. Some applications require admin access
 
 ### For database developers
 
+* [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/) (If you install SSMS, it automatically installs ADS as well.)
 * [SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms)
-* [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/) - If you install SSMS, it automatically installs ADS as well.
 
 ### Additional applications
 
 These are helpful tools for development but are not required.
 
-* [Winget (Windows Package Manager)](https://docs.microsoft.com/en-us/windows/package-manager/winget/) - Winget enables installing and upgrading many applications directly from the command line. You may want to install this first and then use it for installing the other applications.
 * [GitKraken](https://www.gitkraken.com/download) - Git GUI
 * [Greenshot](http://getgreenshot.org/) - Screenshot tool
 * [Inkscape](https://inkscape.org/en/) - Vector graphics editor
@@ -55,4 +54,5 @@ These are helpful tools for development but are not required.
 * [Notepad++](https://notepad-plus-plus.org/) - Source code editor
 * [Pandoc](http://pandoc.org/installing.html) - Document format converter
 * [Remote Desktop Manager](https://rdm.devolutions.net/home/downloadfree) - Organizes RDP and other remote connections
+* [Winget (Windows Package Manager)](https://docs.microsoft.com/en-us/windows/package-manager/winget/) - Winget enables installing and upgrading many applications directly from the command line. Recent versions of Windows come with this built in.
 * [ZoomIt](https://docs.microsoft.com/en-us/sysinternals/downloads/zoomit) - Screen zoom and annotation tool; useful for presentations
