@@ -8,6 +8,7 @@ Welcome to the Georgia EPD-IT Developer Documentation site! To edit this documen
 
 # Application development
 
+* [List of supported applications and projects](web-apps/use-https.html)
 * [Use HTTPS & HSTS](web-apps/use-https.html)
 * [Use Web Deploy](web-apps/use-web-deploy.html)
 
