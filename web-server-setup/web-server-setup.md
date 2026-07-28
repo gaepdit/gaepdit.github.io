@@ -25,7 +25,7 @@ The following additional software must be installed on the web servers.
 - [SSL Certificates](ssl-certificates.html)
 - [Web Deploy IIS module](https://www.iis.net/downloads/microsoft/web-deploy) – Choose "Complete" installation
 - [URL Rewrite IIS module](https://www.iis.net/downloads/microsoft/url-rewrite)
-- [Raygun APM Agent](https://raygun.com/documentation/product-guides/apm/downloads/) – Only on production web servers
+- [Datadog Agent](https://docs.datadoghq.com/agent/supported_platforms/windows/) – Only on the dev and prod web servers
 - [VES Connector Service](https://ves.epa.gov/vesa/Node/Reference) – Only on the servers that interact with VES
 - Crystal Reports
 - Active Directory Authentication Library
