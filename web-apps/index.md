@@ -22,7 +22,6 @@
 | [RAD Public - Radioactive Database](https://github.com/gaepdit/RAD_Public_Site)                    | .NET Framework Web Forms |
 | [SWGW - Surface Water Ground Water Permitting Application](https://github.com/gaepdit/SWGW_Web)    | .NET Framework Web Forms |
 | [SWGW Public](https://github.com/gaepdit/SWGW_Public)                                              | .NET Framework Web Forms |
-| [Server Checkup](https://github.com/gaepdit/server-checkup)                                        | .NET Razor Pages         |
 
 ## Client applications
 
@@ -79,5 +78,6 @@
 | [OutreachStaff-WeeklyJob](https://github.com/gaepdit/OutreachStaff-WeeklyJob)        | .NET Framework               |
 | [Regex Functions for SQL Server](https://github.com/gaepdit/SqlServerRegexFunctions) | .NET Framework               |
 | [SDWIS](https://github.com/gaepdit/sdwis-tasks)                                      | .NET Framework 2.0 Web Forms |
+| [Server Checkup](https://github.com/gaepdit/server-checkup)                          | .NET Razor Pages             |
 | [Server Maintenance Page](https://github.com/gaepdit/maintenance-page)               | HTML                         |
 | [XL-ESE – eSample Data Entry](https://github.com/gaepdit/xl-ese)                     | Excel Spreadsheet            |
