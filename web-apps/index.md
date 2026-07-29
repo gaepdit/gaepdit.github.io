@@ -80,5 +80,4 @@
 | [Regex Functions for SQL Server](https://github.com/gaepdit/SqlServerRegexFunctions) | .NET Framework               |
 | [SDWIS](https://github.com/gaepdit/sdwis-tasks)                                      | .NET Framework 2.0 Web Forms |
 | [Server Maintenance Page](https://github.com/gaepdit/maintenance-page)               | HTML                         |
-| [Template App](https://github.com/gaepdit/template-app)                              | .NET Razor Pages             |
 | [XL-ESE – eSample Data Entry](https://github.com/gaepdit/xl-ese)                     | Excel Spreadsheet            |
